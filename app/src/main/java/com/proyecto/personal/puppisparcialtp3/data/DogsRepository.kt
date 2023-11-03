@@ -13,5 +13,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
    return response //.map { it.toDomain()}
   }
 
+    suspend fun getAllBreeds(): List<String>? {
+        val response: List<String>? =  service.getDogsBreeds()
+        return response //.map { it.toDomain()}
+    }
+
+    suspend fun getSpecificBreedImages(breed :String, imgNumber:Int): DogsModel {
+        val response: DogsModel =  service.getSpecificBreedImages(breed,imgNumber)
+        return response //.map { it.toDomain()}
+    }
+
 
  }

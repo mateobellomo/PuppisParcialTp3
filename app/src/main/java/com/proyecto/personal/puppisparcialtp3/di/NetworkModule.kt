@@ -1,5 +1,6 @@
 package com.proyecto.personal.puppisparcialtp3.di
 
+import android.util.Log
 import com.proyecto.personal.puppisparcialtp3.core.Config
 import com.proyecto.personal.puppisparcialtp3.core.InterceptorCustom
 import com.proyecto.personal.puppisparcialtp3.data.network.DogsApiClient
@@ -37,7 +38,7 @@ object NetworkModule {
                 .build()
             chain.proceed(request)
         })
-
+        Log.d("respuesta", "en provide reotrfit ${client.toString()}")
 
         return Retrofit.Builder()
             .baseUrl(baseUrl)

@@ -10,13 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentHomeBinding
+import com.proyecto.personal.puppisparcialtp3.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-//    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -36,6 +37,11 @@ class HomeFragment : Fragment() {
         return root
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        homeViewModel.onCreate()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
