@@ -14,6 +14,7 @@ class AdoptedFragment : Fragment() {
 
     private var _binding: FragmentAdoptedBinding? = null
 
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
