@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.activities.ui.notifications
+package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.proyecto.personal.puppisparcialtp3.databinding.FragmentNotificationsBinding
+import com.proyecto.personal.puppisparcialtp3.databinding.FragmentAdoptedBinding
+import com.proyecto.personal.puppisparcialtp3.viewModels.AdoptedViewModel
 
-class NotificationsFragment : Fragment() {
+class AdoptedFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentAdoptedBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val adoptedViewModel =
+            ViewModelProvider(this).get(AdoptedViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentAdoptedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        adoptedViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
