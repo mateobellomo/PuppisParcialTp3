@@ -10,39 +10,50 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        drawerLayout = binding.drawerLayout
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
-        setSupportActionBar(binding.toolbar)
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        val navView: NavigationView = binding.navView
+        setSupportActionBar(binding.appBar.toolbar)
+        val navController = findNavController(R.id.nav_host_fragment_content)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_favorites, R.id.navigation_adoptions,R.id.navigation_post
-            )
+            ), drawerLayout
         )
+
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        drawerLayout = binding.drawerLayout
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val bottomNav = binding.navBottom
+        bottomNav.setupWithNavController(navController)
+
+
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, binding.appBar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
 
 // Oculta la Toolbar cuando se abre el DrawerLayout
@@ -59,10 +70,15 @@ class HomeActivity : AppCompatActivity() {
                 supportActionBar?.show()
             }
         })
-
-
+//        actionBarDrawerToggle.isDrawerIndicatorEnabled = true
+//        actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_hamburger)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_hamburger)
+        }
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -79,6 +95,11 @@ class HomeActivity : AppCompatActivity() {
             // Otros casos si hay más elementos en el menú
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
 }

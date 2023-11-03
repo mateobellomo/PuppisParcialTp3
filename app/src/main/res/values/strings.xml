@@ -10,4 +10,7 @@
     <string name="title_activity_init">InitActivity</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_config">Configuración</string>
+    <string name="quotes_api_base_url">https://dog.ceo</string>
 </resources>
