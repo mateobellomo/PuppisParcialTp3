@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.activities.ui.home
+package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.proyecto.personal.puppisparcialtp3.databinding.FragmentHomeBinding
+import com.proyecto.personal.puppisparcialtp3.viewModels.FavoritesViewModel
+import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
 
-class HomeFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentFavoritesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,12 +23,16 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val favoritesViewModel =
+            ViewModelProvider(this).get(FavoritesViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val textView: TextView = binding.textDashboard
+        favoritesViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
         return root
     }
 
