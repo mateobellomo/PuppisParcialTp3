@@ -4,46 +4,88 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.proyecto.personal.puppisparcialtp3.R
+import com.proyecto.personal.puppisparcialtp3.adapters.PetListAdapter
 
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentHomeBinding
+import com.proyecto.personal.puppisparcialtp3.entities.Pet
+import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnViewItemClickedListener {
 
-    private var _binding: FragmentHomeBinding? = null
+    lateinit var vista: View
+
+    lateinit var recPets : RecyclerView
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
+    private lateinit var petListAdapter: PetListAdapter
+
     private val homeViewModel: HomeViewModel by viewModels()
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
-
       //  homeViewModel.onCreate()
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        vista = inflater.inflate(R.layout.fragment_home, container, false)
 
-        return root
+        recPets = vista.findViewById(R.id.fragmentHomeRecPets)
+
+        val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
+        boton.setOnClickListener {
+            homeViewModel.newPet()
+        }
+
+        return vista
     }
 
 
     override fun onStart() {
         super.onStart()
-        homeViewModel.onCreate()
+
+        val emptyList = mutableListOf<Pet>()
+
+        homeViewModel.createPet()
+
+
+        homeViewModel.pets.observe(this, Observer {
+            petListAdapter.updateData(it)
+        })
+
+
+        requireActivity()
+
+        recPets.setHasFixedSize(true)
+        linearLayoutManager = LinearLayoutManager(context)
+        petListAdapter = PetListAdapter(emptyList, this)
+
+        recPets.layoutManager = linearLayoutManager
+        recPets.adapter = petListAdapter
+
+
+
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewItemDetail(pet: Pet) {
+     //   val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
+      //  this.findNavController().navigate(action)
+        //findNavController().navigate(action)
+        //Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
     }
 }
