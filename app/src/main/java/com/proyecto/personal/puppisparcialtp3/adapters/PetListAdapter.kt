@@ -11,7 +11,7 @@ import com.proyecto.personal.puppisparcialtp3.holders.PostHolder
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 
 class PetListAdapter(
-    private val petsList: MutableList<Pet>,
+    private val petsList: MutableList<Pet> = mutableListOf(),
 private val onItemClick: OnViewItemClickedListener
 ) : RecyclerView.Adapter<PostHolder>() {
 
@@ -31,10 +31,19 @@ private val onItemClick: OnViewItemClickedListener
         holder.setBreed(pet.breed)
         holder.setSubBreed(pet.subBreed)
         holder.setImageView(pet.urlImages[0])
-        //holder.setGender(pet.gender)
+
 
         holder.getCardLayout().setOnClickListener{
             onItemClick.onViewItemDetail(pet)
         }
+
     }
+
+    fun updateData(newData: List<Pet>) {
+        petsList.clear() // Limpia la lista actual
+        petsList.addAll(newData) // Agrega los nuevos datos
+
+        notifyDataSetChanged()
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.holders
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -36,16 +37,9 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
         txt.text = age
     }
 
-    fun setGender(gender: String){
-        val txt: TextView = view.findViewById(R.id.tvCardViewAgeGender)
-        txt.text = gender
-    }
-
-
     fun getCardLayout (): CardView {
         return view.findViewById(R.id.card_package_item)
     }
-
 
     fun setImageView(url: String){
         val imgv: ImageView = view.findViewById(R.id.imCardViewPetPhoto)
@@ -54,10 +48,4 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
             .load(url)
             .into(imgv)
     }
-
-    fun getImageView () : ImageView {
-        return view.findViewById(R.id.imCardViewPetPhoto)
-    }
-
-
 }

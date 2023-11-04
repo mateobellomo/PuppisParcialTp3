@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,14 +32,11 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     lateinit var recPets : RecyclerView
 
-    var pets : MutableList<Pet> = ArrayList()
-
-    val lista : MutableList<String> = ArrayList()
-
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var petListAdapter: PetListAdapter
 
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +48,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
         recPets = vista.findViewById(R.id.fragmentHomeRecPets)
 
-
+        val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
+        boton.setOnClickListener {
+            homeViewModel.newPet()
+        }
 
         return vista
     }
@@ -59,24 +60,27 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
     override fun onStart() {
         super.onStart()
 
+        val emptyList = mutableListOf<Pet>()
 
-        lista.add("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
-        lista.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        homeViewModel.createPet()
 
-        pets.add(Pet("Mateo", 10, "boxer", "shiba","Male","Nada","30","BS AS","Agustin", lista))
-        pets.add(Pet("Agustin", 10, "beagle", "shiba","Male","Nada","30","BS AS","Agustin", lista))
-        pets.add(Pet("Paola", 10, "chow", "shiba","Male","Nada","30","BS AS","Agustin", lista))
-        pets.add(Pet("Yanina", 10, "labrador", "shiba","Male","Nada","30","BS AS","Agustin", lista))
-        pets.add(Pet("Camila", 10, "pug", "shiba","Male","Nada","30","BS AS","Agustin", lista))
+
+        homeViewModel.pets.observe(this, Observer {
+            petListAdapter.updateData(it)
+        })
+
 
         requireActivity()
 
         recPets.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        petListAdapter = PetListAdapter(pets, this)
+        petListAdapter = PetListAdapter(emptyList, this)
 
         recPets.layoutManager = linearLayoutManager
         recPets.adapter = petListAdapter
+
+
+
     }
     override fun onViewItemDetail(pet: Pet) {
      //   val action = Fragment3Directions.actionFragment3ToViewItem(contacto)

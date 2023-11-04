@@ -1,7 +1,9 @@
 package com.proyecto.personal.puppisparcialtp3.entities
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
 
 data class Pet (
     var name: String,
@@ -22,7 +24,9 @@ data class Pet (
 
     var ownerName: String,
 
-    var urlImages: MutableList<String>
+    var urlImages: MutableList<String>,
+
+    var adopted: Boolean
 
 ): Parcelable {
 
@@ -39,7 +43,8 @@ data class Pet (
         parcel.readString()!!,
         mutableListOf<String>().apply {
             addAll(parcel.createStringArrayList() ?: emptyList<String>())
-        }
+        },
+        parcel.readInt() != 0
     )
 
     class Gender {
@@ -90,6 +95,7 @@ data class Pet (
         parcel.writeString(location)
         parcel.writeString(ownerName)
         parcel.writeStringList(urlImages)
+        parcel.writeInt(if (adopted) 1 else 0)
     }
 
     override fun describeContents(): Int {
