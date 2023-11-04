@@ -64,6 +64,4 @@ class HomeViewModel @Inject constructor(
         pets.postValue(listPet)
     }
 
-
-
 }

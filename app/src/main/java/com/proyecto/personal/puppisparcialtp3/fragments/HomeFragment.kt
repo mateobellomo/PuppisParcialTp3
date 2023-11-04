@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.adapters.PetListAdapter
+import com.proyecto.personal.puppisparcialtp3.databinding.FragmentAdoptedBinding
 
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentHomeBinding
 import com.proyecto.personal.puppisparcialtp3.entities.Pet
@@ -28,58 +29,48 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(), OnViewItemClickedListener {
 
-    lateinit var vista: View
-
-    lateinit var recPets : RecyclerView
-
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var petListAdapter: PetListAdapter
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-      //  homeViewModel.onCreate()
-        vista = inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-        recPets = vista.findViewById(R.id.fragmentHomeRecPets)
-
-        val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
-        boton.setOnClickListener {
+        binding.botonPruebaAgregar.setOnClickListener {
             homeViewModel.newPet()
         }
 
-        return vista
+        return root
     }
 
 
     override fun onStart() {
         super.onStart()
-
         val emptyList = mutableListOf<Pet>()
-
         homeViewModel.createPet()
-
 
         homeViewModel.pets.observe(this, Observer {
             petListAdapter.updateData(it)
         })
 
-
         requireActivity()
 
-        recPets.setHasFixedSize(true)
+        binding.fragmentHomeRecPets.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
         petListAdapter = PetListAdapter(emptyList, this)
 
-        recPets.layoutManager = linearLayoutManager
-        recPets.adapter = petListAdapter
-
-
+        binding.fragmentHomeRecPets.layoutManager = linearLayoutManager
+        binding.fragmentHomeRecPets.adapter = petListAdapter
 
     }
     override fun onViewItemDetail(pet: Pet) {
@@ -87,5 +78,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
       //  this.findNavController().navigate(action)
         //findNavController().navigate(action)
         //Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

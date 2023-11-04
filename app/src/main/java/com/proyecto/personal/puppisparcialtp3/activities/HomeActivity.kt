@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, binding.appBar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
 
-// Oculta la Toolbar cuando se abre el DrawerLayout
+        // Oculta la Toolbar cuando se abre el DrawerLayout
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 if (slideOffset > 0.6) {
