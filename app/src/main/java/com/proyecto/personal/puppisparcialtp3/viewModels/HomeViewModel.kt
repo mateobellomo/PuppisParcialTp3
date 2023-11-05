@@ -1,10 +1,11 @@
 package com.proyecto.personal.puppisparcialtp3.viewModels
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.proyecto.personal.puppisparcialtp3.dataBase.PetsDAO
+import com.proyecto.personal.puppisparcialtp3.dataBase.appDatabase
 import com.proyecto.personal.puppisparcialtp3.domain.GetAllDogsBreedsUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.GetDogsImageUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.GetSpecificBreedImagesUseCase
@@ -30,11 +31,13 @@ class HomeViewModel @Inject constructor(
 
     val listUrlLabrador: MutableList<String> = ArrayList()
 
-    val listUrlPug: MutableList<String> = ArrayList()
+    val listUrlAkita: MutableList<String> = ArrayList()
 
     val listPet: MutableList<Pet> = ArrayList()
 
     val dogsIamges = MutableLiveData<List<String>>()
+
+
 
     fun onCreate() {
 
@@ -56,30 +59,26 @@ class HomeViewModel @Inject constructor(
     }
 
     fun createPet() {
-        listUrlBeagle.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-        listUrlBeagle.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-
-        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-
-        listUrlLabrador.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-        listUrlLabrador.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-
-        listUrlPug.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
-        listUrlPug.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
 
 
-        listPet.add(Pet("Agustin", 10, "beagle", "shiba", Gender.MALE, "Brown", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
-        listPet.add(Pet("Paola", 10, "chow", "shiba", Gender.MALE, "White", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
-        listPet.add(Pet("Yanina", 10, "labrador", "shiba", Gender.MALE, "Black", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
-        listPet.add(Pet("Camila", 10, "pug", "shiba", Gender.MALE, "Nada", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/n02088364_16060.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/n02088364_4052.jpg")
+
+        listUrlChow.add("https://images.dog.ceo/breeds/chow/n02112137_6709.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/chow/n02112137_3032.jpg")
+
+        listUrlLabrador.add("https://images.dog.ceo/breeds/labrador/n02099712_788.jpg")
+        listUrlLabrador.add("https://images.dog.ceo/breeds/labrador/n02099712_7937.jpg")
+
+        listUrlAkita.add("https://images.dog.ceo/breeds/akita/Japaneseakita.jpg")
+        listUrlAkita.add("https://images.dog.ceo/breeds/akita/512px-Akita_inu.jpg")
 
 
         pets.postValue(listPet)
     }
 
     fun newPet() {
-        listPet.add(Pet("PRUEBA", 10, "beagle", "shiba", Gender.MALE, "Nada", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+        listPet.add(Pet("Prueba", 10, "beagle", "shiba", Gender.MALE, "Nada", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
 
         pets.postValue(listPet)
     }

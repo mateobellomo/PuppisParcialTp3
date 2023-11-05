@@ -28,6 +28,12 @@ interface PetsDAO{
     @Query("SELECT * FROM pets WHERE isFavorite = 1")
     fun loadFavoritesPets(): MutableList<Pet?>?
 
+    @Query("SELECT * FROM pets WHERE id = :id")
+    fun getPetById(id: Int): Pet
+
+    @Query("SELECT COUNT(*) FROM pets")
+    fun getPetsCount(): Int
+
 //    @Transaction
 //    @Query("SELECT * FROM images WHERE imageId = :id")
 //    fun getPetImages(id: Int): List<PetWithImages>

@@ -1,11 +1,13 @@
 package com.proyecto.personal.puppisparcialtp3.adapters
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.personal.puppisparcialtp3.R
+import com.proyecto.personal.puppisparcialtp3.dataBase.appDatabase
 import com.proyecto.personal.puppisparcialtp3.entities.Pet
 import com.proyecto.personal.puppisparcialtp3.holders.PostHolder
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
@@ -15,6 +17,8 @@ class PetListAdapter(
 private val onItemClick: OnViewItemClickedListener
 ) : RecyclerView.Adapter<PostHolder>() {
 
+    private lateinit var database: appDatabase
+
     override fun getItemCount() = petsList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
@@ -23,15 +27,19 @@ private val onItemClick: OnViewItemClickedListener
     }
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
+        Log.d("ACA ESTOY!", "EN PETLISTADAPTER")
+        val pet = database.petsDAO().getPetById(position)
 
-        val pet = petsList[position]
-
+        Log.d("Llega pet?", "Llega algo? $pet")
+        Log.d("Llega pet?",  "${pet}")
+        Log.d("Llega pet?", "Llega algo? ${pet.name}")
+        Log.d("Llega pet?",  "${pet.name}")
         // Ver que hace la linea 33 y la 34 descomentarla
         holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender.toString()).toString())
         holder.setName(pet.name)
         holder.setBreed(pet.breed)
         pet.subBreed?.let { holder.setSubBreed(it) }
-//        holder.setImageView(pet.urlImages[0])
+        //holder.setImageView(pet.urlImages[0])
 
 
         holder.getCardLayout().setOnClickListener{
