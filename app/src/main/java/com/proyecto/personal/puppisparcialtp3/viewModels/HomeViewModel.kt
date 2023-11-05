@@ -25,7 +25,9 @@ class HomeViewModel @Inject constructor(
 
     val petsFavorite = MutableLiveData<List<Pet>>()
 
-    val listUrl : MutableList<String> = ArrayList()
+    val listUrlBeagle : MutableList<String> = ArrayList()
+
+    val listUrlChow : MutableList<String> = ArrayList()
 
     val listPet : MutableList<Pet> = ArrayList()
 
@@ -51,26 +53,37 @@ class HomeViewModel @Inject constructor(
     }
 
     fun createPet(){
-        listUrl.add("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
-        listUrl.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/1271553739_Milo.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/1374053345_Milo.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/166407056_Milo.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/184369380_Milo.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/603525417_Milo.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
 
-        listPet.add(Pet("Mateo", 10, "beagle", "shiba","Male","Brown","30","Buenos Aires","Agustin", listUrl, false, false))
-        listPet.add(Pet("Agustin", 10, "beagle", "shiba","Male","Brown","30","Buenos Aires","Valentina", listUrl, false, false))
-        listPet.add(Pet("Paola", 10, "chow", "shiba","Male","Brown","30","Formosa","Agustin", listUrl, false, false))
-        listPet.add(Pet("Yanina", 10, "labrador", "shiba","Male","Black","30","Mendoza","Agustin", listUrl, false, false))
-        listPet.add(Pet("Camila", 10, "pug", "shiba","Male","White","30","Formosa","Sofia", listUrl, false, false))
-        listPet.add(Pet("Francisco", 10, "beagle", "shiba","Male","White","30","Neuquen","Agustin", listUrl, false, false))
-        listPet.add(Pet("Javier", 10, "chow", "shiba","Male","White","30","Buenos Aires","Agustin", listUrl, false, false))
-        listPet.add(Pet("Pedro", 10, "labrador", "shiba","Male","White","30","Mendoza","Belen", listUrl, false, false))
-        listPet.add(Pet("Martin", 10, "pug", "shiba","Male","Brown","30","Neuquen","Agustin", listUrl, false, false))
-        listPet.add(Pet("Micaela", 10, "pug", "shiba","Male","Brown","30","Neuquen","Agustina", listUrl, false, false))
+        // Faltan URL de mas razas
+
+
+        listPet.add(Pet("Mateo", 1, "beagle", "shiba","Male","Brown","10","Buenos Aires","Agustin", listUrlBeagle, false, false))
+        listPet.add(Pet("Agustin", 2, "beagle", "shiba","Male","Brown","15","Buenos Aires","Valentina", listUrlChow, false, false))
+        listPet.add(Pet("Paola", 2, "chow", "shiba","Male","Brown","20","Formosa","Agustin", listUrlChow, false, false))
+        listPet.add(Pet("Yanina", 1, "labrador", "shiba","Male","Black","10\"","Mendoza","Agustin", listUrlChow, false, false))
+        listPet.add(Pet("Camila", 1, "pug", "shiba","Male","White","20","Formosa","Sofia", listUrlChow, false, false))
+        listPet.add(Pet("Francisco", 4, "beagle", "shiba","Male","White","15","Neuquen","Agustin", listUrlChow, false, false))
+        listPet.add(Pet("Javier", 3, "chow", "shiba","Male","White","20","Buenos Aires","Agustin", listUrlChow, false, false))
+        listPet.add(Pet("Pedro", 2, "labrador", "shiba","Male","White","10","Mendoza","Belen", listUrlChow, false, false))
+        listPet.add(Pet("Martin", 6, "pug", "shiba","Male","Brown","20","Neuquen","Agustin", listUrlChow, false, false))
+        listPet.add(Pet("Micaela", 4, "pug", "shiba","Male","Brown","20","Neuquen","Agustina", listUrlChow, false, false))
 
 
         pets.postValue(listPet)
     }
 
     fun newPet(){
-        listPet.add(Pet("PRUEBA", 10, "beagle", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false, false))
+        listPet.add(Pet("Jimena", 10, "beagle", "shiba","Male","Brown","30","BS AS","Agustin", listUrlChow, false, false))
 
         pets.postValue(listPet)
     }
