@@ -52,10 +52,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
         val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
         boton.setOnClickListener {
-            val action = HomeFragmentDirections.actionFragment2ToFragment3(el_parametro)
+            homeViewModel.newPet()
 
-
-            vista.findNavController().navigate(action)
 
         }
 
@@ -89,9 +87,9 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     }
     override fun onViewItemDetail(pet: Pet) {
-     //   val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
-      //  this.findNavController().navigate(action)
-        //findNavController().navigate(action)
-        //Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+     //  val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
+       // this.findNavController().navigate(action)
+       // findNavController().navigate(action)
+       // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
     }
 }

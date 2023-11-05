@@ -23,13 +23,14 @@ class ProfileFragment : Fragment(){
         vista = inflater.inflate(R.layout.fragment_profile, container, false)
         image = vista.findViewById<ImageView>(R.id.imgViewProfile)
         Glide.with(vista)
-            .load("https://picsum.photos/id/237/200/300")
+            .load("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
             .into(image)
 
         return vista
     }
 
-   // override fun onStart() {
+
+    // override fun onStart() {
         //super.onStart()
 
     //}
