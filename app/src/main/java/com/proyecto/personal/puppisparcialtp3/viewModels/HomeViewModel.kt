@@ -24,7 +24,13 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     val pets = MutableLiveData<List<Pet>>()
 
-    val listUrl: MutableList<String> = ArrayList()
+    val listUrlBeagle: MutableList<String> = ArrayList()
+
+    val listUrlChow: MutableList<String> = ArrayList()
+
+    val listUrlLabrador: MutableList<String> = ArrayList()
+
+    val listUrlPug: MutableList<String> = ArrayList()
 
     val listPet: MutableList<Pet> = ArrayList()
 
@@ -50,89 +56,30 @@ class HomeViewModel @Inject constructor(
     }
 
     fun createPet() {
-        listUrl.add("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
-        listUrl.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
 
-        listPet.add(
-            Pet(
-                "Agustin",
-                10,
-                "beagle",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                30.0,
-                Location.BUENOS_AIRES,
-                "Agustin",
-                false,
-                isFavorite = false
-            )
-        )
-        listPet.add(
-            Pet(
-                "Paola",
-                10,
-                "chow",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                30.0,
-                Location.BUENOS_AIRES,
-                "Agustin",
-                false,
-                isFavorite = false
-            )
-        )
-        listPet.add(
-            Pet(
-                "Yanina",
-                10,
-                "labrador",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                30.0,
-                Location.BUENOS_AIRES,
-                "Agustin",
-                false,
-                isFavorite = false
-            )
-        )
-        listPet.add(
-            Pet(
-                "Camila",
-                10,
-                "pug",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                30.0,
-                Location.BUENOS_AIRES,
-                "Agustin",
-                false,
-                isFavorite = false
-            )
-        )
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+
+        listUrlLabrador.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlLabrador.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+
+        listUrlPug.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlPug.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+
+
+        listPet.add(Pet("Agustin", 10, "beagle", "shiba", Gender.MALE, "Brown", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+        listPet.add(Pet("Paola", 10, "chow", "shiba", Gender.MALE, "White", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+        listPet.add(Pet("Yanina", 10, "labrador", "shiba", Gender.MALE, "Black", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+        listPet.add(Pet("Camila", 10, "pug", "shiba", Gender.MALE, "Nada", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
+
 
         pets.postValue(listPet)
     }
 
     fun newPet() {
-        listPet.add(
-            Pet(
-                "PRUEBA",
-                10,
-                "beagle",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                30.0,
-                Location.BUENOS_AIRES,
-                "Agustin",
-                false,
-                isFavorite = false
-            )
-        )
+        listPet.add(Pet("PRUEBA", 10, "beagle", "shiba", Gender.MALE, "Nada", 30.0, Location.BUENOS_AIRES, "Agustin", false, isFavorite = false))
 
         pets.postValue(listPet)
     }

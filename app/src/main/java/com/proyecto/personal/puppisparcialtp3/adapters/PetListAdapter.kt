@@ -26,6 +26,7 @@ private val onItemClick: OnViewItemClickedListener
 
         val pet = petsList[position]
 
+        // Ver que hace la linea 33 y la 34 descomentarla
         holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender.toString()).toString())
         holder.setName(pet.name)
         holder.setBreed(pet.breed)
