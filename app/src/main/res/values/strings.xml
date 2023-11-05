@@ -6,11 +6,25 @@
     <string name="title_home">Home</string>
     <string name="title_favorites">Favoritos</string>
     <string name="title_adoptions">Adopción</string>
-    <string name="title_post">Publicación</string>
+    <string name="title_post">Presentation</string>
     <string name="title_activity_init">InitActivity</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="title_profile">Perfil</string>
     <string name="title_config">Configuración</string>
     <string name="quotes_api_base_url">https://dog.ceo</string>
+    <string name="pet_name">Name</string>
+    <string name="pet_breed">Breed</string>
+    <string name="pet_sub_breed">Sub Breed</string>
+    <string name="pet_age">Age</string>
+    <string name="pet_weight">Weight</string>
+    <string name="pet_owner">Owner</string>
+    <string name="pet_location">Location</string>
+    <string name="pet_gender">Gender</string>
+    <string name="pet_photos">Photos</string>
+    <string name="pet_description">Description</string>
+    <string name="pet_add_description">Add a description</string>
+    <string name="pet_add_photos">Add up to 5 photo urls</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
 </resources>
