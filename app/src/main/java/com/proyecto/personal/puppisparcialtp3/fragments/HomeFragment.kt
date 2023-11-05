@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ import com.proyecto.personal.puppisparcialtp3.entities.Pet
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import hilt_aggregated_deps._com_proyecto_personal_puppisparcialtp3_fragments_HomeFragment_GeneratedInjector
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), OnViewItemClickedListener {
@@ -51,6 +53,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
         val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
         boton.setOnClickListener {
             homeViewModel.newPet()
+
+
         }
 
         return vista
@@ -83,9 +87,9 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     }
     override fun onViewItemDetail(pet: Pet) {
-     //   val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
-      //  this.findNavController().navigate(action)
-        //findNavController().navigate(action)
-        //Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+     //  val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
+       // this.findNavController().navigate(action)
+       // findNavController().navigate(action)
+       // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
     }
 }
