@@ -41,6 +41,10 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
         return view.findViewById(R.id.card_package_item)
     }
 
+    fun getCheckBox (): CardView {
+        return view.findViewById(R.id.checkBoxCardViewFavorite)
+    }
+
     fun setImageView(url: String){
         val imgv: ImageView = view.findViewById(R.id.imCardViewPetPhoto)
 

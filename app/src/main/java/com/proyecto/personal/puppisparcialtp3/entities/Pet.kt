@@ -26,7 +26,9 @@ data class Pet (
 
     var urlImages: MutableList<String>,
 
-    var adopted: Boolean
+    var adopted: Boolean,
+
+    var isFavorite: Boolean
 
 ): Parcelable {
 
@@ -44,6 +46,7 @@ data class Pet (
         mutableListOf<String>().apply {
             addAll(parcel.createStringArrayList() ?: emptyList<String>())
         },
+        parcel.readInt() != 0,
         parcel.readInt() != 0
     )
 
@@ -57,11 +60,11 @@ data class Pet (
     class Location {
         companion object{
             val BUENOS_AIRES = "Buenos Aires"
-            val CIUDAD_AUTONOMA_DE_BUENOS_AIRES = "Ciudad Autónoma de Buenos Aires"
+            val CIUDAD_AUTONOMA_DE_BUENOS_AIRES = "Ciudad Autonoma de Buenos Aires"
             val CATAMARCA = "Catamarca"
             val CHACO = "Chaco"
             val CHUBUT = "Chubut"
-            val CORDOBA = "Córdoba"
+            val CORDOBA = "Cordoba"
             val CORRIENTES = "Corrientes"
             val ENTRE_RIOS = "Entre Ríos"
             val FORMOSA = "Formosa"
@@ -70,7 +73,7 @@ data class Pet (
             val LA_RIOJA = "La Rioja"
             val MENDOZA = "Mendoza"
             val MISIONES = "Misiones"
-            val NEUQUEN = "Neuquén"
+            val NEUQUEN = "Neuquen"
             val RIO_NEGRO = "Río Negro"
             val SALTA = "Salta"
             val SAN_JUAN = "San Juan"
@@ -79,7 +82,7 @@ data class Pet (
             val SANTA_FE = "Santa Fe"
             val SANTIAGO_DEL_ESTERO = "Santiago del Estero"
             val TIERRA_DEL_FUEGO = "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
-            val TUCUMAN = "Tucumán"
+            val TUCUMAN = "Tucuman"
 
         }
     }

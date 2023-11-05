@@ -37,6 +37,11 @@ private val onItemClick: OnViewItemClickedListener
             onItemClick.onViewItemDetail(pet)
         }
 
+        // Cambiar atributo a favorito
+        holder.getCheckBox().setOnClickListener{
+            onItemClick.addFavorite(pet)
+        }
+
     }
 
     fun updateData(newData: List<Pet>) {

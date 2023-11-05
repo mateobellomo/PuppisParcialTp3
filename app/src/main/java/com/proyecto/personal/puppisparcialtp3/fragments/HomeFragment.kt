@@ -59,9 +59,9 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
         val emptyList = mutableListOf<Pet>()
         homeViewModel.createPet()
 
-        homeViewModel.pets.observe(this, Observer {
+        homeViewModel.pets.observe(this) {
             petListAdapter.updateData(it)
-        })
+        }
 
         requireActivity()
 
@@ -78,6 +78,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
       //  this.findNavController().navigate(action)
         //findNavController().navigate(action)
         //Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun addFavorite(pet: Pet) {
+        homeViewModel
     }
 
     override fun onDestroyView() {
