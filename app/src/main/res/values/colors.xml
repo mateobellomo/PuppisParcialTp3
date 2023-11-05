@@ -6,5 +6,9 @@
     <color name="grey">#5f5b5b</color>
     <color name="grey_light">#7e8a97</color>
     <color name="grey_transparent">#687E8A97</color>
+    <color name="dark_blue"> #3D405B</color>
+    <color name="light_yellow">#F4F1DE</color>
+
+
 
 </resources>
