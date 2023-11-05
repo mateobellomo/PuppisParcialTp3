@@ -26,11 +26,11 @@ private val onItemClick: OnViewItemClickedListener
 
         val pet = petsList[position]
 
-        holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender).toString())
+        holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender.toString()).toString())
         holder.setName(pet.name)
         holder.setBreed(pet.breed)
-        holder.setSubBreed(pet.subBreed)
-        holder.setImageView(pet.urlImages[0])
+        pet.subBreed?.let { holder.setSubBreed(it) }
+//        holder.setImageView(pet.urlImages[0])
 
 
         holder.getCardLayout().setOnClickListener{
