@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pets")
 class Pet(
     name: String,
-    age: Int,
+    age: String,
     breed: String,
     subBreed: String?,
     gender: Gender,
     description: String?,
-    weight: Double,
+    weight: String,
     location: Location,
     ownerName: String,
     isAdopted: Boolean,
@@ -26,7 +26,7 @@ class Pet(
     var name: String
 
     @ColumnInfo(name = "age")
-    var age: Int
+    var age: String
 
     @ColumnInfo(name = "breed")
     var breed: String
@@ -41,7 +41,7 @@ class Pet(
     var description: String?
 
     @ColumnInfo(name = "weight")
-    var weight: Double
+    var weight: String
 
     @ColumnInfo(name = "location")
     var location: Location

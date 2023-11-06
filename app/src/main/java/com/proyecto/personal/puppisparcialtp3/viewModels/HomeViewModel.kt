@@ -56,12 +56,12 @@ class HomeViewModel @Inject constructor(
         listPet.add(
             Pet(
                 "Agustin",
-                10,
+                "10 months",
                 "beagle",
                 "shiba",
                 Gender.MALE,
                 "Nada",
-                30.0,
+                "30 gr",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 false,
@@ -71,12 +71,12 @@ class HomeViewModel @Inject constructor(
         listPet.add(
             Pet(
                 "Paola",
-                10,
+                "10 days",
                 "chow",
                 "shiba",
                 Gender.MALE,
                 "Nada",
-                30.0,
+                "30 kg",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 false,
@@ -86,12 +86,12 @@ class HomeViewModel @Inject constructor(
         listPet.add(
             Pet(
                 "Yanina",
-                10,
+                "10 years",
                 "labrador",
                 "shiba",
                 Gender.MALE,
                 "Nada",
-                30.0,
+                "30 kgs",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 false,
@@ -101,12 +101,12 @@ class HomeViewModel @Inject constructor(
         listPet.add(
             Pet(
                 "Camila",
-                10,
+                "10",
                 "pug",
                 "shiba",
                 Gender.MALE,
                 "Nada",
-                30.0,
+                "30.0",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 false,
@@ -121,12 +121,12 @@ class HomeViewModel @Inject constructor(
         listPet.add(
             Pet(
                 "PRUEBA",
-                10,
+                "10",
                 "beagle",
                 "shiba",
                 Gender.MALE,
                 "Nada",
-                30.0,
+                "30.0",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 false,
