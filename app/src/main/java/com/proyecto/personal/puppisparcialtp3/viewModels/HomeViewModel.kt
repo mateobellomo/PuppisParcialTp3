@@ -19,13 +19,15 @@ class HomeViewModel @Inject constructor(
     private val getDogsImage :GetDogsImageUseCase,
     private val getAllDogsBreedsUseCase: GetAllDogsBreedsUseCase,
     private val getSpecificBreedImages :GetSpecificBreedImagesUseCase) : ViewModel() {
-    val pets = MutableLiveData<List<Pet>>()
+    val pets = MutableLiveData<List<Pet>?>()
 
     val listUrl : MutableList<String> = ArrayList()
 
     val listPet : MutableList<Pet> = ArrayList()
 
     val dogsIamges = MutableLiveData<List<String>>()
+    val filters = MutableLiveData<List<String>>()
+    val originalPetList =  MutableLiveData<List<Pet>>()
 
     fun onCreate() {
 
@@ -50,12 +52,13 @@ class HomeViewModel @Inject constructor(
         listUrl.add("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
         listUrl.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
 
-        listPet.add(Pet("Agustin", 10, "beagle", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Paola", 10, "chow", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Yanina", 10, "labrador", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Camila", 10, "pug", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-
+        listPet.add(Pet("Agustin", 1, "beagle", "shiba","Male","Nada","30","Buenos Aires","Agustin", listUrl, false))
+        listPet.add(Pet("Paola", 15, "chow", "shiba","Male","Nada","30","Catamarca","Agustin", listUrl, false))
+        listPet.add(Pet("Yanina", 2, "labrador", "shiba","Male","Nada","30","Chubut","Agustin", listUrl, false))
+        listPet.add(Pet("Sebastian", 3, "pug", "shiba","Male","Nada","30","Corrientes","Agustin", listUrl, false))
+        listPet.add(Pet("Camila", 10, "doberman", "shiba","Female","Nada","30","Corrientes","Agustin", listUrl, false))
         pets.postValue(listPet)
+        originalPetList.postValue(listPet)
     }
 
     fun newPet(){
@@ -64,6 +67,32 @@ class HomeViewModel @Inject constructor(
         pets.postValue(listPet)
     }
 
+
+    fun addFilter(newFilter: String) {
+        val oldList = filters.value?.toMutableList() ?: mutableListOf()
+        oldList.add(newFilter)
+        Log.d("filters" ,"luego de agregar ${filters.value.toString()}")
+        filters.postValue(oldList)
+    }
+
+    fun deleteFilter(filterToDelete: String) {
+        val oldList = filters.value?.toMutableList() ?: mutableListOf()
+        oldList.remove(filterToDelete)
+        filters.postValue(oldList)
+    }
+
+    fun clearList() {
+        filters.postValue(emptyList())
+    }
+
+    fun resetOriginalList(){
+        val originalPet = originalPetList.value
+        if (!originalPet.isNullOrEmpty()){
+            pets.postValue(originalPet)
+
+
+        }
+    }
 
 
 }

@@ -13,4 +13,8 @@
     <string name="title_profile">Perfil</string>
     <string name="title_config">Configuración</string>
     <string name="quotes_api_base_url">https://dog.ceo</string>
+    <string name="filter_title">Filtros</string>
+    <string name="more_filters">Más Filtros</string>
+    <string name="filter_clean">Limpiar filtros</string>
+    <string name="search_hint">Buscar por raza</string>
 </resources>
