@@ -7,4 +7,5 @@
         <item>Verde</item>
         <!-- Agrega más elementos según sea necesario -->
     </array>
+    <string-array name="breeds_value">"pug","bulldog"</string-array>
 </resources>

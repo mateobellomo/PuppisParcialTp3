@@ -3,16 +3,15 @@ package com.proyecto.personal.puppisparcialtp3.adapters
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.personal.puppisparcialtp3.R
-import com.proyecto.personal.puppisparcialtp3.entities.Pet
+import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.holders.PostHolder
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 
 class PetListAdapter(
     private val petsList: MutableList<Pet> = mutableListOf(),
-private val onItemClick: OnViewItemClickedListener
+    private val onItemClick: OnViewItemClickedListener
 ) : RecyclerView.Adapter<PostHolder>() {
 
     private val petsListFilter: MutableList<Pet> = mutableListOf()
@@ -27,11 +26,11 @@ private val onItemClick: OnViewItemClickedListener
 
         val pet = petsList[position]
 
-        holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender).toString())
+        holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender.toString()).toString())
         holder.setName(pet.name)
         holder.setBreed(pet.breed)
-        holder.setSubBreed(pet.subBreed)
-        holder.setImageView(pet.urlImages[0])
+        pet.subBreed?.let { holder.setSubBreed(it) }
+        pet.photo?.let { holder.setImageView(it) }
 
 
         holder.getCardLayout().setOnClickListener{
@@ -73,13 +72,13 @@ private val onItemClick: OnViewItemClickedListener
     fun filterCategory (category : String){
         val filteredList = petsList.filter { pet ->
             when (category) {
-                "Female" -> pet.gender == "Female"
-                "Male" -> pet.gender == "Male"
-                "Cachorro" -> pet.age <= 1
-                "Adolescente" -> pet.age in 2..3
-                "Adulto" -> pet.age in 3..7
-                "Senior" -> pet.age > 7
-                else -> pet.location == category
+                "FEMALE" -> pet.gender.toString() == "FEMALE"
+                "MALE" -> pet.gender.toString() == "MALE"
+//                "Cachorro" -> pet.age <= 1
+//                "Adolescente" -> pet.age in 2..3
+//                "Adulto" -> pet.age in 3..7
+//                "Senior" -> pet.age > 7
+                else -> pet.location.toString() == category
             }
         }
 

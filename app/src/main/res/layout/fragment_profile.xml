@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/imgViewProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="160dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Name"
+        android:textColor="@color/deep_blue"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnProfileUpload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewProfile"
+        app:layout_constraintVertical_bias="0.486" />
+
+    <Button
+        android:id="@+id/btnProfileUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="312dp"
+        android:backgroundTint="@color/dark_blue"
+        android:fontFamily="@font/nunito_regular"
+        android:text="Upload Picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/light_yellow"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarProfile"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:textSize="23dp"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_go_back_arrow"
+        app:title="Profile"
+        app:titleTextAppearance="@style/PoppinsBlackToolBar"
+        app:titleTextColor="@color/deep_blue" />
+
+    <EditText
+        android:id="@+id/editTextUploadURLProfile"
+        android:layout_width="272dp"
+        android:layout_height="75dp"
+        android:ems="10"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Enter Image URL"
+        android:inputType="text|textUri"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileUpload"
+        android:gravity="center"
+        app:layout_constraintVertical_bias="0.094"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

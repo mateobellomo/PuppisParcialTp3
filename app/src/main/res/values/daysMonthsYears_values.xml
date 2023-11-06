@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="daysMonthsYear_values">
+        <item>Días</item>
+        <item>Meses</item>
+        <item>Años</item>
+    </string-array>
+</resources>

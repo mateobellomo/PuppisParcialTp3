@@ -42,10 +42,10 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
     }
 
     fun setImageView(url: String){
-        val imgv: ImageView = view.findViewById(R.id.imCardViewPetPhoto)
+        val img: ImageView = view.findViewById(R.id.imCardViewPetPhoto)
 
         Glide.with(view)
             .load(url)
-            .into(imgv)
+            .into(img)
     }
 }

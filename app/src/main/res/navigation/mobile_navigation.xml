@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.ProfileFragment"
+        android:label=""
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.FavoritesFragment"
         android:label=""

@@ -7,28 +7,29 @@
     tools:context=".activities.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.PuppisParcialTp3">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/colorPrimary"
-            app:navigationIcon="@drawable/ic_hamburger"
-            android:paddingHorizontal="10dp"
-            android:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:paddingHorizontal="10dp"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_hamburger" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
     <include layout="@layout/content_drawer" />
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

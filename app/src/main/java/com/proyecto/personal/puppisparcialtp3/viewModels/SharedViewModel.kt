@@ -10,27 +10,27 @@ import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetDogsImageUseCas
 import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetSpecificBreedImagesUseCase
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
-import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
+import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class SharedViewModel @Inject constructor(
     private val getDogsImage: GetDogsImageUseCase,
     private val getAllDogsBreedsUseCase: GetAllDogsBreedsUseCase,
     private val getSpecificBreedImages: GetSpecificBreedImagesUseCase
 ) : ViewModel() {
-    val pets = MutableLiveData<List<PetEntity>?>()
+
+    val pets = MutableLiveData<List<Pet>?>()
 
     val listUrl: MutableList<String> = ArrayList()
 
-    val listPet: MutableList<PetEntity> = ArrayList()
+    val listPet: MutableList<Pet> = ArrayList()
 
     val dogsIamges = MutableLiveData<List<String>>()
     val filters = MutableLiveData<List<String>>()
-    val originalPetList =  MutableLiveData<List<PetEntity>>()
+    val originalPetList =  MutableLiveData<List<Pet>>()
     val dogBreedSugestions: MutableLiveData<List<String>> = MutableLiveData()
 
     fun onCreate() {
@@ -58,83 +58,83 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun createPet(result:DogsModel) {
-   if(listPet.isEmpty()){
-        listPet.add(
-            PetEntity(
-                "Agustin",
-                "10 months",
-                "beagle",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                "30 gr",
-                Location.BUENOS_AIRES,
-                "Agustin",
-                photo = result.dogsImage.get(2),
-                false,
-                isFavorite = false
+    fun createPet(result: DogsModel) {
+        if(listPet.isEmpty()){
+            listPet.add(
+                Pet(
+                    "Agustin",
+                    "10 months",
+                    "beagle",
+                    "shiba",
+                    Gender.MALE,
+                    "Nada",
+                    "30 gr",
+                    Location.BUENOS_AIRES,
+                    "Agustin",
+                    photo = result.dogsImage.get(2),
+                    false,
+                    isFavorite = false
+                )
             )
-        )
-        listPet.add(
-            PetEntity(
-                "Paola",
-                "10 days",
-                "chow",
-                "shiba",
-                Gender.FEMALE,
-                "Nada",
-                "30 kg",
-                Location.BUENOS_AIRES,
-                "Agustin",
-                photo = result.dogsImage.get(0),
-                false,
-                isFavorite = false
+            listPet.add(
+                Pet(
+                    "Paola",
+                    "10 days",
+                    "chow",
+                    "shiba",
+                    Gender.FEMALE,
+                    "Nada",
+                    "30 kg",
+                    Location.BUENOS_AIRES,
+                    "Agustin",
+                    photo = result.dogsImage.get(0),
+                    false,
+                    isFavorite = false
+                )
             )
-        )
-        listPet.add(
-            PetEntity(
-                "Yanina",
-                "10 years",
-                "labrador",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                "30 kgs",
-                Location.BUENOS_AIRES,
-                "Agustin",
-                photo = result.dogsImage.get(4),
-                false,
-                isFavorite = false
+            listPet.add(
+                Pet(
+                    "Yanina",
+                    "10 years",
+                    "labrador",
+                    "shiba",
+                    Gender.MALE,
+                    "Nada",
+                    "30 kgs",
+                    Location.BUENOS_AIRES,
+                    "Agustin",
+                    photo = result.dogsImage.get(4),
+                    false,
+                    isFavorite = false
+                )
             )
-        )
-        listPet.add(
-            PetEntity(
-                "Camila",
-                "10",
-                "pug",
-                "shiba",
-                Gender.MALE,
-                "Nada",
-                "30.0",
-                Location.BUENOS_AIRES,
-                "Agustin",
-                photo = result.dogsImage.get(5),
-                false,
-                isFavorite = false
+            listPet.add(
+                Pet(
+                    "Camila",
+                    "10",
+                    "pug",
+                    "shiba",
+                    Gender.MALE,
+                    "Nada",
+                    "30.0",
+                    Location.BUENOS_AIRES,
+                    "Agustin",
+                    photo = result.dogsImage.get(5),
+                    false,
+                    isFavorite = false
+                )
             )
-        )
 
-       pets.postValue(listPet)
-       originalPetList.postValue(listPet)
-   }
+            pets.postValue(listPet)
+            originalPetList.postValue(listPet)
+        }
 
 
     }
 
     fun newPet() {
         listPet.add(
-            PetEntity(
+            Pet(
                 "PRUEBA",
                 "10",
                 "beagle",
@@ -192,7 +192,7 @@ class HomeViewModel @Inject constructor(
             pet.subBreed?.let { razas.add(it) }
             razas
         }?.toSet() ?: emptySet()
-     return razasDisponibles.toTypedArray()
+        return razasDisponibles.toTypedArray()
 
     }
 

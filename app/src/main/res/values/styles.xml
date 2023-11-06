@@ -3,6 +3,10 @@
     <style name="BottomNavInactiveTextStyle" parent="@style/TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/grey_transparent</item>
     </style>
+    <style name="PoppinsBlackToolBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/poppins_black</item>
+        <!-- Add other text appearance attributes as needed -->
+    </style>
 
 
 
