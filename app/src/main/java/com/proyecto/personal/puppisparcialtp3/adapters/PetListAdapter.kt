@@ -7,34 +7,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.holders.PostHolder
+import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 
 class PetListAdapter(
     private val petsList: MutableList<Pet> = mutableListOf(),
-    private val onItemClick: OnViewItemClickedListener
+    private val onItemClick: OnViewItemClickedListener,
+    private var onFavoriteClick: OnFavoritesClickListener
 ) : RecyclerView.Adapter<PostHolder>() {
 
     private val petsListFilter: MutableList<Pet> = mutableListOf()
     override fun getItemCount() = petsList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.card_view_pet,parent,false)
+        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_card_view_pet,parent,false)
         return (PostHolder(view))
     }
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
 
         val pet = petsList[position]
-
-        holder.setAge(TextUtils.concat(pet.age.toString(), " / ", pet.gender.toString()).toString())
-        holder.setName(pet.name)
-        holder.setBreed(pet.breed)
-        pet.subBreed?.let { holder.setSubBreed(it) }
-        pet.photo?.let { holder.setImageView(it) }
-
+        holder.render(pet)
 
         holder.getCardLayout().setOnClickListener{
             onItemClick.onViewItemDetail(pet)
+        }
+        holder.favoriteBtnUncheked.setOnClickListener{
+            onFavoriteClick.onFavoritesClick(pet)
+        }
+        holder.favoriteBtnchecked.setOnClickListener{
+            onFavoriteClick.onFavoritesClick(pet)
         }
 
     }
@@ -51,8 +53,6 @@ class PetListAdapter(
     fun updateDataFilter(newData: List<Pet>) {
         petsList.clear() // Limpia la lista actual
         petsList.addAll(newData) // Agrega los nuevos datos
-
-
         notifyDataSetChanged()
     }
 
@@ -63,7 +63,6 @@ class PetListAdapter(
                 filteredList.add(item)
             }
         }
-
         updateDataFilter(filteredList)
         notifyDataSetChanged()
     }
@@ -81,8 +80,6 @@ class PetListAdapter(
                 else -> pet.location.toString() == category
             }
         }
-
-
         updateDataFilter(filteredList)
         notifyDataSetChanged()
 

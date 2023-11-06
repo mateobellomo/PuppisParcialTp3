@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,7 +16,11 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.activities.HomeActivity
 import com.proyecto.personal.puppisparcialtp3.data.database.PetsDAO
@@ -27,6 +32,7 @@ import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.viewModels.PostFormViewModel
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
+import kotlinx.coroutines.launch
 
 
 class PostFormFragment : Fragment() {
@@ -42,7 +48,7 @@ class PostFormFragment : Fragment() {
     private var locationSpinner: Spinner? = null
     private var ownerPetInput: EditText? = null
     private var descriptionInput: EditText? = null
-    private var photosInput: EditText? = null
+
     private var saveBtn: Button? = null
     private var cancelBtn: Button? = null
     private var addPhotoBtn: Button? = null
@@ -58,6 +64,7 @@ class PostFormFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var database: appDatabase
     private lateinit var petsDao: PetsDAO
+    private var imagePhoto :String = ""
 
 
 
@@ -81,7 +88,7 @@ class PostFormFragment : Fragment() {
         locationSpinner = binding.LocationSpinner
         ownerPetInput = binding.editTextFragmentPostFormOwner
         descriptionInput = binding.editNotes
-        photosInput = binding.editTextUrlPhoto
+
         errorMsg = binding.errorMsg
         errorMsg?.visibility = View.INVISIBLE
         saveBtn = binding.buttonFragmentPostFormSave
@@ -102,12 +109,43 @@ class PostFormFragment : Fragment() {
         return root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        binding.editTextUrlPhoto.setOnClickListener{
+
+//          val image =  sharedViewModel.getImage()
+//            Glide.with(this)
+//                .load("URL_DE_LA_IMAGEN") // Reemplaza con la URL de la imagen que deseas cargar
+//                .into(object : CustomTarget<Drawable>() {
+//                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+//                        // Establece la imagen como fondo del EditText
+//                        binding.editTextUrlPhoto.background = resource
+//                    }
+//
+//                    override fun onLoadCleared(placeholder: Drawable?) {
+//                        // Código para manejar la carga cancelada si es necesario
+//                    }
+//                })
+
+
+            lifecycleScope.launch {
+                imagePhoto = sharedViewModel.getImage()
+                Log.e("imagen", imagePhoto)
+                Glide.with(this@PostFormFragment)
+                    .load(imagePhoto)
+                    .into(binding.editTextUrlPhoto) // Asignar la imagen al EditText
+            }
+            Log.e("imagen 2", imagePhoto)
+        }
+    }
+
     private fun deleteUrlPhoto() {
-        PostFormViewModel.removeImage(photosInput?.text.toString())
+        PostFormViewModel.removeImage(imagePhoto)
     }
 
     private fun addUrlPhoto() {
-        PostFormViewModel.saveImage(photosInput?.text.toString())
+        PostFormViewModel.saveImage(imagePhoto)
     }
 
     override fun onDestroyView() {
@@ -201,7 +239,7 @@ class PostFormFragment : Fragment() {
             val locationString: String = locationSpinner?.selectedItem.toString()
             val ownerPet: String = ownerPetInput?.text.toString()
             val description: String = descriptionInput?.text.toString()
-            val imagesPet: String = photosInput?.text.toString()
+            val imagesPet: String = imagePhoto
 
             if (namePet.isEmpty()) {
                 errorMsg?.visibility = View.VISIBLE
@@ -239,7 +277,7 @@ class PostFormFragment : Fragment() {
                 val location: Location = Location.fromString(locationString)
 
 
-                val newPet = Pet(
+                val newPet = Pet(Pet.nextId(), //genera id automatico
                     name = namePet,
                     age = agePet,
                     breed = breed,
@@ -264,7 +302,7 @@ class PostFormFragment : Fragment() {
 
                 Log.d("pet creado", newPet.toString())
                 Log.d("pet creado view model", sharedViewModel.listPet.toString())
-
+               sharedViewModel.listPet.add(newPet)
             }
         }
 

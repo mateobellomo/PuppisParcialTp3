@@ -407,12 +407,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
 
-    <EditText
+    <ImageView
         android:id="@+id/editTextUrlPhoto"
         android:layout_width="175dp"
         android:layout_height="117dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
+        android:enabled="true"
         android:background="@drawable/ic_rectangle"
         android:fontFamily="@font/quicksand_light"
         android:gravity="top"

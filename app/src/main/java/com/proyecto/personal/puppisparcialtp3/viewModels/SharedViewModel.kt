@@ -11,6 +11,7 @@ import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetSpecificBreedIm
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
+import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -61,7 +62,7 @@ class SharedViewModel @Inject constructor(
     fun createPet(result: DogsModel) {
         if(listPet.isEmpty()){
             listPet.add(
-                Pet(
+                Pet(Pet.nextId(),
                     "Agustin",
                     "10 months",
                     "beagle",
@@ -77,7 +78,7 @@ class SharedViewModel @Inject constructor(
                 )
             )
             listPet.add(
-                Pet(
+                Pet(Pet.nextId(),
                     "Paola",
                     "10 days",
                     "chow",
@@ -93,7 +94,7 @@ class SharedViewModel @Inject constructor(
                 )
             )
             listPet.add(
-                Pet(
+                Pet(Pet.nextId(),
                     "Yanina",
                     "10 years",
                     "labrador",
@@ -109,7 +110,7 @@ class SharedViewModel @Inject constructor(
                 )
             )
             listPet.add(
-                Pet(
+                Pet(Pet.nextId(),
                     "Camila",
                     "10",
                     "pug",
@@ -121,7 +122,7 @@ class SharedViewModel @Inject constructor(
                     "Agustin",
                     photo = result.dogsImage.get(5),
                     false,
-                    isFavorite = false
+                    isFavorite = true
                 )
             )
 
@@ -134,7 +135,7 @@ class SharedViewModel @Inject constructor(
 
     fun newPet() {
         listPet.add(
-            Pet(
+            Pet(Pet.nextId(),
                 "PRUEBA",
                 "10",
                 "beagle",
@@ -146,7 +147,7 @@ class SharedViewModel @Inject constructor(
                 "Agustin",
                 photo = "",
                 false,
-                isFavorite = false
+                isFavorite = true
             )
         )
 
@@ -196,6 +197,31 @@ class SharedViewModel @Inject constructor(
 
     }
 
+    suspend fun getImage(): String {
+        var result: String = ""
+        viewModelScope.launch {
+            // imagenes ramdom de perros , strings con direcciones url
+            val response = getDogsImage()
+
+                result = response.dogsImage?.get(1) ?: ""
+
+        }
+        return result
+    }
+
+    fun onFavoritesClick(pet: Pet) {
+        val currentList = pets.value
+        currentList?.let {
+            val updatedList = it.map { currentPet ->
+                if (currentPet.id == pet.id) {
+                    currentPet.copy(isFavorite = !currentPet.isFavorite) // Cambia el estado de favorito
+                } else {
+                    currentPet
+                }
+            }
+            pets.postValue(updatedList)
+        }
+    }
+    }
 
 
-}

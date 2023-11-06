@@ -17,6 +17,7 @@ import android.widget.Button
 import android.widget.CursorAdapter
 import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
@@ -32,12 +33,13 @@ import com.proyecto.personal.puppisparcialtp3.utils.AgeRange
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
+import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnViewItemClickedListener {
+class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener {
 
     lateinit var vista: View
 
@@ -114,7 +116,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
         recPets.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        petListAdapter = PetListAdapter(emptyList, this)
+        petListAdapter = PetListAdapter(emptyList, this,this )
 
         recPets.layoutManager = linearLayoutManager
         recPets.adapter = petListAdapter
@@ -152,6 +154,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
        // this.findNavController().navigate(action)
        // findNavController().navigate(action)
        // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+        Toast.makeText(context,"todavia no implementado!!!", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun initRecyclerView() {
@@ -314,5 +318,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     }
 
+    override fun onFavoritesClick(pet: Pet) {
+        sharedViewModel.onFavoritesClick(pet)
+        Toast.makeText(context,"Hemos tomado nota!",Toast.LENGTH_SHORT).show()
     }
+
+}
 
