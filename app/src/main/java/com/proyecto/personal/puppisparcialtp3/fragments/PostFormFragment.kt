@@ -3,6 +3,7 @@ package com.proyecto.personal.puppisparcialtp3.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,8 +50,6 @@ class PostFormFragment : Fragment() {
     private var errorMsg: TextView? = null
 
 
-    lateinit var spinnerArrayAdapter: ArrayAdapter<String>
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private val PostFormViewModel: PostFormViewModel by viewModels()
     private var _binding: FragmentPostFormBinding? = null
     private val binding get() = _binding!!
@@ -251,10 +250,16 @@ class PostFormFragment : Fragment() {
                     isFavorite = false
                 )
 
+                Log.e("NamePet!!", namePet)
+                Log.e("AgePet!!", agePet)
+                Log.e("breedPet!!", breed)
+
+
                 database = appDatabase.getAppDataBase(binding.root.context)!!
                 petsDao = database?.petsDAO()
 
                 petsDao.insertPet(newPet)
+
 
                 val intent = Intent(context, HomeActivity::class.java)
                 context?.startActivity(intent)
