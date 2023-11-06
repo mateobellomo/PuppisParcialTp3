@@ -1,6 +1,11 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -132,14 +137,14 @@
 
     <EditText
         android:id="@+id/editTextFragmentPostFormName"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
         android:autofillHints="name"
         android:ems="10"
+        android:hint="@string/pet_name"
         android:inputType="text"
-        android:text="@string/pet_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormName" />
 
@@ -159,12 +164,12 @@
 
     <Spinner
         android:id="@+id/GenderSpinner"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/grey_light"
         android:minHeight="48dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -189,11 +194,11 @@
 
     <Spinner
         android:id="@+id/quantitySpinner"
-        android:layout_width="80dp"
+        android:layout_width="75dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/grey_light"
         android:minHeight="48dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -202,11 +207,11 @@
 
     <Spinner
         android:id="@+id/DaysMonthsYearsSpinner"
-        android:layout_width="90dp"
+        android:layout_width="105dp"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/grey_light"
         android:minHeight="48dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -229,23 +234,23 @@
 
     <EditText
         android:id="@+id/editTextFragmentPostFormWeight"
-        android:layout_width="90dp"
+        android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="3dp"
         android:ems="10"
+        android:hint="@string/pet_weight"
         android:inputType="numberDecimal"
-        android:text="@string/pet_weight"
         app:layout_constraintStart_toEndOf="@+id/DaysMonthsYearsSpinner"
         app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight" />
 
     <Spinner
         android:id="@+id/GrKgSpinner"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/grey_light"
         android:minHeight="48dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -268,7 +273,7 @@
 
     <Spinner
         android:id="@+id/BreedSpinner"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
@@ -295,9 +300,9 @@
 
     <Spinner
         android:id="@+id/SubBreedSpinner"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="3dp"
         android:backgroundTint="@color/grey"
         android:minHeight="48dp"
@@ -322,7 +327,7 @@
 
     <Spinner
         android:id="@+id/LocationSpinner"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
@@ -349,9 +354,9 @@
 
     <EditText
         android:id="@+id/editTextFragmentPostFormOwner"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="3dp"
         android:ems="10"
         android:inputType="text"
@@ -375,14 +380,14 @@
 
     <EditText
         android:id="@+id/editNotes"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="117dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="3dp"
         android:background="@drawable/ic_rectangle"
+        android:fontFamily="@font/quicksand_light"
         android:gravity="top"
         android:hint="@string/pet_add_description"
-        android:fontFamily="@font/quicksand_light"
         android:inputType="text"
         android:padding="5dp"
         app:layout_constraintStart_toEndOf="@+id/editTextUrlPhoto"
@@ -404,14 +409,14 @@
 
     <EditText
         android:id="@+id/editTextUrlPhoto"
-        android:layout_width="170dp"
+        android:layout_width="175dp"
         android:layout_height="117dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="3dp"
         android:background="@drawable/ic_rectangle"
+        android:fontFamily="@font/quicksand_light"
         android:gravity="top"
         android:hint="@string/pet_add_photos"
-        android:fontFamily="@font/quicksand_light"
         android:inputType="text"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -472,12 +477,12 @@
         android:id="@+id/errorMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="348dp"
         android:text="TextView"
         android:textColor="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.356"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -500,8 +505,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.996"
         app:menu="@menu/bottom_nav_menu">
-
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

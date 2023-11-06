@@ -1,5 +1,6 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.proyecto.personal.puppisparcialtp3.R
+import com.proyecto.personal.puppisparcialtp3.activities.HomeActivity
 import com.proyecto.personal.puppisparcialtp3.dataBase.PetsDAO
 import com.proyecto.personal.puppisparcialtp3.dataBase.appDatabase
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPostFormBinding
@@ -85,30 +87,36 @@ class PostFormFragment : Fragment() {
             this.savePost()
         }
         cancelBtn?.setOnClickListener {
-            this.onDestroyView()
+            this.cancel()
         }
         addPhotoBtn?.setOnClickListener {
-            addUrlPhoto()
+            this.addUrlPhoto()
         }
         deletePhotoBtn?.setOnClickListener {
-            deleteurlPhoto()
+            this.deleteUrlPhoto()
         }
 
         fillSpinnerValues()
         return root
     }
 
-    private fun deleteurlPhoto() {
-        TODO("Not yet implemented")
+    private fun deleteUrlPhoto() {
+        PostFormViewModel.removeImage(photosInput?.text.toString())
     }
 
     private fun addUrlPhoto() {
-        TODO("Not yet implemented")
+        PostFormViewModel.saveImage(photosInput?.text.toString())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun cancel(){
+        val intent = Intent(context, HomeActivity::class.java)
+        context?.startActivity(intent)
+
     }
 
     private fun fillSpinnerValues() {
@@ -248,7 +256,8 @@ class PostFormFragment : Fragment() {
 
                 petsDao.insertPet(newPet)
 
-
+                val intent = Intent(context, HomeActivity::class.java)
+                context?.startActivity(intent)
             }
         }
 
