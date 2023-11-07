@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -18,6 +19,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -39,17 +41,17 @@ import kotlinx.coroutines.launch
 
 class PostFormFragment : Fragment() {
 
-    private var namePetInput: EditText? = null
-    private var genderSpinner: Spinner? = null
-    private var quantitySpinner: Spinner? = null
-    private var daysMonthsYearsSpinner: Spinner? = null
-    private var weightPetInput: EditText? = null
-    private var grKgSpinner: Spinner? = null
-    private var breedSpinner: Spinner? = null
-    private var subBreedSpinner: Spinner? = null
-    private var locationSpinner: Spinner? = null
-    private var ownerPetInput: EditText? = null
-    private var descriptionInput: EditText? = null
+    private lateinit  var namePetInput: EditText
+    private lateinit  var genderSpinner: Spinner
+    private lateinit var quantitySpinner: Spinner
+    private lateinit var daysMonthsYearsSpinner: Spinner
+    private lateinit var weightPetInput: EditText
+    private lateinit var grKgSpinner: Spinner
+    private lateinit var breedSpinner: Spinner
+    private lateinit var subBreedSpinner: Spinner
+    private lateinit var locationSpinner: Spinner
+    private lateinit var ownerPetInput: EditText
+    private lateinit var descriptionInput: EditText
 
 
 
@@ -57,15 +59,10 @@ class PostFormFragment : Fragment() {
     private var deletePhotoBtn: Button? = null
     private var errorMsg: TextView? = null
 
-
-    lateinit var spinnerArrayAdapter: ArrayAdapter<String>
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private val PostFormViewModel: PostFormViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private var _binding: FragmentPostFormBinding? = null
     private val binding get() = _binding!!
-    private lateinit var database: appDatabase
-    private lateinit var petsDao: PetsDAO
     private var imagePhoto :String = ""
 
 
@@ -109,6 +106,15 @@ class PostFormFragment : Fragment() {
         }
 
         fillSpinnerValues()
+        sharedViewModel.breedListLiveData.observe(viewLifecycleOwner, Observer { it ->
+
+            if (it != null) {
+                updateSpinners(it)
+            }
+        })
+
+
+
         return root
     }
 
@@ -202,24 +208,6 @@ class PostFormFragment : Fragment() {
 
             ArrayAdapter.createFromResource(
                 it,
-                R.array.subbreeds_value,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.breedSpinner?.adapter = adapter
-            }
-
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.subbreeds_value,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.subBreedSpinner?.adapter = adapter
-            }
-
-            ArrayAdapter.createFromResource(
-                it,
                 R.array.locations_values,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
@@ -231,17 +219,18 @@ class PostFormFragment : Fragment() {
 
       private fun savePost() {
             //val userName = SharedPref.read(SharedPref.ID, UserSingleton.userId!!)
-            val namePet: String = namePetInput?.text.toString()
-            val genderString: String = genderSpinner?.selectedItem.toString()
-            val quantity: Int = quantitySpinner?.selectedItem.toString().toInt()
-            val dayMonthYear: String = daysMonthsYearsSpinner?.selectedItem.toString()
-            val weightPet: Double = weightPetInput?.text.toString().toDouble()
-            val grKg: String = daysMonthsYearsSpinner?.selectedItem.toString()
-            val breed: String = breedSpinner?.selectedItem.toString()
-            val subBreed: String = subBreedSpinner?.selectedItem.toString()
-            val locationString: String = locationSpinner?.selectedItem.toString()
-            val ownerPet: String = ownerPetInput?.text.toString()
-            val description: String = descriptionInput?.text.toString()
+            val namePet: String = namePetInput.text.toString()
+            val genderString: String = genderSpinner.selectedItem.toString()
+            val quantity: Int = quantitySpinner.selectedItem.toString().toInt()
+            val dayMonthYear: String = daysMonthsYearsSpinner.selectedItem.toString()
+            val weightPet: String = weightPetInput.text.toString()
+            val grKg: String = daysMonthsYearsSpinner.selectedItem.toString()
+            val breed: String = breedSpinner.selectedItem.toString()
+             val selectedItem = subBreedSpinner.selectedItem
+              val subBreed: String = selectedItem?.toString() ?: ""
+          val locationString: String = locationSpinner.selectedItem.toString()
+            val ownerPet: String = ownerPetInput.text.toString()
+            val description: String = descriptionInput.text.toString()
             val imagesPet: String = imagePhoto
 
             if (namePet.isEmpty()) {
@@ -251,11 +240,10 @@ class PostFormFragment : Fragment() {
                 Handler().postDelayed({
                     errorMsg?.visibility = View.INVISIBLE
                 }, 3000)
-            } else if (weightPet == null || weightPet <= 0.0 || weightPetInput?.text.isNullOrBlank()) {
+            } else if (weightPet.isNullOrBlank()) {
                 errorMsg?.visibility = View.VISIBLE
                 errorMsg?.text = when {
-                    weightPet == null -> "The Weight field is required"
-                    weightPet <= 0.0 -> "The weight must be greater than 0"
+                    weightPet.isNullOrBlank()-> "The Weight field is required"
                     weightPetInput?.text.isNullOrBlank() -> "The Weight field is required"
                     else -> {
                         ""
@@ -298,12 +286,13 @@ class PostFormFragment : Fragment() {
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
 
                 builder.setTitle("Proceso de Adopcion")
-                builder.setMessage("¿Estás seguro que deseas adoptar esta mascota?")
+                builder.setMessage("¿Estás seguro que deseas publicar esta mascota?")
 
                 builder.setPositiveButton("Si!!!") { dialog, which ->
                     Log.d("pet creado", newPet.toString())
-                    Log.d("pet creado view model", sharedViewModel.listPet.toString())
-                    sharedViewModel.listPet.add(newPet)
+                    Log.d("pet creado view model", sharedViewModel.pets.toString())
+
+                    sharedViewModel.addPet(newPet)
                     cleanInputs()
 
                 }
@@ -331,6 +320,40 @@ class PostFormFragment : Fragment() {
         locationSpinner?.setSelection(0, false)
         ownerPetInput?.setText("")
         descriptionInput?.setText("")
+
+
+    }
+    private fun updateSpinners(list: List<Pair<String, List<String>>>) {
+
+
+            val breedsList = list.map { it.first }
+
+            val breedAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, breedsList)
+
+        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            breedSpinner.adapter   = breedAdapter
+
+            val subBreedAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, mutableListOf<String>())
+            subBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            subBreedSpinner.adapter = subBreedAdapter
+
+            breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    val selectedBreed = breedsList[position]
+                    val subBreeds = list[position].second
+
+                    if (subBreeds.isNotEmpty()) {
+                        subBreedAdapter.clear()
+                        subBreedAdapter.addAll(subBreeds)
+                        subBreedAdapter.notifyDataSetChanged()
+                        subBreedSpinner.visibility = View.VISIBLE
+                    } else {
+                        subBreedSpinner.visibility = View.GONE
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
 
 
     }

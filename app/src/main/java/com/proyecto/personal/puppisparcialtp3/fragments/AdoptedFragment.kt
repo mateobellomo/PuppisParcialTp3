@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,7 +80,10 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
         sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        Toast.makeText(context,"todavia no implementado!!!", Toast.LENGTH_SHORT).show()
+        val toast = Toast.makeText(context, "Felicidades pronto tendras un nuevo ingegrante!!!", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.TOP, 0, 100)
+        toast.show()
+
     }
 
 

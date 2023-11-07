@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class GetAllDogsBreedsUseCase  @Inject constructor(private val repository: DogsRepository) {
 
-    suspend operator fun invoke(): List<String>? {
+    suspend operator fun invoke(): List<Pair<String, List<String>>>? {
         val allBreedsList = repository.getAllBreeds()
         if (allBreedsList != null) {
            return allBreedsList

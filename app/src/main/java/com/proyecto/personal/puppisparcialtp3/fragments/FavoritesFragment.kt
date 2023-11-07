@@ -1,17 +1,12 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -92,7 +87,7 @@ class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClic
       sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment()
+        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment(pet.id)
         findNavController().navigate(action)
 
     }

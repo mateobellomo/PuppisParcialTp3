@@ -76,14 +76,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         recPets = vista.findViewById(R.id.fragmentHomeRecPets)
 
         val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
-        boton.setOnClickListener {
-            sharedViewModel.newPet()
-
-
-        }
 
         filterAdapter =  FilterAdapter(mutableListOf())
         initRecyclerView()
+
         sharedViewModel.filters.observe(viewLifecycleOwner, Observer {
 
             if (it != null) {
@@ -107,9 +103,15 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
 
         sharedViewModel.pets.observe(this, Observer {
+
             if (it != null) {
                 petListAdapter.updateData(it)
+
+
+                    binding.homeProgressBar.visibility = View.GONE
+
             }
+
         })
 
 
@@ -139,26 +141,18 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             petListAdapter.restoreList()
         }
 
-        sharedViewModel.dogBreedSugestions.observe(this, Observer {
-            if (!it.isNullOrEmpty()){
-                intiSearchBar()
-            }
 
+        sharedViewModel.pets.observe(this, Observer {
+            if (!it.isNullOrEmpty() && sharedViewModel.dogBreedSugestions.value != null){
+                initSearchBar()
+            }
         })
 
 
 
 
     }
-    override fun onViewItemDetail(pet: Pet) {
-     //  val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
-       // this.findNavController().navigate(action)
-       // findNavController().navigate(action)
-       // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
-        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment()
-        findNavController().navigate(action)
 
-    }
 
     private fun initRecyclerView() {
         binding.rvFilter.layoutManager =
@@ -217,11 +211,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                 }
 
 
-
-//                popupMenu.setOnMenuItemClickListener {
-//                    sharedViewModel.addFilter(it.title.toString())
-//                    true
-//                }
                 popupMenu.show()
 
             }
@@ -239,12 +228,11 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
     }
 
 
-    private fun intiSearchBar(){
+    private fun initSearchBar(){
         val searchView = binding.searchView
 
         val sugerencias = sharedViewModel.dogBreedSugestions.value?.toTypedArray()
         val dogBreeds = sharedViewModel.availablesBreed()
-        sharedViewModel.listPet
         val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
 
         dogBreeds.forEachIndexed { index, suggestion ->
@@ -325,6 +313,11 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         sharedViewModel.onFavoritesClick(pet)
 
         Toast.makeText(context,"Hemos tomado nota!",Toast.LENGTH_SHORT).show()
+
+    }
+    override fun onViewItemDetail(pet: Pet) {
+        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment(pet.id)
+        findNavController().navigate(action)
 
     }
 

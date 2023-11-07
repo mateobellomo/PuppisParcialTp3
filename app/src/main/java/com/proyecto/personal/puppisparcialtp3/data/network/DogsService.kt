@@ -16,11 +16,11 @@ class DogsService   @Inject constructor(private val service : DogsApiClient) {
         }
     }
 
-    suspend fun getDogsBreeds():  List<String>? {
+    suspend fun getDogsBreeds(): List<Pair<String, List<String>>>? {
         val response = service.getAllBreedsFromApi()
         val breedResponse = response.body()
 
-        return breedResponse?.message?.keys?.toList()
+        return breedResponse?.message?.toList()
     }
 
     suspend fun getSpecificBreedImages(breed :String , imgNumber: Int): DogsModel {
