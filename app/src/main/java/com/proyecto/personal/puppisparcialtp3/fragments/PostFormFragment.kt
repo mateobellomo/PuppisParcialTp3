@@ -157,14 +157,14 @@ class PostFormFragment : Fragment() {
                 this.grKgSpinner?.adapter = adapter
             }
 
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.breeds_value,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.breedSpinner?.adapter = adapter
-            }
+//            ArrayAdapter.createFromResource(
+//                it,
+//                R.array.breeds_value,
+//                android.R.layout.simple_spinner_item
+//            ).also { adapter ->
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                this.breedSpinner?.adapter = adapter
+//            }
 
             ArrayAdapter.createFromResource(
                 it,
