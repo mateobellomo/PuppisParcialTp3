@@ -12,10 +12,9 @@ import com.proyecto.personal.puppisparcialtp3.databinding.FragmentInitBinding
 
 class InitFragment : Fragment() {
 
-    lateinit var binding: FragmentInitBinding
+    private lateinit var binding: FragmentInitBinding
 
     private var logInBtn: Button? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
