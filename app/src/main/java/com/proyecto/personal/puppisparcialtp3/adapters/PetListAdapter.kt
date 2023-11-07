@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.adapters
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -35,6 +36,12 @@ private val onItemClick: OnViewItemClickedListener
 
         holder.getCardLayout().setOnClickListener{
             onItemClick.onViewItemDetail(pet)
+        }
+
+        holder.getCheckBox().setOnClickListener{
+            Log.e("Antes de cambiar soy!!", "Mi nombre ${pet.name} y estoy ${pet.isFavorite}")
+            pet.isFavorite = !pet.isFavorite
+            Log.e("Despues de cambiar soy!!", "Mi nombre ${pet.name} y estoy ${pet.isFavorite}")
         }
 
     }

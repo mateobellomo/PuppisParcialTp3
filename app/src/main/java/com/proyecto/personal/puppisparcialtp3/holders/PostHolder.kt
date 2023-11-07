@@ -2,6 +2,7 @@ package com.proyecto.personal.puppisparcialtp3.holders
 
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -39,6 +40,10 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
 
     fun getCardLayout (): CardView {
         return view.findViewById(R.id.card_package_item)
+    }
+
+    fun getCheckBox (): CheckBox {
+        return view.findViewById(R.id.checkBoxCardViewFavorite)
     }
 
     fun setImageView(url: String){

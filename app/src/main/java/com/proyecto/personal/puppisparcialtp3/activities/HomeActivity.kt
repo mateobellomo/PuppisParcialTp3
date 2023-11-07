@@ -88,8 +88,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.icono_toolbar -> {
-
-
                 return true
             }
             // Otros casos si hay más elementos en el menú

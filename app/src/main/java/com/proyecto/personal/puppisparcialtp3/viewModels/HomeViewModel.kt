@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.proyecto.personal.puppisparcialtp3.domain.GetAllDogsBreedsUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.GetDogsImageUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.GetSpecificBreedImagesUseCase
+import com.proyecto.personal.puppisparcialtp3.entities.Gender
+import com.proyecto.personal.puppisparcialtp3.entities.Location
 import com.proyecto.personal.puppisparcialtp3.entities.Pet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,6 +26,13 @@ class HomeViewModel @Inject constructor(
     val listUrl : MutableList<String> = ArrayList()
 
     val listPet : MutableList<Pet> = ArrayList()
+
+    val listUrlBeagle : MutableList<String> = ArrayList()
+
+    val listUrlChow : MutableList<String> = ArrayList()
+
+    val listUrlLabrador : MutableList<String> = ArrayList()
+
 
     val dogsIamges = MutableLiveData<List<String>>()
 
@@ -47,22 +56,40 @@ class HomeViewModel @Inject constructor(
     }
 
     fun createPet(){
-        listUrl.add("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
-        listUrl.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/1271553739_Milo.jpg")
+        listUrlBeagle.add("https://images.dog.ceo/breeds/beagle/1374053345_Milo.jpg")
 
-        listPet.add(Pet("Agustin", 10, "beagle", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Paola", 10, "chow", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Yanina", 10, "labrador", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
-        listPet.add(Pet("Camila", 10, "pug", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+        listUrlChow.add("https://images.dog.ceo/breeds/husky/n02110185_12498.jpg")
+
+
+
+
+        listPet.add(Pet("Mateo", "5", "beagle", "N/A", "MALE", "Brown", "10", "BUENOS_AIRES", "Agustin", listUrlBeagle,  false, isFavorite = false));
+        listPet.add(Pet("Paola", "6", "chow", "N/A", "FEMALE", "White", "30", "CORDOBA", "Carlos", listUrlChow,  false, isFavorite = false));
+        //listPet.add(Pet("Yanina", 2, "labrador", "N/A", "FEMALE", "Black", 20.0, Location.SALTA, "Agustin", false, isFavorite = false));
+        //listPet.add(Pet("Camila", 8, "akita", "N/A", "FEMALE", "White", 15.0, Location.MENDOZA, "Daniel", false, isFavorite = false));
+        //listPet.add(Pet("Agustin", 5, "beagle", "N/A", "MALE", "Brown", 10.0, Location.BUENOS_AIRES, "Pedro", false, isFavorite = false));
+        //listPet.add(Pet("Francisco", 6, "chow", "N/A", "MALE", "White", 30.0, Location.CORDOBA, "Mariella", false, isFavorite = false));
+        //listPet.add(Pet("Javier", 2, "labrador", "N/A", "MALE", "Black", 20.0, Location.SALTA, "Agustin", false, isFavorite = false));
+        //listPet.add(Pet("Micaela", 8, "akita", "N/A", "FEMALE", "White", 15.0, Location.MENDOZA, "Juan", false, isFavorite = false));
+        //listPet.add(Pet("Jimena", 2, "labrador", "N/A", "FEMALE", "Black", 20.0, Location.SALTA, "Fernando", false, isFavorite = false));
+        //listPet.add(Pet("Ariel", 8, "akita", "N/A", "MALE", "Black", 15.0, Location.MENDOZA, "Agustin", false, isFavorite = false));
+
 
         pets.postValue(listPet)
     }
 
     fun newPet(){
-        listPet.add(Pet("PRUEBA", 10, "beagle", "shiba","Male","Nada","30","BS AS","Agustin", listUrl, false))
+        listPet.add(Pet("Prueba", "5", "beagle", "N/A", "MALE", "Brown", "10", "BUENOS_AIRES", "Agustin", listUrlBeagle,  false, isFavorite = false));
 
         pets.postValue(listPet)
     }
+
+    fun getPets() : MutableList<Pet>{
+        return listPet
+    }
+
 
 
 
