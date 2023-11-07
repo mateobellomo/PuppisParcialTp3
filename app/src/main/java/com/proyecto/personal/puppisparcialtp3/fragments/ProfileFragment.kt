@@ -7,31 +7,36 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.proyecto.personal.puppisparcialtp3.R
 import com.bumptech.glide.Glide
-
+import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
+import com.proyecto.personal.puppisparcialtp3.databinding.FragmentProfileBinding
 
 
 class ProfileFragment : Fragment(){
-    lateinit var vista: View
+
     lateinit var image: ImageView
     lateinit var buttonUpload: Button
     lateinit var editTextUrl: EditText
-
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_profile, container, false)
-        image = vista.findViewById<ImageView>(R.id.imgViewProfile)
-        Glide.with(vista)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        image = binding.imgViewProfile
+        Glide.with(root)
             .load("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
             .into(image)
 
-        editTextUrl = vista.findViewById(R.id.editTextUploadURLProfile)
-        buttonUpload = vista.findViewById(R.id.btnProfileUpload)
+        editTextUrl = binding.editTextUploadURLProfile
+        buttonUpload = binding.btnProfileUpload
         buttonUpload.setOnClickListener {
             if (editTextUrl.visibility == View.VISIBLE) {
                 editTextUrl.visibility = View.GONE
@@ -54,14 +59,18 @@ class ProfileFragment : Fragment(){
                     .into(image)
             }
         }
-        return vista
+        return root
 
     }
 
 
-    // override fun onStart() {
-        //super.onStart()
+     override fun onStart() {
+        super.onStart()
+         var toolbar = binding.toolbarProfile
+         toolbar.setOnClickListener{
+             findNavController().popBackStack()
+         }
 
-    //}
+    }
 
 }

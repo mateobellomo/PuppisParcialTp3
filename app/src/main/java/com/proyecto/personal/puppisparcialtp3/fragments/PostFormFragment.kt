@@ -1,10 +1,12 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,8 +51,8 @@ class PostFormFragment : Fragment() {
     private var ownerPetInput: EditText? = null
     private var descriptionInput: EditText? = null
 
-    private var saveBtn: Button? = null
-    private var cancelBtn: Button? = null
+
+
     private var addPhotoBtn: Button? = null
     private var deletePhotoBtn: Button? = null
     private var errorMsg: TextView? = null
@@ -91,10 +93,11 @@ class PostFormFragment : Fragment() {
 
         errorMsg = binding.errorMsg
         errorMsg?.visibility = View.INVISIBLE
-        saveBtn = binding.buttonFragmentPostFormSave
-        saveBtn?.setOnClickListener {
+        val saveBtn = binding.buttonFragmentPostFormSave
+         saveBtn.setOnClickListener {
             this.savePost()
         }
+        val cancelBtn = binding.buttonFragmentPostFormCancel
         cancelBtn?.setOnClickListener {
             this.cancel()
         }
@@ -199,7 +202,7 @@ class PostFormFragment : Fragment() {
 
             ArrayAdapter.createFromResource(
                 it,
-                R.array.breeds_value,
+                R.array.subbreeds_value,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -261,7 +264,7 @@ class PostFormFragment : Fragment() {
                 Handler().postDelayed({
                     errorMsg?.visibility = View.INVISIBLE
                 }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            } else if (imagesPet.isEmpty()) {
+            } else if (!imagesPet.isEmpty()) {
                 errorMsg?.visibility = View.VISIBLE
                 errorMsg?.text =
                     "The Photos field is required"
@@ -292,18 +295,43 @@ class PostFormFragment : Fragment() {
                     isFavorite = false
                 )
 
-//                database = appDatabase.getAppDataBase(binding.root.context)!!
-//                petsDao = database?.petsDAO()
+                val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
 
-//                petsDao.insertPet(newPet)
+                builder.setTitle("Proceso de Adopcion")
+                builder.setMessage("¿Estás seguro que deseas adoptar esta mascota?")
 
-//                val intent = Intent(context, HomeActivity::class.java)
-//                context?.startActivity(intent)
+                builder.setPositiveButton("Si!!!") { dialog, which ->
+                    Log.d("pet creado", newPet.toString())
+                    Log.d("pet creado view model", sharedViewModel.listPet.toString())
+                    sharedViewModel.listPet.add(newPet)
+                    cleanInputs()
 
-                Log.d("pet creado", newPet.toString())
-                Log.d("pet creado view model", sharedViewModel.listPet.toString())
-               sharedViewModel.listPet.add(newPet)
+                }
+
+                builder.setNegativeButton("Cancelar") { dialog, which ->
+
+                }
+
+                builder.show()
+
+
+
+
             }
         }
+    fun cleanInputs(){
+        namePetInput?.setText("")
+         genderSpinner?.setSelection(0, false)
+        quantitySpinner?.setSelection(0, false)
+        daysMonthsYearsSpinner?.setSelection(0, false)
+        weightPetInput?.text = null
+        daysMonthsYearsSpinner?.setSelection(0, false)
+       breedSpinner?.setSelection(0, false)
+         subBreedSpinner?.setSelection(0, false)
+        locationSpinner?.setSelection(0, false)
+        ownerPetInput?.setText("")
+        descriptionInput?.setText("")
 
+
+    }
 }

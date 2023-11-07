@@ -13,6 +13,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.proyecto.personal.puppisparcialtp3.adapters.PetListAdapter
 import com.proyecto.personal.puppisparcialtp3.viewModels.FavoritesViewModel
@@ -21,6 +22,10 @@ import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
+
+
+
+
 
 class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener {
 
@@ -87,6 +92,8 @@ class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClic
       sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        Toast.makeText(context,"todavia no implementado!!!",Toast.LENGTH_SHORT).show()
+        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment()
+        findNavController().navigate(action)
+
     }
 }

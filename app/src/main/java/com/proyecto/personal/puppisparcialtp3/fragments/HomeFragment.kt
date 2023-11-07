@@ -23,6 +23,7 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.personal.puppisparcialtp3.R
@@ -154,7 +155,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
        // this.findNavController().navigate(action)
        // findNavController().navigate(action)
        // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
-        Toast.makeText(context,"todavia no implementado!!!", Toast.LENGTH_SHORT).show()
+        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment()
+        findNavController().navigate(action)
 
     }
 
@@ -221,6 +223,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 //                    true
 //                }
                 popupMenu.show()
+
             }
 
         }
@@ -320,7 +323,9 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     override fun onFavoritesClick(pet: Pet) {
         sharedViewModel.onFavoritesClick(pet)
+
         Toast.makeText(context,"Hemos tomado nota!",Toast.LENGTH_SHORT).show()
+
     }
 
 }

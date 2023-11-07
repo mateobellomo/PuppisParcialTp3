@@ -7,6 +7,9 @@
         <item name="android:fontFamily">@font/poppins_black</item>
         <!-- Add other text appearance attributes as needed -->
     </style>
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/purple</item>
+    </style>
 
 
 
