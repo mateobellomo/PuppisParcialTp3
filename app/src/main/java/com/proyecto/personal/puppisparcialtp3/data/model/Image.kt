@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.entities
+package com.proyecto.personal.puppisparcialtp3.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
@@ -25,7 +25,7 @@ class Image(url: String, petId: Int) {
 }
 
 data class PetWithImages(
-    @Embedded var pet: Pet,
+    @Embedded var petEntity: PetEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "imageId"

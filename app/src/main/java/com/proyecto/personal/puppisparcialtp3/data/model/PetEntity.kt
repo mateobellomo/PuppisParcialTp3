@@ -1,11 +1,13 @@
-package com.proyecto.personal.puppisparcialtp3.entities
+package com.proyecto.personal.puppisparcialtp3.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.proyecto.personal.puppisparcialtp3.utils.Gender
+import com.proyecto.personal.puppisparcialtp3.utils.Location
 
 @Entity(tableName = "pets")
-class Pet(
+class PetEntity(
     name: String,
     age: String,
     breed: String,
@@ -15,6 +17,7 @@ class Pet(
     weight: String,
     location: Location,
     ownerName: String,
+    photo: String?,
     isAdopted: Boolean,
     isFavorite: Boolean
 ) {
@@ -49,6 +52,9 @@ class Pet(
     @ColumnInfo(name = "ownerName")
     var ownerName: String
 
+    @ColumnInfo(name = "photo")
+    var photo: String?
+
     @ColumnInfo(name = "isAdopted")
     var isAdopted: Boolean
 
@@ -65,6 +71,7 @@ class Pet(
         this.weight = weight
         this.location = location
         this.ownerName = ownerName
+        this.photo = photo
         this.isAdopted = isAdopted
         this.isFavorite = isFavorite
     }

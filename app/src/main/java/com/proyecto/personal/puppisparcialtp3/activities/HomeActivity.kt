@@ -40,7 +40,8 @@ class HomeActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
        val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_favorites, R.id.navigation_adoptions,R.id.navigation_post
+                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_favorites,
+                R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
             ), drawerLayout
         )
 

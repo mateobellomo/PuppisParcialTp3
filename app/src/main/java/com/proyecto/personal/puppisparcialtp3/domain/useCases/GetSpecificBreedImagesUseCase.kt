@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.domain
+package com.proyecto.personal.puppisparcialtp3.domain.useCases
 
 import com.proyecto.personal.puppisparcialtp3.data.DogsRepository
 import com.proyecto.personal.puppisparcialtp3.data.model.DogsModel

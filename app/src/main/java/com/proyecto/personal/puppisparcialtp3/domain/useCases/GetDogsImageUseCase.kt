@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.domain
+package com.proyecto.personal.puppisparcialtp3.domain.useCases
 
 import android.util.Log
 import com.proyecto.personal.puppisparcialtp3.data.DogsRepository
