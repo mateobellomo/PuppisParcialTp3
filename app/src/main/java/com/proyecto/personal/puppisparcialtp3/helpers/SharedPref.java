@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 
 public class SharedPref {
     private static SharedPreferences mSharedPref;
-    public static final String NAME = "";
-    public static final String IMAGE_URL = "";
+    public static final String NAME = "NAME";
+    public static final String IMAGE_URL = "IMAGE_URL";
     public static final Boolean DARK_MODE = false;
 
     private SharedPref() {
