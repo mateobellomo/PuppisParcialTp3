@@ -308,8 +308,8 @@
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormLocation"
             app:layout_constraintTop_toBottomOf="@+id/SubBreedSpinner" />
 
-        <EditText
-            android:id="@+id/editTextFragmentPostFormOwner"
+        <TextView
+            android:id="@+id/txtFragmentPostFormOwner"
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
@@ -317,6 +317,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/pet_owner"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
 
@@ -332,7 +333,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormAddPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormOwner" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFragmentPostFormOwner" />
 
         <EditText
             android:id="@+id/editNotes"
