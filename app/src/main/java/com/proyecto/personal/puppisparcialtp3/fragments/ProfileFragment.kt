@@ -17,14 +17,13 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentProfileBinding
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import com.proyecto.personal.puppisparcialtp3.viewModels.ProfileViewModel
 
 
-class ProfileFragment : Fragment(){
+class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var imageView: ImageView
@@ -80,7 +79,8 @@ class ProfileFragment : Fragment(){
         } else {
             viewModel.updateImageUrl(url)
             editTextUrl.setText("")
-            Toast.makeText(activity, "Profile picture was successfully updated", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Profile picture was successfully updated", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

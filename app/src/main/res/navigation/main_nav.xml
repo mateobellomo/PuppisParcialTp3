@@ -37,7 +37,7 @@
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/configurationsFragment"
-        android:name="com.proyecto.personal.puppisparcialtp3.fragments.ConfigurationsFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
         android:label="fragment_configurations"
-        tools:layout="@layout/fragment_configurations" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>
