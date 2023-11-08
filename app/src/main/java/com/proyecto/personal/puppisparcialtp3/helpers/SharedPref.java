@@ -4,11 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharedPref {
     private static SharedPreferences mSharedPref;
     public static final String NAME = "NAME";
     public static final String IMAGE_URL = "IMAGE_URL";
     public static final Boolean DARK_MODE = false;
+
+    private static List<OnImageURLChangeListener> imageURLChangeListeners = new ArrayList<>();
+
 
     private SharedPref() {
     }
@@ -25,6 +31,9 @@ public class SharedPref {
     public static void write(String key, String value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putString(key, value);
+        if (key == SharedPref.IMAGE_URL) {
+            notifyImageURLChangeListeners(value);
+        }
         prefsEditor.commit();
     }
 
@@ -38,18 +47,21 @@ public class SharedPref {
         prefsEditor.commit();
     }
 
-    public static Integer read(String key, int defValue) {
-        return mSharedPref.getInt(key, defValue);
+    public interface OnImageURLChangeListener {
+        void onImageURLChanged(String newImageUrl);
     }
 
-    public static void write(String key, Integer value) {
-        SharedPreferences.Editor prefsEditor = mSharedPref.edit();
-        prefsEditor.putInt(key, value).commit();
+    public static void addImageURLChangeListener(OnImageURLChangeListener listener) {
+        imageURLChangeListeners.add(listener);
     }
 
-    public static void delete() {
-        SharedPreferences.Editor prefsEditor = mSharedPref.edit();
-        prefsEditor.clear();
-        prefsEditor.apply();
+    public static void removeImageURLChangeListener(OnImageURLChangeListener listener) {
+        imageURLChangeListeners.remove(listener);
+    }
+
+    private static void notifyImageURLChangeListeners(String imageUrl) {
+        for (OnImageURLChangeListener listener : imageURLChangeListeners) {
+            listener.onImageURLChanged(imageUrl);
+        }
     }
 }
