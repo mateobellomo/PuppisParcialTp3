@@ -1,17 +1,15 @@
-package com.proyecto.personal.puppisparcialtp3.dataBase
+package com.proyecto.personal.puppisparcialtp3.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import com.proyecto.personal.puppisparcialtp3.entities.Pet
-import com.proyecto.personal.puppisparcialtp3.entities.PetWithImages
+import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
 
 @Dao
 interface PetsDAO{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPet(pet: Pet?)
+    fun insertPet(petEntity: PetEntity?)
 
 //    @Update
 //    fun updatePet(pet: Pet?)
@@ -23,10 +21,10 @@ interface PetsDAO{
     fun updateIsAdopted(isAdopted: Boolean, id: Int)
 
     @Query("SELECT * FROM pets WHERE isAdopted = 0")
-    fun loadAllAvailablePets(): MutableList<Pet?>?
+    fun loadAllAvailablePets(): MutableList<PetEntity?>?
 
     @Query("SELECT * FROM pets WHERE isFavorite = 1")
-    fun loadFavoritesPets(): MutableList<Pet?>?
+    fun loadFavoritesPets(): MutableList<PetEntity?>?
 
 //    @Transaction
 //    @Query("SELECT * FROM images WHERE imageId = :id")

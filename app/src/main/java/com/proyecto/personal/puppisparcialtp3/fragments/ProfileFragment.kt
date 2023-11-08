@@ -1,6 +1,5 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -21,7 +20,7 @@ import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentProfileBinding
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import com.proyecto.personal.puppisparcialtp3.viewModels.ProfileViewModel
-
+import androidx.navigation.fragment.findNavController
 
 class ProfileFragment : Fragment() {
 
@@ -52,6 +51,14 @@ class ProfileFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         SharedPref.removeImageURLChangeListener { }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var toolbar = binding.toolbarProfile
+        toolbar.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setUpViews() {

@@ -24,7 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_configurationsFragment"
             app:destination="@id/configurationsFragment" />
-
+        <action
+            android:id="@+id/action_homeFragment_to_petFileFragment3"
+            app:destination="@id/petFileFragment3" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -40,4 +42,9 @@
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
         android:label="fragment_configurations"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/petFileFragment3"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.PetFileFragment"
+        android:label="fragment_pet_file"
+        tools:layout="@layout/fragment_pet_file" />
 </navigation>

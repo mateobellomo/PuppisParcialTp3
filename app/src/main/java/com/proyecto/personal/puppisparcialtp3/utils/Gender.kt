@@ -1,4 +1,4 @@
-package com.proyecto.personal.puppisparcialtp3.entities
+package com.proyecto.personal.puppisparcialtp3.utils
 
 enum class Gender(gender: String) {
     FEMALE("Female"),

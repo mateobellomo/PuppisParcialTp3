@@ -43,11 +43,8 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,
-                R.id.navigation_profile,
-                R.id.navigation_favorites,
-                R.id.navigation_adoptions,
-                R.id.navigation_post
+                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_favorites,
+                R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
             ), drawerLayout
         )
 
@@ -90,7 +87,6 @@ class HomeActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_hamburger)
         }
         updateDrawerInfo()
-
         SharedPref.addImageURLChangeListener { newImageUrl ->
             newImageUrl?.let {
                 updateHeaderImage(
