@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -111,6 +112,7 @@ class PostFormFragment : Fragment() {
                     breedSelected = "pug"
                 }
                 sharedViewModel.imageForPost(breedSelected, 3)
+            Toast.makeText(context,"Well done! Pics are uploaded!", Toast.LENGTH_SHORT).show()
 
         }
     }
@@ -219,7 +221,8 @@ class PostFormFragment : Fragment() {
                     ownerName = ownerPet,
                     photo = imagePhoto,
                     isAdopted = false,
-                    isFavorite = false
+                    isFavorite = false,
+                    ownerNumber = 0
                 )
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))

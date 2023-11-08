@@ -50,13 +50,14 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "beagle",
                 "",
                 Gender.MALE,
-                "Nada",
+                "Soy un perrito amigable que busca un hogar y me gustaria ser adoptado para comenzar nuevas aventuras, me encontraron en la calle pero estoy sano, tengo todas las vacunas excepto la antiparasitaria, y me llevo bien con gatitos y otros perritos, sean cachorros o mayores. ",
                 "30 gr",
                 Location.BUENOS_AIRES,
                 "Agustin",
                 photo = beagleImage.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 1132756493
             )
         )
         listPet.add(
@@ -72,7 +73,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Agustin",
                 photo = shibaImage.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 47562922
             )
         )
         listPet.add(
@@ -88,7 +90,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Agustin",
                 photo = shibaImage2.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 5739229
             )
         )
         listPet.add(
@@ -104,7 +107,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Agustin",
                 photo = shibaImage3.dogsImage,
                 false,
-                isFavorite = true
+                isFavorite = true,
+                ownerNumber = 1333333
             )
         )
         listPet.add(
@@ -120,7 +124,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Agustin",
                 photo = mastiffImage.dogsImage,
                 false,
-                isFavorite = true
+                isFavorite = true,
+                ownerNumber = 34449292
             )
         )
         listPet.add(
@@ -136,7 +141,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Agustin",
                 photo = pugImage.dogsImage,
                 true,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 76948483
             )
         )
         listPet.add(
@@ -152,7 +158,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Javier",
                 photo = weimaranerImage.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 93838338
             )
         )
         listPet.add(
@@ -168,7 +175,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Rodrigo",
                 photo = weimaranerImage2.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 138349
             )
         )
         listPet.add(
@@ -184,7 +192,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Alexander",
                 photo = labradorImage.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 99383838
             )
         )
         listPet.add(
@@ -200,7 +209,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Martina",
                 photo = labradorImage2.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 93838383
             )
         )
         listPet.add(
@@ -216,7 +226,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Daniel",
                 photo = akitaImage.dogsImage,
                 false,
-                isFavorite = false
+                isFavorite = false,
+                ownerNumber = 11327566
             )
         )
             return listPet

@@ -156,18 +156,49 @@
         app:layout_constraintStart_toEndOf="@id/sexTitlePetFile"
         app:layout_constraintTop_toBottomOf="@+id/weightPetFile" />
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollVDetails"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPetRecord"
+        app:layout_constraintVertical_bias="0.927">
+
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            android:textSize="16sp"
+
+            />
+    </androidx.core.widget.NestedScrollView>
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAdoptDetails"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="75dp"
         android:backgroundTint="@color/purple"
         android:fontFamily="@font/poppins_regular"
         android:letterSpacing="0.12"
-        android:text="Adoptar"
+        android:text="Adopt"
         android:textColor="@color/white"
         android:textSize="22dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/ivOwnerPetFile"
@@ -176,7 +207,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginBottom="8dp"
         android:background="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sexTitlePetFile"
         app:layout_constraintVertical_bias="0.216" />
@@ -206,30 +237,20 @@
         app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
         app:layout_constraintTop_toBottomOf="@id/titleOwner" />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/btnPhoneDetails"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="144dp"
-        android:background="@color/purple"
+        android:background="@drawable/shape_circle"
         android:src="@drawable/ic_phone"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:tag="000000000"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toEndOf="@+id/tvOwnerName" />
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:minHeight="60dp"
-        android:text="holaohlaohaolhaohoahoahoahoahoahoahoahoaohaoaoh"
-        android:textColor="@color/grey_light"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivOwnerPetFile"
-        app:layout_constraintVertical_bias="0.173" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
