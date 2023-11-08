@@ -1,16 +1,16 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.proyecto.personal.puppisparcialtp3.R
-import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPetFileBinding
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
@@ -50,6 +50,26 @@ class PetFileFragment : Fragment() {
         backBtn.setOnClickListener{
             findNavController().popBackStack()
         }
+        val callBtn = binding.btnPhoneDetails
+        val phoneNumber = binding.btnPhoneDetails.tag
+        callBtn.setOnClickListener{
+            binding.btnPhoneDetails.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber))
+                startActivity(intent)
+            }
+        }
+
+        val adoptBtn = binding.btnAdoptDetails
+        adoptBtn.setOnClickListener {
+            if (pet != null && !pet.isAdopted) {
+                val textoNotificacion = "¡Thanks for adopting!"
+                Toast.makeText(view.context, textoNotificacion, Toast.LENGTH_SHORT).show()
+                adoptBtn.text = "Adopted"
+                pet.isAdopted = true
+
+            }
+
+        }
     }
 
 
@@ -61,6 +81,9 @@ class PetFileFragment : Fragment() {
         val weight = binding.weightPetFile
         val owner = binding.tvOwnerName
         val description= binding.tvDescription
+        val btnPhoneDetails = binding.btnPhoneDetails
+        btnPhoneDetails.tag = pet.ownerNumber.toString()
+
 
         Glide.with(this)
             .load(pet.photo)
@@ -71,6 +94,8 @@ class PetFileFragment : Fragment() {
         weight.text = pet.weight
         owner.text = pet.ownerName
         description.text = pet.description
+
+
 
 
 

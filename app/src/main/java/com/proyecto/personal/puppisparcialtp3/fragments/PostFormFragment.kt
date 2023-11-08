@@ -258,7 +258,8 @@ class PostFormFragment : Fragment() {
                     ownerName = ownerPet,
                     photo = "",
                     isAdopted = false,
-                    isFavorite = false
+                    isFavorite = false,
+                    ownerNumber = 0
                 )
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
