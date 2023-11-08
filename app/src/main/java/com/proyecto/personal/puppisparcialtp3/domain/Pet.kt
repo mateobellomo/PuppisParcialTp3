@@ -14,6 +14,7 @@ data class Pet(
     val weight: String,
     val location: Location,
     val ownerName: String,
+    val ownerPhone: String,
     var photo: String?,
     var isAdopted: Boolean,
     var isFavorite: Boolean

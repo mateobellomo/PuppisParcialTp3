@@ -43,6 +43,7 @@ class PostFormFragment : Fragment() {
     private lateinit var locationSpinner: Spinner
     private lateinit var ownerPetInput: EditText
     private lateinit var descriptionInput: EditText
+    private lateinit var phonePetInput: EditText
 
 
 
@@ -77,6 +78,7 @@ class PostFormFragment : Fragment() {
         locationSpinner = binding.LocationSpinner
         ownerPetInput = binding.editTextFragmentPostFormOwner
         descriptionInput = binding.editNotes
+        phonePetInput = binding.editTextFragmentPostFormPhone
 
         errorMsg = binding.errorMsg
         errorMsg?.visibility = View.INVISIBLE
@@ -208,6 +210,7 @@ class PostFormFragment : Fragment() {
             val locationString: String = locationSpinner.selectedItem.toString()
             val ownerPet: String = ownerPetInput.text.toString()
             val description: String = descriptionInput.text.toString()
+            val phonePet : String = phonePetInput.text.toString()
             val imagesPet: String = imagePhoto
 
             if (namePet.isEmpty()) {
@@ -222,6 +225,18 @@ class PostFormFragment : Fragment() {
                 errorMsg?.text = when {
                     weightPet.isNullOrBlank()-> "The Weight field is required"
                     weightPetInput?.text.isNullOrBlank() -> "The Weight field is required"
+                    else -> {
+                        ""
+                    }
+                }
+                Handler().postDelayed({
+                    errorMsg?.visibility = View.INVISIBLE
+                }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
+            } else if (phonePet.isNullOrBlank()) {
+                errorMsg?.visibility = View.VISIBLE
+                errorMsg?.text = when {
+                    phonePet.isNullOrBlank()-> "The Phone field is required"
+                    phonePetInput?.text.isNullOrBlank() -> "The Phone field is required"
                     else -> {
                         ""
                     }
@@ -256,6 +271,7 @@ class PostFormFragment : Fragment() {
                     weight = weight,
                     location = location,
                     ownerName = ownerPet,
+                    ownerPhone = phonePet,
                     photo = "",
                     isAdopted = false,
                     isFavorite = false
@@ -288,14 +304,15 @@ class PostFormFragment : Fragment() {
         }
     fun cleanInputs(){
         namePetInput?.setText("")
-         genderSpinner?.setSelection(0, false)
+        genderSpinner?.setSelection(0, false)
         ageSpinner?.setSelection(0, false)
         weightPetInput?.text = null
         grKgSpinner?.setSelection(0, false)
-       breedSpinner?.setSelection(0, false)
-         subBreedSpinner?.setSelection(0, false)
+        breedSpinner?.setSelection(0, false)
+        subBreedSpinner?.setSelection(0, false)
         locationSpinner?.setSelection(0, false)
         ownerPetInput?.setText("")
+        phonePetInput?.setText("")
         descriptionInput?.setText("")
 
 

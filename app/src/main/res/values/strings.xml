@@ -24,6 +24,7 @@
     <string name="pet_weight">Weight</string>
     <string name="pet_owner">Owner</string>
     <string name="pet_location">Location</string>
+    <string name="pet_phone">Phone</string>
     <string name="pet_gender">Gender</string>
     <string name="pet_photos">Generate picture</string>
     <string name="pet_description">Description</string>

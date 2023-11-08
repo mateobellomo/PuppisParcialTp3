@@ -17,6 +17,7 @@ class PetEntity(
     weight: String,
     location: Location,
     ownerName: String,
+    ownerPhone : String,
     photo: String?,
     isAdopted: Boolean,
     isFavorite: Boolean
@@ -52,6 +53,9 @@ class PetEntity(
     @ColumnInfo(name = "ownerName")
     var ownerName: String
 
+    @ColumnInfo(name = "ownerPhone")
+    var ownerPhone: String
+
     @ColumnInfo(name = "photo")
     var photo: String?
 
@@ -71,6 +75,7 @@ class PetEntity(
         this.weight = weight
         this.location = location
         this.ownerName = ownerName
+        this.ownerPhone = ownerPhone
         this.photo = photo
         this.isAdopted = isAdopted
         this.isFavorite = isFavorite

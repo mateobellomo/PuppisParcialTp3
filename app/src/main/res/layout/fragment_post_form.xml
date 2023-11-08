@@ -337,7 +337,7 @@
         <EditText
             android:id="@+id/editNotes"
             android:layout_width="150dp"
-            android:layout_height="117dp"
+            android:layout_height="125dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/ic_rectangle"
@@ -350,23 +350,38 @@
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
 
         <TextView
-            android:id="@+id/tvFragmentPostFormAddPhoto"
+            android:id="@+id/tvFragmentPostFormPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="7dp"
             android:fontFamily="@font/quicksand_bold"
-            android:text="@string/pet_photos"
+            android:text="@string/pet_phone"
             android:textColor="@color/purple"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
 
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_photos"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormPhone" />
+
         <ImageView
             android:id="@+id/editTextUrlPhoto"
             android:layout_width="160dp"
-            android:layout_height="117dp"
+            android:layout_height="50dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/ic_rectangle"
@@ -380,12 +395,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAddPhoto"
             tools:ignore="TextFields" />
 
+
         <Button
             android:id="@+id/buttonFragmentPostFormSave"
             android:layout_width="120dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="85dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="84dp"
             android:background="@drawable/custom_border"
             android:text="@string/button_save"
             android:textAllCaps="false"
@@ -395,29 +411,29 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
         <Button
             android:id="@+id/buttonFragmentPostFormCancel"
             android:layout_width="120dp"
             android:layout_height="48dp"
             android:layout_marginStart="84dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="85dp"
+            android:layout_marginBottom="84dp"
+            android:background="@drawable/custom_border_grey"
             android:text="@string/button_cancel"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:background="@drawable/custom_border_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonFragmentPostFormSave"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imDeletePhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="9dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/baseline_delete_forever_"
             app:layout_constraintStart_toStartOf="parent"
@@ -427,7 +443,7 @@
             android:id="@+id/imAddPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_add_photo"
             app:layout_constraintStart_toEndOf="@+id/imDeletePhoto"
@@ -435,15 +451,28 @@
 
         <TextView
             android:id="@+id/errorMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="656dp"
+            android:layout_width="216dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="644dp"
             android:text="TextView"
             android:textColor="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostFormPhone"
+            android:layout_width="145dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/pet_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormPhone" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

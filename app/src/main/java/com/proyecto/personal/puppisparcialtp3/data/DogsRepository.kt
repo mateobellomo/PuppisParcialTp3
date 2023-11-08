@@ -50,6 +50,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30 gr",
                 Location.BUENOS_AIRES,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = beagleImage.dogsImage[0],
                 false,
                 isFavorite = false
@@ -66,6 +67,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30 kg",
                 Location.BUENOS_AIRES,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = shibaImage.dogsImage[0],
                 false,
                 isFavorite = false
@@ -82,6 +84,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30 kgs",
                 Location.BUENOS_AIRES,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = shibaImage.dogsImage[1],
                 false,
                 isFavorite = false
@@ -98,6 +101,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.BUENOS_AIRES,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = shibaImage.dogsImage[2],
                 false,
                 isFavorite = true
@@ -114,6 +118,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.JUJUY,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = mastiffImage.dogsImage[0],
                 false,
                 isFavorite = true
@@ -130,6 +135,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.CORDOBA,
                 "Agustin",
+                ownerPhone = "1135987578",
                 photo = pugImage.dogsImage[0],
                 true,
                 isFavorite = false
@@ -146,6 +152,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.CORDOBA,
                 "Javier",
+                ownerPhone = "1135987578",
                 photo = weimaranerImage.dogsImage[0],
                 false,
                 isFavorite = false
@@ -162,6 +169,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.CORDOBA,
                 "Rodrigo",
+                ownerPhone = "1135987578",
                 photo = weimaranerImage.dogsImage[1],
                 false,
                 isFavorite = false
@@ -178,6 +186,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "10.20",
                 Location.CORDOBA,
                 "Alexander",
+                ownerPhone = "1135987578",
                 photo = labradorImage.dogsImage[0],
                 false,
                 isFavorite = false
@@ -194,6 +203,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "30.0",
                 Location.CORDOBA,
                 "Martina",
+                ownerPhone = "1135987578",
                 photo = labradorImage.dogsImage[1],
                 false,
                 isFavorite = false
@@ -210,6 +220,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "12.56",
                 Location.CORDOBA,
                 "Daniel",
+                ownerPhone = "1135987579",
                 photo = labradorImage.dogsImage[2],
                 false,
                 isFavorite = false
