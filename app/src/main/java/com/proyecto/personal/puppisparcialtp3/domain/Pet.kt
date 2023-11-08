@@ -6,7 +6,7 @@ import com.proyecto.personal.puppisparcialtp3.utils.Location
 data class Pet(
     val id: Long,
     val name: String,
-    val age: String,
+    val age: Int,
     val breed: String,
     val subBreed: String?,
     val gender: Gender,

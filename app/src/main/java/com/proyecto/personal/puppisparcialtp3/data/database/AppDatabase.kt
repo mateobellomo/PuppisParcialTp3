@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
 
-@Database(entities = [PetEntity::class], version = 2, exportSchema = false)
+@Database(entities = [PetEntity::class], version = 3, exportSchema = false)
 abstract class appDatabase : RoomDatabase() {
 
     abstract fun petsDAO(): PetsDAO
