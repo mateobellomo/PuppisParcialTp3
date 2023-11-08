@@ -16,7 +16,8 @@ data class Pet(
     val ownerName: String,
     var photo: String?,
     var isAdopted: Boolean,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    var ownerNumber: Int
 )
 {
     companion object {
