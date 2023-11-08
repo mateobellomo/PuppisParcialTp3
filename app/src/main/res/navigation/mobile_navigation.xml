@@ -33,4 +33,9 @@
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.PostFormFragment"
         android:label="@string/title_post"
         tools:layout="@layout/fragment_post_form" />
+    <fragment
+        android:id="@+id/navigation_details"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.DetailsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_details" />
 </navigation>

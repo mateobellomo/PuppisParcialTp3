@@ -19,13 +19,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.adapters.PetListAdapter
-
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentHomeBinding
 import com.proyecto.personal.puppisparcialtp3.entities.Pet
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.HomeViewModel
+import com.proyecto.personal.puppisparcialtp3.viewModels.PetViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._com_proyecto_personal_puppisparcialtp3_fragments_HomeFragment_GeneratedInjector
+//import hilt_aggregated_deps._com_proyecto_personal_puppisparcialtp3_fragments_HomeFragment_GeneratedInjector
+
+
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), OnViewItemClickedListener {
@@ -39,6 +42,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
     private lateinit var petListAdapter: PetListAdapter
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private val petViewModel: PetViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,9 +91,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     }
     override fun onViewItemDetail(pet: Pet) {
-     //  val action = Fragment3Directions.actionFragment3ToViewItem(contacto)
-       // this.findNavController().navigate(action)
-       // findNavController().navigate(action)
-       // Snackbar.make(vista,pet.name, Snackbar.LENGTH_SHORT).show()
+        petViewModel.selectedPet.value = pet
     }
+
 }
