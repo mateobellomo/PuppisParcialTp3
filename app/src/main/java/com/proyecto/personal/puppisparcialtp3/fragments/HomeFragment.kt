@@ -148,7 +148,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             popupMenu.menuInflater.inflate(R.menu.pop_menu, popupMenu.menu)
 
             if (locationSelected == false) {
-                val locationSubMenu = popupMenu.menu.addSubMenu("Ubicacion")
+                val locationSubMenu = popupMenu.menu.addSubMenu("Location")
                 for (location in Location.values()) {
                     val menuItem = locationSubMenu.add(location.name)
                     menuItem.setOnMenuItemClickListener {
@@ -161,7 +161,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                 }
             }
                 if (genderSelected == false) {
-                    val genderSubMenu = popupMenu.menu.addSubMenu("Genero")
+                    val genderSubMenu = popupMenu.menu.addSubMenu("Gender")
 
                     for (gender in Gender.values()) {
                         val menuItem =  genderSubMenu.add(gender.name)
@@ -174,7 +174,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                     }
                 }
                 if (ageSelected == false) {
-                    val ageSubMenu = popupMenu.menu.addSubMenu("Edad")
+                    val ageSubMenu = popupMenu.menu.addSubMenu("Age")
 
                     for (ageRange in AgeRange.values()) {
                         val menuItem =  ageSubMenu.add(ageRange.ageRange)
@@ -297,9 +297,9 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         when (filter) {
             "FEMALE" ->  genderSelected = false
             "MALE" -> genderSelected = false
-               "Cachorro" ->       ageSelected = false
-              "Adolescente" ->       ageSelected = false
-                "Adulto" ->    ageSelected = false
+               "Puppt" ->       ageSelected = false
+              "Teen" ->       ageSelected = false
+                "Adult" ->    ageSelected = false
                "Senior" ->    ageSelected = false
             else -> locationSelected = false
 

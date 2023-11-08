@@ -9,7 +9,7 @@ import com.proyecto.personal.puppisparcialtp3.utils.Location
 @Entity(tableName = "pets")
 class PetEntity(
     name: String,
-    age: String,
+    age: Int,
     breed: String,
     subBreed: String?,
     gender: Gender,
@@ -29,7 +29,7 @@ class PetEntity(
     var name: String
 
     @ColumnInfo(name = "age")
-    var age: String
+    var age: Int
 
     @ColumnInfo(name = "breed")
     var breed: String

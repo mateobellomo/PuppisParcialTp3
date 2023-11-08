@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/initial_nav"
+    app:startDestination="@id/initFragment">
+
+    <activity
+        android:id="@+id/initActivity"
+        android:name="com.proyecto.personal.puppisparcialtp3.activities.InitActivity"
+        android:label="activity_init"
+        tools:layout="@layout/activity_init" />
+    <fragment
+        android:id="@+id/initFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.InitFragment"
+        android:label="fragment_init"
+        tools:layout="@layout/fragment_init" >
+        <action
+            android:id="@+id/action_initFragment_to_logInFragment2"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" />
+</navigation>

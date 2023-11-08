@@ -1,8 +1,6 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -22,18 +20,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.proyecto.personal.puppisparcialtp3.R
-import com.proyecto.personal.puppisparcialtp3.activities.HomeActivity
-import com.proyecto.personal.puppisparcialtp3.data.database.PetsDAO
-import com.proyecto.personal.puppisparcialtp3.data.database.appDatabase
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPostFormBinding
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
-import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.viewModels.PostFormViewModel
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
@@ -42,10 +33,9 @@ import kotlinx.coroutines.launch
 
 class PostFormFragment : Fragment() {
 
-    private lateinit  var namePetInput: EditText
-    private lateinit  var genderSpinner: Spinner
-    private lateinit var quantitySpinner: Spinner
-    private lateinit var daysMonthsYearsSpinner: Spinner
+    private lateinit var namePetInput: EditText
+    private lateinit var genderSpinner: Spinner
+    private lateinit var ageSpinner: Spinner
     private lateinit var weightPetInput: EditText
     private lateinit var grKgSpinner: Spinner
     private lateinit var breedSpinner: Spinner
@@ -55,17 +45,12 @@ class PostFormFragment : Fragment() {
     private lateinit var descriptionInput: EditText
 
 
-
-    private var addPhotoBtn: Button? = null
-    private var deletePhotoBtn: Button? = null
     private var errorMsg: TextView? = null
-
     private val PostFormViewModel: PostFormViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private var _binding: FragmentPostFormBinding? = null
     private val binding get() = _binding!!
-    private var imagePhoto :String = ""
-
+    private var imagePhoto : List<String> = emptyList()
 
 
     override fun onCreateView(
@@ -79,8 +64,7 @@ class PostFormFragment : Fragment() {
 
         namePetInput = binding.editTextFragmentPostFormName
         genderSpinner = binding.GenderSpinner
-        quantitySpinner = binding.quantitySpinner
-        daysMonthsYearsSpinner = binding.DaysMonthsYearsSpinner
+        ageSpinner = binding.ageSpinner
         weightPetInput = binding.editTextFragmentPostFormWeight
         grKgSpinner = binding.GrKgSpinner
         breedSpinner = binding.BreedSpinner
@@ -97,14 +81,10 @@ class PostFormFragment : Fragment() {
         }
         val cancelBtn = binding.buttonFragmentPostFormCancel
         cancelBtn.setOnClickListener {
-            findNavController().popBackStack()
+            this.cancel()
         }
-        addPhotoBtn?.setOnClickListener {
-            this.addUrlPhoto()
-        }
-        deletePhotoBtn?.setOnClickListener {
-            this.deleteUrlPhoto()
-        }
+
+
 
         fillSpinnerValues()
         sharedViewModel.breedListLiveData.observe(viewLifecycleOwner, Observer { it ->
@@ -121,48 +101,31 @@ class PostFormFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        sharedViewModel.images.observe(viewLifecycleOwner, Observer { images ->
+            imagePhoto = images
+        })
 
-        binding.editTextUrlPhoto.setOnClickListener{
+        binding.generatePhoto.setOnClickListener{
+                var breedSelected =  breedSpinner.selectedItem.toString()
+                if (breedSelected.isNullOrBlank()){
+                    breedSelected = "pug"
+                }
+                sharedViewModel.imageForPost(breedSelected, 3)
 
-//          val image =  sharedViewModel.getImage()
-//            Glide.with(this)
-//                .load("URL_DE_LA_IMAGEN") // Reemplaza con la URL de la imagen que deseas cargar
-//                .into(object : CustomTarget<Drawable>() {
-//                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-//                        // Establece la imagen como fondo del EditText
-//                        binding.editTextUrlPhoto.background = resource
-//                    }
-//
-//                    override fun onLoadCleared(placeholder: Drawable?) {
-//                        // Código para manejar la carga cancelada si es necesario
-//                    }
-//                })
-
-
-            lifecycleScope.launch {
-                imagePhoto = sharedViewModel.getImage()
-                Log.e("imagen", imagePhoto)
-                Glide.with(this@PostFormFragment)
-                    .load(imagePhoto)
-                    .into(binding.editTextUrlPhoto) // Asignar la imagen al EditText
-            }
-            Log.e("imagen 2", imagePhoto)
         }
     }
 
-    private fun deleteUrlPhoto() {
-        PostFormViewModel.removeImage(imagePhoto)
-    }
 
-    private fun addUrlPhoto() {
-        PostFormViewModel.saveImage(imagePhoto)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    private fun cancel(){
+        findNavController().popBackStack()
+
+    }
 
     private fun fillSpinnerValues() {
         activity?.let {
@@ -172,16 +135,7 @@ class PostFormFragment : Fragment() {
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.quantitySpinner?.adapter = adapter
-            }
-
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.daysMonthsYear_values,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.daysMonthsYearsSpinner?.adapter = adapter
+                this.ageSpinner?.adapter = adapter
             }
 
             ArrayAdapter.createFromResource(
@@ -214,20 +168,16 @@ class PostFormFragment : Fragment() {
     }
 
       private fun savePost() {
-            //val userName = SharedPref.read(SharedPref.ID, UserSingleton.userId!!)
             val namePet: String = namePetInput.text.toString()
             val genderString: String = genderSpinner.selectedItem.toString()
-            val quantity: Int = quantitySpinner.selectedItem.toString().toInt()
-            val dayMonthYear: String = daysMonthsYearsSpinner.selectedItem.toString()
             val weightPet: String = weightPetInput.text.toString()
-            val grKg: String = daysMonthsYearsSpinner.selectedItem.toString()
+            val grKg: String = grKgSpinner.selectedItem.toString()
             val breed: String = breedSpinner.selectedItem.toString()
-             val selectedItem = subBreedSpinner.selectedItem
-              val subBreed: String = selectedItem?.toString() ?: ""
-          val locationString: String = locationSpinner.selectedItem.toString()
+            val selectedItem = subBreedSpinner.selectedItem
+            val subBreed: String = selectedItem?.toString() ?: ""
+            val locationString: String = locationSpinner.selectedItem.toString()
             val ownerPet: String = ownerPetInput.text.toString()
             val description: String = descriptionInput.text.toString()
-            val imagesPet: String = imagePhoto
 
             if (namePet.isEmpty()) {
                 errorMsg?.visibility = View.VISIBLE
@@ -248,17 +198,10 @@ class PostFormFragment : Fragment() {
                 Handler().postDelayed({
                     errorMsg?.visibility = View.INVISIBLE
                 }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            } else if (!imagesPet.isEmpty()) {
-                errorMsg?.visibility = View.VISIBLE
-                errorMsg?.text =
-                    "The Photos field is required"
-                Handler().postDelayed({
-                    errorMsg?.visibility = View.INVISIBLE
-                }, 3000)
+            }  else {
+                val selectedAgeString = ageSpinner.selectedItem.toString()
+                val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
 
-            } else {
-                //val ownerPet =
-                val agePet: String = "$quantity $dayMonthYear"
                 val weight: String = "$weightPet $grKg"
                 val gender: Gender = Gender.fromString(genderString)
                 val location: Location = Location.fromString(locationString)
@@ -266,7 +209,7 @@ class PostFormFragment : Fragment() {
 
                 val newPet = Pet(Pet.nextId(), //genera id automatico
                     name = namePet,
-                    age = agePet,
+                    age = ageValue,
                     breed = breed,
                     subBreed = subBreed,
                     gender = gender,
@@ -274,17 +217,18 @@ class PostFormFragment : Fragment() {
                     weight = weight,
                     location = location,
                     ownerName = ownerPet,
-                    photo = "",
+                    photo = imagePhoto,
                     isAdopted = false,
                     isFavorite = false
                 )
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
 
-                builder.setTitle("Proceso de Adopcion")
-                builder.setMessage("¿Estás seguro que deseas publicar esta mascota?")
+                builder.setTitle("Adoption process")
+                builder.setMessage("¿Are you sure you want to post this pet?")
 
-                builder.setPositiveButton("Si!!!") { dialog, which ->
+
+                builder.setPositiveButton("Of course!") { dialog, which ->
                     Log.d("pet creado", newPet.toString())
                     Log.d("pet creado view model", sharedViewModel.pets.toString())
 
@@ -293,7 +237,7 @@ class PostFormFragment : Fragment() {
 
                 }
 
-                builder.setNegativeButton("Cancelar") { dialog, which ->
+                builder.setNegativeButton("Let me think about it") { dialog, which ->
 
                 }
 
@@ -305,17 +249,16 @@ class PostFormFragment : Fragment() {
             }
         }
     fun cleanInputs(){
-        namePetInput?.setText("")
-         genderSpinner?.setSelection(0, false)
-        quantitySpinner?.setSelection(0, false)
-        daysMonthsYearsSpinner?.setSelection(0, false)
-        weightPetInput?.text = null
-        daysMonthsYearsSpinner?.setSelection(0, false)
-       breedSpinner?.setSelection(0, false)
-         subBreedSpinner?.setSelection(0, false)
-        locationSpinner?.setSelection(0, false)
-        ownerPetInput?.setText("")
-        descriptionInput?.setText("")
+        namePetInput.setText("")
+         genderSpinner.setSelection(0, false)
+        ageSpinner.setSelection(0, false)
+        weightPetInput.text = null
+        grKgSpinner.setSelection(0, false)
+        breedSpinner.setSelection(0, false)
+        subBreedSpinner.setSelection(0, false)
+        locationSpinner.setSelection(0, false)
+        ownerPetInput.setText("")
+        descriptionInput.setText("")
 
 
     }

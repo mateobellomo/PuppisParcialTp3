@@ -1,76 +1,108 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toolbar
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.proyecto.personal.puppisparcialtp3.R
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentProfileBinding
+import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
+import com.proyecto.personal.puppisparcialtp3.viewModels.ProfileViewModel
+import androidx.navigation.fragment.findNavController
 
+class ProfileFragment : Fragment() {
 
-class ProfileFragment : Fragment(){
+    private lateinit var binding: FragmentProfileBinding
+    private lateinit var imageView: ImageView
+    private lateinit var buttonUpload: Button
+    private lateinit var editTextUrl: EditText
+    private lateinit var nameTextView: TextView
 
-    lateinit var image: ImageView
-    lateinit var buttonUpload: Button
-    lateinit var editTextUrl: EditText
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: ProfileViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        image = binding.imgViewProfile
-        Glide.with(root)
-            .load("https://images.dog.ceo/breeds/terrier-toy/n02087046_7037.jpg")
-            .into(image)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        this.setUpViews()
+        SharedPref.addImageURLChangeListener { newImageUrl ->
+            newImageUrl?.let {
+                updateImage(
+                    imageUrl = it
+                )
+            }
+        }
+        return binding.root
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        SharedPref.removeImageURLChangeListener { }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var toolbar = binding.toolbarProfile
+        toolbar.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setUpViews() {
+        nameTextView = binding.textView
+        nameTextView.isVisible = false
+        viewModel.getName().let {
+            nameTextView.text = it
+            nameTextView.isVisible = true
+        }
         editTextUrl = binding.editTextUploadURLProfile
         buttonUpload = binding.btnProfileUpload
         buttonUpload.setOnClickListener {
-            if (editTextUrl.visibility == View.VISIBLE) {
-                editTextUrl.visibility = View.GONE
-            } else {
-                editTextUrl.visibility = View.VISIBLE
-            }
-
-            val imageUrl = editTextUrl.text.toString()
-            Glide.with(this).clear(image)
-            // Check if the URL is not empty
-            if (imageUrl.isNotEmpty()) {
-                // Use Glide to load the image into the ImageView
-
-                Glide.with(this)
-                    .load(imageUrl)
-                    .into(image)
-            } else {
-                Glide.with(this)
-                    .load(R.drawable.ic_error_loading)
-                    .into(image)
-            }
+            this.updateImageUrl(editTextUrl.text.toString())
         }
-        return root
-
+        val imageUrl: String? = SharedPref.read(SharedPref.IMAGE_URL, null)
+        imageUrl?.let { updateImage(it) }
     }
 
-
-     override fun onStart() {
-        super.onStart()
-         var toolbar = binding.toolbarProfile
-         toolbar.setOnClickListener{
-             findNavController().popBackStack()
-         }
-
+    private fun updateImageUrl(url: String) {
+        if (url.isNullOrEmpty()) {
+            editTextUrl.error = "Mandatory field"
+            Handler().postDelayed({
+                editTextUrl.error = null
+            }, 3000)
+        } else {
+            viewModel.updateImageUrl(url)
+            editTextUrl.setText("")
+            Toast.makeText(activity, "Profile picture was successfully updated", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
+    private fun updateImage(imageUrl: String) {
+        imageView = binding.imgViewProfile
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.ic_placeholder)
+        requestOptions.error(R.drawable.ic_error)
+        Glide.with(this)
+            .load(imageUrl)
+            .apply(requestOptions)
+            .diskCacheStrategy(DiskCacheStrategy.NONE) // Disable disk caching
+            .skipMemoryCache(true) // Skip memory cache
+            .thumbnail(0.5f)
+            .circleCrop()
+            .into(imageView)
+    }
 }

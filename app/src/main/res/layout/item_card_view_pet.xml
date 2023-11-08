@@ -17,6 +17,7 @@
         android:layout_width="383dp"
         android:layout_height="264dp">
 
+
         <ImageView
             android:id="@+id/imCardViewPetPhoto"
             android:layout_width="399dp"

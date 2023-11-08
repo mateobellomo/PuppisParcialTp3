@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -13,10 +14,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.navigation.NavigationView
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.ActivityHomeBinding
+import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -36,16 +41,12 @@ class HomeActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         setSupportActionBar(binding.appBar.toolbar)
         val navController = findNavController(R.id.nav_host_fragment_content)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-       val appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,R.id.navigation_profile, R.id.navigation_favorites,
                 R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
             ), drawerLayout
         )
-
-
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -54,7 +55,13 @@ class HomeActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
 
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, binding.appBar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        actionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            binding.appBar.toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
 
 
 // Oculta la Toolbar cuando se abre el DrawerLayout
@@ -79,8 +86,16 @@ class HomeActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_hamburger)
         }
-
+        updateDrawerInfo()
+        SharedPref.addImageURLChangeListener { newImageUrl ->
+            newImageUrl?.let {
+                updateHeaderImage(
+                    imageUrl = it
+                )
+            }
+        }
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
@@ -103,4 +118,41 @@ class HomeActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    private fun updateDrawerInfo() {
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        val headerView = navigationView.getHeaderView(0)
+
+        val photoUrl = SharedPref.read(SharedPref.IMAGE_URL, null)
+        val userName = SharedPref.read(SharedPref.NAME, null)
+
+        if (photoUrl != null) {
+            val userNameTxt = headerView.findViewById<TextView>(R.id.avatarName)
+            userNameTxt.text = userName
+            val userImageView = headerView.findViewById<ImageView>(R.id.imageView)
+            val requestOptions = RequestOptions()
+            requestOptions.placeholder(R.drawable.ic_placeholder)
+            requestOptions.error(R.drawable.ic_error)
+            Glide.with(this)
+                .load(photoUrl)
+                .apply(requestOptions)
+                .thumbnail(0.5f)
+                .circleCrop()
+                .into(userImageView)
+        }
+    }
+
+    private fun updateHeaderImage(imageUrl: String) {
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        val headerView = navigationView.getHeaderView(0)
+        val userImageView = headerView.findViewById<ImageView>(R.id.imageView)
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.ic_placeholder)
+        requestOptions.error(R.drawable.ic_error)
+        Glide.with(this)
+            .load(imageUrl)
+            .apply(requestOptions)
+            .thumbnail(0.5f)
+            .circleCrop()
+            .into(userImageView)
+    }
 }

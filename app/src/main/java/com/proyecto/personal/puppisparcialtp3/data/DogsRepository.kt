@@ -28,61 +28,65 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
     }
 
     suspend fun createDogs() : List<Pet>{
-        val beagleImage = getSpecificBreedImages("beagle", 1)
+        val beagleImage = getSpecificBreedImages("beagle", 3)
         val shibaImage = getSpecificBreedImages("shiba", 3)
-        val akitaImage = getSpecificBreedImages("akita", 2)
-        val mastiffImage = getSpecificBreedImages("mastiff", 1)
-        val pugImage = getSpecificBreedImages("pug", 1)
+        val shibaImage2 = getSpecificBreedImages("shiba", 3)
+        val shibaImage3 = getSpecificBreedImages("shiba", 3)
+        val akitaImage = getSpecificBreedImages("akita", 3)
+        val mastiffImage = getSpecificBreedImages("mastiff", 3)
+        val pugImage = getSpecificBreedImages("pug", 3)
         val labradorImage = getSpecificBreedImages("labrador", 3)
-        val weimaranerImage = getSpecificBreedImages("weimaraner", 2)
+        val labradorImage2 = getSpecificBreedImages("labrador", 3)
+        val weimaranerImage = getSpecificBreedImages("weimaraner", 3)
+        val weimaranerImage2 = getSpecificBreedImages("weimaraner", 3)
 
         val listPet: MutableList<Pet> = ArrayList()
 
 
         listPet.add(
             Pet(Pet.nextId(),
-                "Agustin",
-                "10 months",
+                "Kenzi",
+                10,
                 "beagle",
-                "shiba",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30 gr",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = beagleImage.dogsImage[0],
+                photo = beagleImage.dogsImage,
                 false,
                 isFavorite = false
             )
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Paola",
-                "10 days",
-                "chow",
+                "Skye",
+                10,
                 "shiba",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30 kg",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[0],
+                photo = shibaImage.dogsImage,
                 false,
                 isFavorite = false
             )
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Yanina",
-                "10 years",
-                "labrador",
+                "Spark",
+                10,
                 "shiba",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30 kgs",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[1],
+                photo = shibaImage2.dogsImage,
                 false,
                 isFavorite = false
             )
@@ -90,47 +94,47 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Camila",
-                "10",
-                "pug",
+                10,
                 "shiba",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30.0",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[2],
+                photo = shibaImage3.dogsImage,
                 false,
                 isFavorite = true
             )
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Fernando",
-                "10",
+                "Charmander",
+                1,
                 "mastiff",
-                "mastiff",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30.0",
                 Location.JUJUY,
                 "Agustin",
-                photo = mastiffImage.dogsImage[0],
+                photo = mastiffImage.dogsImage,
                 false,
                 isFavorite = true
             )
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Raul",
-                "1",
+                "Kubon",
+                11,
                 "pug",
-                "pug",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Agustin",
-                photo = pugImage.dogsImage[0],
+                photo = pugImage.dogsImage,
                 true,
                 isFavorite = false
             )
@@ -138,15 +142,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Vulpix",
-                "1",
+                12,
                 "weimaraner",
-                "weimaraner",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Javier",
-                photo = weimaranerImage.dogsImage[0],
+                photo = weimaranerImage.dogsImage,
                 false,
                 isFavorite = false
             )
@@ -154,15 +158,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Eevee",
-                "1",
+                18,
                 "weimaraner",
-                "weimaraner",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Rodrigo",
-                photo = weimaranerImage.dogsImage[1],
+                photo = weimaranerImage2.dogsImage,
                 false,
                 isFavorite = false
             )
@@ -170,15 +174,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "BigBoy",
-                "2",
+                20,
                 "labrador",
-                "labrador",
+                "",
                 Gender.MALE,
                 "Nada",
                 "10.20",
                 Location.CORDOBA,
                 "Alexander",
-                photo = labradorImage.dogsImage[0],
+                photo = labradorImage.dogsImage,
                 false,
                 isFavorite = false
             )
@@ -186,15 +190,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Dora",
-                "1",
+                1,
                 "labrador",
-                "labrador",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Martina",
-                photo = labradorImage.dogsImage[1],
+                photo = labradorImage2.dogsImage,
                 false,
                 isFavorite = false
             )
@@ -202,15 +206,15 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Tommy",
-                "3",
-                "labrador",
-                "labrador",
+                3,
+                "akita",
+                "",
                 Gender.MALE,
                 "Nada",
                 "12.56",
-                Location.CORDOBA,
+                Location.CHACO,
                 "Daniel",
-                photo = labradorImage.dogsImage[2],
+                photo = akitaImage.dogsImage,
                 false,
                 isFavorite = false
             )

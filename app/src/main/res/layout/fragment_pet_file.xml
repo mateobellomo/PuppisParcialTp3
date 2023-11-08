@@ -6,14 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PetFileFragment">
 
-    <ImageView
-        android:id="@+id/ivPetRecord"
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpItemCard"
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:background="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/arrowLeft"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_arrow_left"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@+id/vpItemCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/vpItemCard"
+        />
+    <ImageView
+        android:id="@+id/arrowRight"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_arrow_rigth"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@+id/vpItemCard"
+        app:layout_constraintEnd_toEndOf="@+id/vpItemCard"
+        app:layout_constraintBottom_toBottomOf="@+id/vpItemCard"
+        />
 
     <Button
         android:id="@+id/backBtn"
@@ -38,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPetRecord" />
+        app:layout_constraintTop_toBottomOf="@+id/vpItemCard" />
 
     <TextView
         android:id="@+id/agePetFile"
@@ -51,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPetRecord" />
+        app:layout_constraintTop_toBottomOf="@+id/vpItemCard" />
 
     <ImageView
         android:id="@+id/locationIconPetFile"
