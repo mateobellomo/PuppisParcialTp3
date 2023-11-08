@@ -32,7 +32,7 @@ class SharedViewModel @Inject constructor(
     val breedListLiveData: MutableLiveData<List<Pair<String, List<String>>>?>
         get() = _breedListLiveData
     val dogsIamges = MutableLiveData<List<String>>()
-    val filters = MutableLiveData<List<String>>()
+
     val originalPetList =  MutableLiveData<List<Pet>>()
     val dogBreedSugestions: MutableLiveData<List<String>> = MutableLiveData()
 
@@ -41,18 +41,11 @@ class SharedViewModel @Inject constructor(
         viewModelScope.launch {
             // imagenes ramdom de perros , strings con direcciones url
             val result = getDogsImage()
-           // Log.d("respuesta", " esta es getDogsImage ${result.dogsImage}")
-
             //la lista de razas de perros, Strings
             val result2 = getAllDogsBreedsUseCase()
-            Log.d("respuesta", " esta es getAllDogsBreedsUseCase ${result2.toString()}")
-
             //obtiene imagenes de la raza pasada x parametro, cuantas imagenes se indique
             val result3 = getSpecificBreedImages(result2?.get(5).toString(), 2)
-          //  Log.d("respuesta", " esta es la getSpecificBreedImages ${result3.toString()}")
-
             val repositoryPets = getSomeDogsUseCase()
-            //Log.e("repositorio", repositoryPets.toString())
 
             pets.postValue(repositoryPets)
             originalPetList.postValue(repositoryPets)
@@ -64,29 +57,9 @@ class SharedViewModel @Inject constructor(
                 _breedListLiveData.postValue(result2)
             }
 
-
-
         }
     }
 
-
-
-    fun addFilter(newFilter: String) {
-        val oldList = filters.value?.toMutableList() ?: mutableListOf()
-        oldList.add(newFilter)
-        Log.d("filters" ,"luego de agregar ${filters.value.toString()}")
-        filters.postValue(oldList)
-    }
-
-    fun deleteFilter(filterToDelete: String) {
-        val oldList = filters.value?.toMutableList() ?: mutableListOf()
-        oldList.remove(filterToDelete)
-        filters.postValue(oldList)
-    }
-
-    fun clearList() {
-        filters.postValue(emptyList())
-    }
 
     fun resetOriginalList(){
         val originalPet = originalPetList.value

@@ -21,6 +21,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -95,8 +96,8 @@ class PostFormFragment : Fragment() {
             this.savePost()
         }
         val cancelBtn = binding.buttonFragmentPostFormCancel
-        cancelBtn?.setOnClickListener {
-            this.cancel()
+        cancelBtn.setOnClickListener {
+            findNavController().popBackStack()
         }
         addPhotoBtn?.setOnClickListener {
             this.addUrlPhoto()
@@ -162,11 +163,6 @@ class PostFormFragment : Fragment() {
         _binding = null
     }
 
-    private fun cancel(){
-        val intent = Intent(context, HomeActivity::class.java)
-        context?.startActivity(intent)
-
-    }
 
     private fun fillSpinnerValues() {
         activity?.let {

@@ -87,7 +87,7 @@ class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClic
       sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment(pet.id)
+        val action = FavoritesFragmentDirections.actionNavigationFavoritesToPetFileFragment(pet.id)
         findNavController().navigate(action)
 
     }

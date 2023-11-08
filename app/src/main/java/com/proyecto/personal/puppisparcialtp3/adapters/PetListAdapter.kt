@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.adapters
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,8 @@ class PetListAdapter(
 ) : RecyclerView.Adapter<PostHolder>() {
 
     private val petsListFilter: MutableList<Pet> = mutableListOf()
+    private val filterList: MutableList<String> = mutableListOf()
+    private var breedFilter : String = ""
     override fun getItemCount() = petsList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
@@ -41,6 +44,37 @@ class PetListAdapter(
 
     }
 
+    private fun refreshData() {
+        var dataFilter = petsListFilter.toMutableList()
+
+        // filtos de popMenu
+        if(filterList.isNotEmpty()){
+            for (filter in filterList) {
+              val  filteredPets = dataFilter.filter { pet ->
+                    when (filter) {
+                        "FEMALE" -> pet.gender.toString() == "FEMALE"
+                        "MALE" -> pet.gender.toString() == "MALE"
+//                "Cachorro" -> pet.age <= 1
+//                "Adolescente" -> pet.age in 2..3
+//                "Adulto" -> pet.age in 3..7
+//                "Senior" -> pet.age > 7
+                        else -> pet.location.toString() == filter
+                    }
+                }
+                dataFilter.clear()
+                dataFilter.addAll(filteredPets)
+            }
+        }
+
+            if (breedFilter.isNotBlank()){
+                dataFilter = searchBar(dataFilter)
+            }
+
+            petsList.clear() // Limpia la lista actual
+            petsList.addAll(dataFilter) // Agrega los nuevos datos
+            notifyDataSetChanged()
+
+    }
     fun updateData(newData: List<Pet>) {
         petsList.clear() // Limpia la lista actual
         petsList.addAll(newData) // Agrega los nuevos datos
@@ -50,43 +84,39 @@ class PetListAdapter(
         notifyDataSetChanged()
     }
 
-    fun updateDataFilter(newData: List<Pet>) {
-        petsList.clear() // Limpia la lista actual
-        petsList.addAll(newData) // Agrega los nuevos datos
-        notifyDataSetChanged()
-    }
-
-    fun filterBreed(query: String?) {
+    private fun searchBar(listToFilter : MutableList<Pet>): MutableList<Pet> {
         val filteredList = mutableListOf<Pet>()
-        for (item in petsList) {
-            if (item.breed?.lowercase()!!.contains(query!!.lowercase()) ||item.subBreed?.lowercase()!!.contains(query!!.lowercase())) {
+        for (item in listToFilter) {
+            if (item.breed?.lowercase()!!.contains(breedFilter!!.lowercase()) ||item.subBreed?.lowercase()!!.contains(breedFilter!!.lowercase())) {
                 filteredList.add(item)
             }
         }
-        updateDataFilter(filteredList)
-        notifyDataSetChanged()
+        return filteredList
+    }
+
+    fun filterBreed(query: String?) {
+        if (query != null) {
+            breedFilter = query
+        }
+
+        refreshData()
     }
 
 
     fun filterCategory (category : String){
-        val filteredList = petsList.filter { pet ->
-            when (category) {
-                "FEMALE" -> pet.gender.toString() == "FEMALE"
-                "MALE" -> pet.gender.toString() == "MALE"
-//                "Cachorro" -> pet.age <= 1
-//                "Adolescente" -> pet.age in 2..3
-//                "Adulto" -> pet.age in 3..7
-//                "Senior" -> pet.age > 7
-                else -> pet.location.toString() == category
-            }
-        }
-        updateDataFilter(filteredList)
-        notifyDataSetChanged()
+        filterList.add(category)
+        refreshData()
 
     }
 
-    fun restoreList(){
-        updateDataFilter(petsListFilter)
+    fun clearFilterList(){
+      filterList.clear()
+        refreshData()
+    }
+
+    fun deleteFilter(filterToDelete : String){
+        filterList.remove(filterToDelete)
+        refreshData()
     }
 
 }
