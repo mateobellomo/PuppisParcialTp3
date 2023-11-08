@@ -42,7 +42,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Agustin",
-                "10 months",
+                10,
                 "beagle",
                 "shiba",
                 Gender.MALE,
@@ -58,8 +58,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Paola",
-                "10 days",
-                "chow",
+                10,
+                "cow",
                 "shiba",
                 Gender.FEMALE,
                 "Nada",
@@ -74,7 +74,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Yanina",
-                "10 years",
+                10,
                 "labrador",
                 "shiba",
                 Gender.MALE,
@@ -90,7 +90,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Camila",
-                "10",
+                10,
                 "pug",
                 "shiba",
                 Gender.MALE,
@@ -106,7 +106,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Fernando",
-                "10",
+                1,
                 "mastiff",
                 "mastiff",
                 Gender.MALE,
@@ -122,7 +122,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Raul",
-                "1",
+                11,
                 "pug",
                 "pug",
                 Gender.FEMALE,
@@ -138,7 +138,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Vulpix",
-                "1",
+                12,
                 "weimaraner",
                 "weimaraner",
                 Gender.FEMALE,
@@ -154,7 +154,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Eevee",
-                "1",
+                18,
                 "weimaraner",
                 "weimaraner",
                 Gender.FEMALE,
@@ -170,7 +170,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "BigBoy",
-                "2",
+                20,
                 "labrador",
                 "labrador",
                 Gender.MALE,
@@ -186,7 +186,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Dora",
-                "1",
+                1,
                 "labrador",
                 "labrador",
                 Gender.FEMALE,
@@ -202,7 +202,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         listPet.add(
             Pet(Pet.nextId(),
                 "Tommy",
-                "3",
+                3,
                 "labrador",
                 "labrador",
                 Gender.MALE,

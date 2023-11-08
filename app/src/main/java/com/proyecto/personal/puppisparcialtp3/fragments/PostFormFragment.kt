@@ -1,8 +1,6 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -21,18 +19,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.proyecto.personal.puppisparcialtp3.R
-import com.proyecto.personal.puppisparcialtp3.activities.HomeActivity
-import com.proyecto.personal.puppisparcialtp3.data.database.PetsDAO
-import com.proyecto.personal.puppisparcialtp3.data.database.appDatabase
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPostFormBinding
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
-import com.proyecto.personal.puppisparcialtp3.data.model.PetEntity
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.viewModels.PostFormViewModel
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
@@ -41,10 +33,9 @@ import kotlinx.coroutines.launch
 
 class PostFormFragment : Fragment() {
 
-    private lateinit  var namePetInput: EditText
-    private lateinit  var genderSpinner: Spinner
-    private lateinit var quantitySpinner: Spinner
-    private lateinit var daysMonthsYearsSpinner: Spinner
+    private lateinit var namePetInput: EditText
+    private lateinit var genderSpinner: Spinner
+    private lateinit var ageSpinner: Spinner
     private lateinit var weightPetInput: EditText
     private lateinit var grKgSpinner: Spinner
     private lateinit var breedSpinner: Spinner
@@ -78,8 +69,7 @@ class PostFormFragment : Fragment() {
 
         namePetInput = binding.editTextFragmentPostFormName
         genderSpinner = binding.GenderSpinner
-        quantitySpinner = binding.quantitySpinner
-        daysMonthsYearsSpinner = binding.DaysMonthsYearsSpinner
+        ageSpinner = binding.ageSpinner
         weightPetInput = binding.editTextFragmentPostFormWeight
         grKgSpinner = binding.GrKgSpinner
         breedSpinner = binding.BreedSpinner
@@ -163,8 +153,7 @@ class PostFormFragment : Fragment() {
     }
 
     private fun cancel(){
-        val intent = Intent(context, HomeActivity::class.java)
-        context?.startActivity(intent)
+        findNavController().popBackStack()
 
     }
 
@@ -176,16 +165,7 @@ class PostFormFragment : Fragment() {
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.quantitySpinner?.adapter = adapter
-            }
-
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.daysMonthsYear_values,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                this.daysMonthsYearsSpinner?.adapter = adapter
+                this.ageSpinner?.adapter = adapter
             }
 
             ArrayAdapter.createFromResource(
@@ -218,17 +198,14 @@ class PostFormFragment : Fragment() {
     }
 
       private fun savePost() {
-            //val userName = SharedPref.read(SharedPref.ID, UserSingleton.userId!!)
             val namePet: String = namePetInput.text.toString()
             val genderString: String = genderSpinner.selectedItem.toString()
-            val quantity: Int = quantitySpinner.selectedItem.toString().toInt()
-            val dayMonthYear: String = daysMonthsYearsSpinner.selectedItem.toString()
             val weightPet: String = weightPetInput.text.toString()
-            val grKg: String = daysMonthsYearsSpinner.selectedItem.toString()
+            val grKg: String = grKgSpinner.selectedItem.toString()
             val breed: String = breedSpinner.selectedItem.toString()
-             val selectedItem = subBreedSpinner.selectedItem
-              val subBreed: String = selectedItem?.toString() ?: ""
-          val locationString: String = locationSpinner.selectedItem.toString()
+            val selectedItem = subBreedSpinner.selectedItem
+            val subBreed: String = selectedItem?.toString() ?: ""
+            val locationString: String = locationSpinner.selectedItem.toString()
             val ownerPet: String = ownerPetInput.text.toString()
             val description: String = descriptionInput.text.toString()
             val imagesPet: String = imagePhoto
@@ -261,8 +238,9 @@ class PostFormFragment : Fragment() {
                 }, 3000)
 
             } else {
-                //val ownerPet =
-                val agePet: String = "$quantity $dayMonthYear"
+                val selectedAgeString = ageSpinner.selectedItem.toString()
+                val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
+
                 val weight: String = "$weightPet $grKg"
                 val gender: Gender = Gender.fromString(genderString)
                 val location: Location = Location.fromString(locationString)
@@ -270,7 +248,7 @@ class PostFormFragment : Fragment() {
 
                 val newPet = Pet(Pet.nextId(), //genera id automatico
                     name = namePet,
-                    age = agePet,
+                    age = ageValue,
                     breed = breed,
                     subBreed = subBreed,
                     gender = gender,
@@ -288,7 +266,7 @@ class PostFormFragment : Fragment() {
                 builder.setTitle("Proceso de Adopcion")
                 builder.setMessage("¿Estás seguro que deseas publicar esta mascota?")
 
-                builder.setPositiveButton("Si!!!") { dialog, which ->
+                builder.setPositiveButton("Si") { dialog, which ->
                     Log.d("pet creado", newPet.toString())
                     Log.d("pet creado view model", sharedViewModel.pets.toString())
 
@@ -311,10 +289,9 @@ class PostFormFragment : Fragment() {
     fun cleanInputs(){
         namePetInput?.setText("")
          genderSpinner?.setSelection(0, false)
-        quantitySpinner?.setSelection(0, false)
-        daysMonthsYearsSpinner?.setSelection(0, false)
+        ageSpinner?.setSelection(0, false)
         weightPetInput?.text = null
-        daysMonthsYearsSpinner?.setSelection(0, false)
+        grKgSpinner?.setSelection(0, false)
        breedSpinner?.setSelection(0, false)
          subBreedSpinner?.setSelection(0, false)
         locationSpinner?.setSelection(0, false)
