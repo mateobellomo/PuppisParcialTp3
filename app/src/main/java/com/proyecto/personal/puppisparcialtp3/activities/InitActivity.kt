@@ -14,9 +14,10 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
         SharedPref.init(applicationContext);
+        SharedPref.write(SharedPref.DARK_MODE, false)
 
         val userName = SharedPref.read(SharedPref.NAME, "")
-        if (userName != null) {
+        if (!userName.isNullOrEmpty()) {
             // User is signed in
             val i = Intent(this@InitActivity, HomeActivity::class.java)
             startActivity(i)
