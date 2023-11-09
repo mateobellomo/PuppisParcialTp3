@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.proyecto.personal.puppisparcialtp3.adapters.PetListAdapter
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentAdoptedBinding
@@ -81,6 +82,8 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
     }
 
     override fun onViewItemDetail(pet: Pet) {
+        val action = AdoptedFragmentDirections.actionNavigationAdoptionsToPetFileFragment(pet.id)
+        findNavController().navigate(action)
         val toast = Toast.makeText(
             context,
             "Congrats! A new family member its on the way!",

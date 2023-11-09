@@ -53,7 +53,7 @@ class PetListAdapter(
                     when (filter) {
                         "FEMALE" -> pet.gender.toString() == "FEMALE"
                         "MALE" -> pet.gender.toString() == "MALE"
-                        "Puppy" -> pet.age <= 1
+                        "Puppy" -> pet.age < 1
                         "Teen" -> pet.age in 2..3
                         "Adult" -> pet.age in 3..7
                         "Senior" -> pet.age > 7

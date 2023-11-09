@@ -43,7 +43,8 @@ class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClic
         sharedViewModel.pets.observe(this, Observer {
             if (it != null) {
                 binding.tvfavorites.visibility = View.GONE
-                val favoritesList: List<Pet> = it.filter { it.isFavorite }
+                val favoritesList: List<Pet> = it.filter { it.isFavorite && !it.isAdopted }
+
                 petListAdapter.updateData(favoritesList)
                 if (favoritesList.isEmpty()) {
                     binding.tvfavorites.visibility = View.VISIBLE

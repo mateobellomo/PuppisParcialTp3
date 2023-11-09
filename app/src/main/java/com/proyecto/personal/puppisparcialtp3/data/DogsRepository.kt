@@ -112,7 +112,7 @@ class DogsRepository @Inject constructor(private val service: DogsService) {
                 "Agustin",
                 photo = shibaImage3.dogsImage,
                 false,
-                isFavorite = true,
+                isFavorite = false,
                 ownerNumber = "1333333",
                 ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-2-800x800.jpeg"
             )
@@ -131,7 +131,7 @@ class DogsRepository @Inject constructor(private val service: DogsService) {
                 "Agustin",
                 photo = mastiffImage.dogsImage,
                 false,
-                isFavorite = true,
+                isFavorite = false,
                 ownerNumber = "34449292",
                 ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-3-800x800.jpeg"
             )
@@ -149,7 +149,7 @@ class DogsRepository @Inject constructor(private val service: DogsService) {
                 Location.CORDOBA,
                 "Agustin",
                 photo = pugImage.dogsImage,
-                true,
+                false,
                 isFavorite = false,
                 ownerNumber = "76948483",
                 ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg"

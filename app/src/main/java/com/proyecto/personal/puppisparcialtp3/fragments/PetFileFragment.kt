@@ -115,6 +115,8 @@ class PetFileFragment : Fragment() {
                     pet.isAdopted = true
                     pet.ownerName = SharedPref.read(SharedPref.NAME, "Unknown")
                     pet.ownerImageUrl = SharedPref.read(SharedPref.IMAGE_URL, "")
+                    sharedViewModel.pets.value = sharedViewModel.pets.value
+
                 }
                 builder.setNegativeButton("Cancel") { dialog, which ->
                     dialog.dismiss()
