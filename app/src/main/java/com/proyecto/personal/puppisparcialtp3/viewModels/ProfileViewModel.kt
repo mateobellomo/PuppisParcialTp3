@@ -6,7 +6,7 @@ import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
 class ProfileViewModel: ViewModel() {
 
-    private val name: String? = SharedPref.read(SharedPref.NAME, null)
+    private val name: String? = SharedPref.read(SharedPref.NAME, "")
 
     fun updateImageUrl(imageUrl: String) {
         SharedPref.write(SharedPref.IMAGE_URL, imageUrl)

@@ -4,35 +4,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF"
-    tools:context=".fragments.SettingsFragment">
+    tools:context=".fragments.SettingsFragment"
+    android:theme="@style/SCREEN">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSettings"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:textSize="23dp"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_go_back_arrow"
         app:title="Settings"
         app:titleTextAppearance="@style/PoppinsBlackToolBar"
-        app:titleTextColor="@color/deep_blue" />
+        android:theme="@style/TOOLBAR_COMBINED"/>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/poppins_regular"
         android:text="General"
-        android:textColor="@color/light_blue"
         android:textSize="18dp"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="95dp" />
+        android:theme="@style/TEXT"
+        app:layout_constraintBottom_toTopOf="@+id/themeModeSwitch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSettings" />
 
     <Switch
         android:id="@+id/themeModeSwitch"
@@ -42,10 +43,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
         android:text="Night Mode"
-        android:textColor="@color/black"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:theme="@style/TEXT"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

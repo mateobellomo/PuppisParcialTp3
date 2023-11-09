@@ -73,7 +73,7 @@ class ProfileFragment : Fragment() {
         buttonUpload.setOnClickListener {
             this.updateImageUrl(editTextUrl.text.toString())
         }
-        val imageUrl: String? = SharedPref.read(SharedPref.IMAGE_URL, null)
+        val imageUrl: String? = SharedPref.read(SharedPref.IMAGE_URL, "")
         imageUrl?.let { updateImage(it) }
     }
 

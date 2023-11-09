@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF">
+    android:theme="@style/SCREEN">
 
     <ImageView
         android:id="@+id/imgViewProfile"
@@ -25,11 +24,11 @@
         android:layout_marginEnd="160dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Name"
-        android:textColor="@color/deep_blue"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewProfile"
+        android:theme="@style/TEXT"/>
 
     <Button
         android:id="@+id/btnProfileUpload"
@@ -43,22 +42,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUploadURLProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUploadURLProfile"
+        android:theme="@style/TEXT"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarProfile"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:textSize="23dp"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_go_back_arrow"
         app:title="Profile"
         app:titleTextAppearance="@style/PoppinsBlackToolBar"
-        app:titleTextColor="@color/deep_blue" />
+        android:theme="@style/TOOLBAR_COMBINED"/>
 
     <EditText
         android:id="@+id/editTextUploadURLProfile"

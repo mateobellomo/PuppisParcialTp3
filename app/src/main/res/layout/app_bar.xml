@@ -10,17 +10,12 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.PuppisParcialTp3">
-
-
-
-
+        android:theme="@style/COMBINED">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:paddingHorizontal="10dp"
         app:layout_anchor="@+id/appBarLayout"
@@ -28,7 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_hamburger" />
+        app:navigationIcon="@drawable/ic_hamburger"
+        android:theme="@style/TOOLBAR_COMBINED"/>
 
     </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/content_drawer" />

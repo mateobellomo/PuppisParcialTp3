@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="15dp"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:theme="@style/SCREEN">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
         android:orientation="vertical"
-        tools:context=".fragments.PostFormFragment">
+        tools:context=".fragments.PostFormFragment"
+        android:theme="@style/SCREEN">
 
 
         <ImageView
@@ -119,7 +120,8 @@
             android:hint="@string/pet_name"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormName"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormGender"
@@ -146,7 +148,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormGender" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormGender"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormAge"
@@ -173,7 +176,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostFormName"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAge" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAge"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormWeight"
@@ -199,7 +203,8 @@
             android:hint="@string/pet_weight"
             android:inputType="numberDecimal"
             app:layout_constraintStart_toEndOf="@+id/GenderSpinner"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight"
+            android:theme="@style/TEXT"/>
 
         <Spinner
             android:id="@+id/GrKgSpinner"
@@ -211,7 +216,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostFormWeight"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormBreed"
@@ -238,7 +244,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormBreed" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormBreed"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormSubBreed"
@@ -265,7 +272,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/BreedSpinner"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormSubBreed" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormSubBreed"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormLocation"
@@ -292,7 +300,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormLocation"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormOwner"
@@ -308,8 +317,8 @@
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormLocation"
             app:layout_constraintTop_toBottomOf="@+id/SubBreedSpinner" />
 
-        <EditText
-            android:id="@+id/editTextFragmentPostFormOwner"
+        <TextView
+            android:id="@+id/txtFragmentPostFormOwner"
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
@@ -317,29 +326,31 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/pet_owner"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner"
+            android:theme="@style/TEXT"/>
 
         <TextView
             android:id="@+id/tvFragmentPostFormDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/quicksand_bold"
             android:text="@string/pet_description"
             android:textColor="@color/purple"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormAddPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormOwner" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFragmentPostFormOwner" />
 
         <EditText
             android:id="@+id/editNotes"
             android:layout_width="150dp"
             android:layout_height="117dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="@font/quicksand_light"
             android:gravity="top"
@@ -347,6 +358,7 @@
             android:inputType="text"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toEndOf="@+id/generatePhoto"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
 
@@ -389,7 +401,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:theme="@style/TEXT"/>
 
 
         <Button
@@ -407,7 +420,8 @@
             android:background="@drawable/custom_border_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonFragmentPostFormSave"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:theme="@style/TEXT"/>
 
 
 

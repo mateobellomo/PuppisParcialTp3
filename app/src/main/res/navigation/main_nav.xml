@@ -22,8 +22,8 @@
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_configurationsFragment"
-            app:destination="@id/configurationsFragment" />
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_petFileFragment3"
             app:destination="@id/petFileFragment3" />
@@ -38,9 +38,9 @@
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
-        android:id="@+id/configurationsFragment"
+        android:id="@+id/settingsFragment"
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
-        android:label="fragment_configurations"
+        android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/petFileFragment3"

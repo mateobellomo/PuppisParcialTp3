@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatDelegate
 import com.proyecto.personal.puppisparcialtp3.R
 import androidx.navigation.fragment.findNavController
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentInitBinding
+import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
 class InitFragment : Fragment() {
 
