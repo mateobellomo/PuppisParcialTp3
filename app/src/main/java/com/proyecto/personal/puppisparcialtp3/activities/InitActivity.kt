@@ -10,16 +10,22 @@ import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
 class InitActivity : AppCompatActivity() {
+    private var nightMode: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
         SharedPref.init(applicationContext);
+        nightMode= SharedPref.read(SharedPref.DARK_MODE, false)
 
         val userName = SharedPref.read(SharedPref.NAME, "")
         if (userName != null) {
             // User is signed in
             val i = Intent(this@InitActivity, HomeActivity::class.java)
             startActivity(i)
+        }
+
+        if(nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
 }

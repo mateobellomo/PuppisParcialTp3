@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
+                android:background="@color/transparent"
                 android:layout_gravity="center"
                 android:tintMode="@color/white"
                 android:src="@drawable/ic_location"/>
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
+                android:background="@color/transparent"
                 android:layout_gravity="center"
                 android:tintMode="@color/white"
                 android:src="@drawable/ic_male"
@@ -46,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
+                android:background="@color/transparent"
                 android:layout_gravity="center"
                 android:tintMode="@color/white"
                 android:src="@drawable/ic_female"
@@ -56,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
+                android:background="@color/transparent"
                 android:layout_gravity="center"
                 android:tintMode="@color/white"
                 android:src="@drawable/ic_pet"
@@ -67,6 +71,7 @@
             android:id="@+id/tvFilterName"
             android:paddingHorizontal="5dp"
             android:letterSpacing="0.02"
+            android:background="@color/transparent"
             android:fontFamily="@font/poppins_regular"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -76,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/transparent"
             android:layout_marginEnd="5dp"
             android:src="@drawable/ic_close"/>
         </LinearLayout>
