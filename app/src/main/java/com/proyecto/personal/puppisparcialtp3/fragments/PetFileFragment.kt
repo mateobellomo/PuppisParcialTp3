@@ -128,6 +128,7 @@ class PetFileFragment : Fragment() {
     private fun setPetValues(pet: Pet) {
         val viewPager = binding.vpItemCard
         val name = binding.namePetFile
+        val age = binding.agePetFile
         val location = binding.locationPetFile
         val sex = binding.sexPetFile
         val weight = binding.weightPetFile
@@ -136,6 +137,8 @@ class PetFileFragment : Fragment() {
         val adapter = pet.photo?.let { ViewPagerAdapter(it) }
         viewPager.adapter = adapter
         val btnPhoneDetails = binding.btnPhoneDetails
+        val realAge = pet.age
+        age.text = if (realAge >= 1) "$realAge years old" else "less than a year old"
         btnPhoneDetails.tag = pet.ownerNumber
         name.text = pet.name
         location.text = pet.location.location

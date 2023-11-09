@@ -45,17 +45,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener,
     OnFilterClickedListener {
 
-
     private lateinit var recPets: RecyclerView
     private lateinit var filterAdapter: FilterAdapter
-    private var filters: MutableList<String> = mutableListOf()
     private lateinit var linearLayoutManager: LinearLayoutManager
-
     private lateinit var petListAdapter: PetListAdapter
+
+    private var filters: MutableList<String> = mutableListOf()
     private var _binding: FragmentHomeBinding? = null
+
     private val homeViewModel: HomeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val binding get() = _binding!!
+
     private var locationSelected: Boolean = false
     private var genderSelected: Boolean = false
     private var ageSelected: Boolean = false
@@ -63,7 +64,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel.onCreate()
+
     }
 
     override fun onCreateView(

@@ -40,10 +40,6 @@ class SharedViewModel @Inject constructor(
             //la lista de razas de perros, Strings
             val result2 = getAllDogsBreedsUseCase()
 
-            val repositoryPets = getSomeDogsUseCase()
-
-            pets.postValue(repositoryPets)
-            originalPetList.postValue(repositoryPets)
 
             if (result2 != null) {
                 // junto razas y sub razas en una misma lista
@@ -52,6 +48,14 @@ class SharedViewModel @Inject constructor(
                 _breedListLiveData.postValue(result2)
             }
 
+        }
+    }
+
+    fun getRepositoryDogs() {
+        viewModelScope.launch {
+            val repositoryPets = getSomeDogsUseCase()
+            pets.postValue(repositoryPets)
+            originalPetList.postValue(repositoryPets)
         }
     }
 

@@ -1,15 +1,22 @@
 package com.proyecto.personal.puppisparcialtp3.activities
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,11 +24,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.navigation.NavigationView
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.ActivityHomeBinding
+import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
+import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.Serializable
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -30,9 +41,29 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val sharedViewModel: SharedViewModel by viewModels()
+    private var nightMode: Boolean = false
+    private lateinit var badge: BadgeDrawable
+    private var counter = 0
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (sharedViewModel.pets.value.isNullOrEmpty()) {
+            Log.d("mis pets si llama", "llama")
+            sharedViewModel.getRepositoryDogs()
+        }
+        sharedViewModel.onCreate()
+
+        SharedPref.init(applicationContext)
+        nightMode = SharedPref.read(SharedPref.DARK_MODE, false)
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         drawerLayout = binding.drawerLayout
@@ -58,6 +89,10 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomNav = binding.navBottom
         bottomNav.setupWithNavController(navController)
+
+        badge = bottomNav.getOrCreateBadge(R.id.navigation_adoptions)
+        badge.isVisible = false
+        badge.number = counter
 
         actionBarDrawerToggle = ActionBarDrawerToggle(
             this,
@@ -95,7 +130,29 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
+        sharedViewModel.pets.observe(this, Observer {
+            if (it != null) {
+                if (it.isEmpty()) {
+
+                }
+
+                val adoptedPets = it.filter { e -> e.isAdopted }
+                Log.d("Entro", adoptedPets.size.toString())
+                if (adoptedPets.isNotEmpty()) {
+                    badge.isVisible = true
+                    badge.number = adoptedPets.size
+
+                } else {
+                    badge.isVisible = false
+                }
+
+            }
+
+        })
+
+
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)

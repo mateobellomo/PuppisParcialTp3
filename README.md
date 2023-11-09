@@ -7,7 +7,7 @@ La aplicacion esta desarrollada en Kotlin con un minimo de Android 5.0 (Lollipop
 
 
 ## Integrantes
-Paola Yanina Quiñonez, Mateo Agustin Bellomo, Camila Belén Szesko, Francisco Javier Ezequiel Veron y Camila Ingberg
+Paola Yanina Quiñonez(Github: paoquinonez), Mateo Agustin Bellomo(Github: mateobellomo), Camila Belén Szesko(Github: camilaszesko), Francisco Javier Ezequiel Veron(Github: franjaeze) y Camila Ingberg(Github: camilaing)
 
 ## Preguntas
 
