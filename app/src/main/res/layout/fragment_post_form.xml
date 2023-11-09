@@ -300,13 +300,13 @@
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormLocation"
             app:layout_constraintTop_toBottomOf="@+id/SubBreedSpinner" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTextFragmentPostFormOwner"
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
             android:ems="20"
-            android:inputType="text"
+            android:fontFamily="@font/quicksand_bold"
             app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
 
@@ -397,7 +397,7 @@
             android:layout_width="120dp"
             android:layout_height="48dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginBottom="80dp"
             android:background="@drawable/custom_border"
             android:text="@string/button_save"
             android:textAllCaps="false"
@@ -414,7 +414,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="84dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginBottom="80dp"
             android:background="@drawable/custom_border_grey"
             android:text="@string/button_cancel"
             android:textAllCaps="false"

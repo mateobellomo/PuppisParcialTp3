@@ -39,10 +39,11 @@ class PostFormFragment : Fragment() {
     private lateinit var breedSpinner : Spinner
     private lateinit var subBreedSpinner : Spinner
     private lateinit var locationSpinner : Spinner
-    private lateinit var ownerPetInput : EditText
+    private lateinit var ownerPetInput : TextView
     private lateinit var ownerPhoneInput : EditText
     private lateinit var descriptionInput : EditText
     private lateinit var urlPhotoInput : EditText
+    private lateinit var ownerPet: String
 
     private var errorMsg: TextView? = null
     private val sharedViewModel : SharedViewModel by activityViewModels()
@@ -68,11 +69,15 @@ class PostFormFragment : Fragment() {
         breedSpinner = binding.BreedSpinner
         subBreedSpinner = binding.SubBreedSpinner
         locationSpinner = binding.LocationSpinner
-        ownerPetInput = binding.editTextFragmentPostFormOwner
+        //ownerPetInput = binding.editTextFragmentPostFormOwner
         ownerPhoneInput = binding.editTextFragmentPostFormPhone
         descriptionInput = binding.editNotes
         urlPhotoInput = binding.editTextFragmentPostAddPhoto//P
 
+        ownerPetInput = binding.editTextFragmentPostFormOwner as TextView
+        ownerPet = SharedPref.read(SharedPref.NAME, "")
+        // Establece el valor predefinido en el TextView
+        ownerPetInput.text = ownerPet
 
         errorMsg = binding.errorMsg
         errorMsg?.visibility = View.INVISIBLE
@@ -107,6 +112,7 @@ class PostFormFragment : Fragment() {
             imagePhoto = imagePhoto.plus(urlString)//P
             urlPhotoInput.text.clear()
         }
+
 
      }
 
@@ -171,7 +177,7 @@ class PostFormFragment : Fragment() {
           val selectedItem = subBreedSpinner.selectedItem
           val subBreed: String = selectedItem?.toString() ?: ""
           val locationString: String = locationSpinner.selectedItem.toString()
-          val ownerPet: String = ownerPetInput.text.toString()
+          val owner: String = ownerPetInput.text.toString()
           val ownerPhone: String = ownerPhoneInput.text.toString()
           val description: String = descriptionInput.text.toString()
             if (namePet.isEmpty()) {
@@ -224,11 +230,12 @@ class PostFormFragment : Fragment() {
                     description = description,
                     weight = weight,
                     location = location,
-                    ownerName = ownerPet,
+                    ownerName = owner,
                     photo = imagePhoto,
                     isAdopted = false,
                     isFavorite = false,
                     ownerNumber = ownerPhone
+
                 )
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
@@ -261,7 +268,7 @@ class PostFormFragment : Fragment() {
         breedSpinner.setSelection(0, false)
         subBreedSpinner.setSelection(0, false)
         locationSpinner.setSelection(0, false)
-        ownerPetInput.setText("")
+        //ownerPetInput.setText("")
         descriptionInput.setText("")
         ownerPhoneInput.setText("")
 
