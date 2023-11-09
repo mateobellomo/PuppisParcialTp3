@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavInactiveTextStyle" parent="@style/TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/grey_transparent</item>
+    </style>
+    <style name="PoppinsBlackToolBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/poppins_black</item>
+        <!-- Add other text appearance attributes as needed -->
+    </style>
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/purple</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

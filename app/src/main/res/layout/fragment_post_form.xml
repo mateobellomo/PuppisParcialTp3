@@ -1,0 +1,452 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:fillViewport="true"
+    android:theme="@style/SCREEN">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.PostFormFragment">
+
+
+        <ImageView
+            android:id="@+id/imPet"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet6"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet5"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet3"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet0"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet2"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet0"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imPet1"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_baseline_pets"
+            app:layout_constraintStart_toEndOf="@+id/imPet2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_name"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imPet1" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostFormName"
+            android:layout_width="145dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:autofillHints="name"
+            android:ems="10"
+            android:hint="@string/pet_name"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormName" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_gender"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormName" />
+
+        <Spinner
+            android:id="@+id/GenderSpinner"
+            android:layout_width="155dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="9dp"
+            android:backgroundTint="@color/grey_light"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormGender" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_age"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormName"
+            app:layout_constraintTop_toBottomOf="@+id/imPet4" />
+
+        <Spinner
+            android:id="@+id/ageSpinner"
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="33dp"
+            android:backgroundTint="@color/grey_light"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostFormName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAge" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_weight"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormGender"
+            app:layout_constraintTop_toBottomOf="@+id/ageSpinner" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostFormWeight"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:ems="10"
+            android:hint="@string/pet_weight"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toEndOf="@+id/GenderSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight" />
+
+        <Spinner
+            android:id="@+id/GrKgSpinner"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/grey_light"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostFormWeight"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormWeight" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_breed"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/GenderSpinner" />
+
+        <Spinner
+            android:id="@+id/BreedSpinner"
+            android:layout_width="155dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="9dp"
+            android:backgroundTint="@color/grey"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormBreed" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormSubBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_sub_breed"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormBreed"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormWeight" />
+
+        <Spinner
+            android:id="@+id/SubBreedSpinner"
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="29dp"
+            android:backgroundTint="@color/grey"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/BreedSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormSubBreed" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_location"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BreedSpinner" />
+
+        <Spinner
+            android:id="@+id/LocationSpinner"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="9dp"
+            android:backgroundTint="@color/grey"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormLocation" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="117dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_owner"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormLocation"
+            app:layout_constraintTop_toBottomOf="@+id/SubBreedSpinner" />
+
+        <TextView
+            android:id="@+id/txtFragmentPostFormOwner"
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="26dp"
+            android:ems="20"
+            android:fontFamily="@font/quicksand_bold"
+            android:theme="@style/TEXT"
+            app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/owner_phone"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostFormPhone"
+            android:layout_width="145dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormPhone" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_description"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormAddPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/txtFragmentPostFormOwner" />
+
+        <EditText
+            android:id="@+id/editNotes"
+            android:layout_width="147dp"
+            android:layout_height="139dp"
+            android:layout_marginStart="35dp"
+            android:background="@drawable/ic_rectangle"
+            android:fontFamily="@font/quicksand_light"
+            android:gravity="top"
+            android:hint="@string/pet_add_description"
+            android:inputType="text"
+            android:padding="5dp"
+            app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostAddPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/pet_photos"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormPhone" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostAddPhoto"
+            android:layout_width="152dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/ic_rectangle"
+            android:fontFamily="@font/quicksand_light"
+            android:gravity="top"
+            android:hint="@string/pet_add_photos"
+            android:inputType="text"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAddPhoto" />
+
+        <Button
+            android:id="@+id/buttonFragmentPostFormSave"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/custom_border"
+            android:text="@string/button_save"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <Button
+            android:id="@+id/buttonFragmentPostFormCancel"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/custom_border_grey"
+            android:text="@string/button_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonFragmentPostFormSave"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorMsg" />
+
+        <TextView
+            android:id="@+id/errorMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:text="TextView"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSaveUrlPhoto" />
+
+        <ImageButton
+            android:id="@+id/btnSaveUrlPhoto"
+            android:layout_width="41dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_add_photo"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostAddPhoto" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

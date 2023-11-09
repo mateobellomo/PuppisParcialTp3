@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">PuppisParcialTp3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_adoptions">Adoption</string>
+    <string name="title_post">Publication</string>
+    <string name="title_activity_init">InitActivity</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="title_profile">My Profile</string>
+    <string name="title_config">Settings</string>
+    <string name="quotes_api_base_url">https://dog.ceo</string>
+    <string name="filter_title">Filters </string>
+    <string name="more_filters">More Filters</string>
+    <string name="filter_clean">Clean Filters</string>
+    <string name="search_hint">Search by breed</string>
+    <string name="pet_name">Name</string>
+    <string name="pet_breed">Breed</string>
+    <string name="pet_sub_breed">Sub Breed</string>
+    <string name="pet_age">Age</string>
+    <string name="pet_weight">Weight</string>
+    <string name="pet_owner">Owner</string>
+    <string name="pet_location">Location</string>
+    <string name="pet_gender">Gender</string>
+    <string name="pet_photos">Generate picture</string>
+    <string name="pet_description">Description</string>
+    <string name="pet_add_description">Add a description</string>
+    <string name="pet_add_photos">Add up to 5 photo urls</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="back_button">Back button</string>
+    <string name="owner_phone">Owner Phone</string>
+    <string name="phone">Phone</string>
+    <string name="pet_file">Pet File</string>
 </resources>

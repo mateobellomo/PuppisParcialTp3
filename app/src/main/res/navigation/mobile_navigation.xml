@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_petFileFragment"
+            app:destination="@id/petFileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_config"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
+        android:label="@string/title_config"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_petFileFragment"
+            app:destination="@id/petFileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_adoptions"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.AdoptedFragment"
+        android:label="@string/title_adoptions"
+        tools:layout="@layout/fragment_adopted" >
+        <action
+            android:id="@+id/action_navigation_adoptions_to_petFileFragment"
+            app:destination="@id/petFileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_post"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.PostFormFragment"
+        android:label="@string/title_post"
+        tools:layout="@layout/fragment_post_form" />
+    <fragment
+        android:id="@+id/petFileFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.PetFileFragment"
+        android:label="@string/pet_file"
+        tools:layout="@layout/fragment_pet_file" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+</navigation>
