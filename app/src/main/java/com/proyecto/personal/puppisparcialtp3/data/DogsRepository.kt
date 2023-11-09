@@ -57,7 +57,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = beagleImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 1132756493
+                ownerNumber = "1132756493"
             )
         )
         listPet.add(
@@ -74,7 +74,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 47562922
+                ownerNumber = "47562922"
             )
         )
         listPet.add(
@@ -91,7 +91,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 5739229
+                ownerNumber = "5739229"
             )
         )
         listPet.add(
@@ -108,7 +108,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage3.dogsImage,
                 false,
                 isFavorite = true,
-                ownerNumber = 1333333
+                ownerNumber = "1333333"
             )
         )
         listPet.add(
@@ -125,7 +125,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = mastiffImage.dogsImage,
                 false,
                 isFavorite = true,
-                ownerNumber = 34449292
+                ownerNumber = "34449292"
             )
         )
         listPet.add(
@@ -142,7 +142,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = pugImage.dogsImage,
                 true,
                 isFavorite = false,
-                ownerNumber = 76948483
+                ownerNumber = "76948483"
             )
         )
         listPet.add(
@@ -159,7 +159,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = weimaranerImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 93838338
+                ownerNumber = "93838338"
             )
         )
         listPet.add(
@@ -176,7 +176,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = weimaranerImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 138349
+                ownerNumber = "138349"
             )
         )
         listPet.add(
@@ -193,7 +193,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = labradorImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 99383838
+                ownerNumber = "99383838"
             )
         )
         listPet.add(
@@ -210,7 +210,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = labradorImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 93838383
+                ownerNumber = "93838383"
             )
         )
         listPet.add(
@@ -227,7 +227,7 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = akitaImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = 11327566
+                ownerNumber = "11327566"
             )
         )
             return listPet

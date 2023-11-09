@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -19,9 +18,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPostFormBinding
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
@@ -29,7 +26,6 @@ import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.viewModels.PostFormViewModel
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
-import kotlinx.coroutines.launch
 
 
 class PostFormFragment : Fragment() {
@@ -43,6 +39,7 @@ class PostFormFragment : Fragment() {
     private lateinit var subBreedSpinner: Spinner
     private lateinit var locationSpinner: Spinner
     private lateinit var ownerPetInput: EditText
+    private lateinit var ownerPhoneInput: EditText
     private lateinit var descriptionInput: EditText
 
 
@@ -72,6 +69,7 @@ class PostFormFragment : Fragment() {
         subBreedSpinner = binding.SubBreedSpinner
         locationSpinner = binding.LocationSpinner
         ownerPetInput = binding.editTextFragmentPostFormOwner
+        ownerPhoneInput = binding.editTextFragmentPostFormPhone
         descriptionInput = binding.editNotes
 
         errorMsg = binding.errorMsg
@@ -179,6 +177,7 @@ class PostFormFragment : Fragment() {
             val subBreed: String = selectedItem?.toString() ?: ""
             val locationString: String = locationSpinner.selectedItem.toString()
             val ownerPet: String = ownerPetInput.text.toString()
+            val ownerPhone: String = ownerPetInput.text.toString()
             val description: String = descriptionInput.text.toString()
 
             if (namePet.isEmpty()) {
@@ -200,7 +199,19 @@ class PostFormFragment : Fragment() {
                 Handler().postDelayed({
                     errorMsg?.visibility = View.INVISIBLE
                 }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            }  else {
+            }else if (ownerPhone.isNullOrBlank()) {
+                errorMsg?.visibility = View.VISIBLE
+                errorMsg?.text = when {
+                    ownerPhone.isNullOrBlank()-> "The Phone field is required"
+                    ownerPhoneInput?.text.isNullOrBlank() -> "The Phone field is required"
+                    else -> {
+                        ""
+                    }
+                }
+                Handler().postDelayed({
+                    errorMsg?.visibility = View.INVISIBLE
+                }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
+            } else {
                 val selectedAgeString = ageSpinner.selectedItem.toString()
                 val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
 
@@ -222,7 +233,7 @@ class PostFormFragment : Fragment() {
                     photo = imagePhoto,
                     isAdopted = false,
                     isFavorite = false,
-                    ownerNumber = 0
+                    ownerNumber = ownerPhone
                 )
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
@@ -231,7 +242,7 @@ class PostFormFragment : Fragment() {
                 builder.setMessage("¿Are you sure you want to post this pet?")
 
 
-                builder.setPositiveButton("Of course!") { dialog, which ->
+                builder.setPositiveButton("Yes") { dialog, which ->
                     Log.d("pet creado", newPet.toString())
                     Log.d("pet creado view model", sharedViewModel.pets.toString())
 
@@ -240,7 +251,7 @@ class PostFormFragment : Fragment() {
 
                 }
 
-                builder.setNegativeButton("Let me think about it") { dialog, which ->
+                builder.setNegativeButton("Cancel") { dialog, which ->
 
                 }
 
@@ -262,6 +273,7 @@ class PostFormFragment : Fragment() {
         locationSpinner.setSelection(0, false)
         ownerPetInput.setText("")
         descriptionInput.setText("")
+        ownerPhoneInput.setText("")
 
 
     }

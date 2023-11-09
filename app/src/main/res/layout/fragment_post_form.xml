@@ -318,7 +318,34 @@
             android:inputType="text"
             android:text="@string/pet_owner"
             app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
+
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
+
+        <TextView
+            android:id="@+id/tvFragmentPostFormPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@string/owner_phone"
+            android:textColor="@color/purple"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
+
+        <EditText
+            android:id="@+id/editTextFragmentPostFormPhone"
+            android:layout_width="145dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormPhone" />
 
         <TextView
             android:id="@+id/tvFragmentPostFormDescription"
@@ -338,7 +365,7 @@
             android:id="@+id/editNotes"
             android:layout_width="150dp"
             android:layout_height="117dp"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="@font/quicksand_light"
@@ -347,6 +374,7 @@
             android:inputType="text"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.396"
             app:layout_constraintStart_toEndOf="@+id/generatePhoto"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
 
@@ -362,7 +390,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormPhone" />
 
         <ImageView
             android:id="@+id/generatePhoto"
