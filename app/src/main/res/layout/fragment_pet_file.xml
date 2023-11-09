@@ -37,23 +37,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/vpItemCard"
         />
 
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/transparent"
-        android:contentDescription="@string/back_button"
-        android:drawableLeft="@drawable/ic_back_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
-
     <TextView
         android:id="@+id/namePetFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Name"
         android:textSize="26dp"
         android:textStyle="bold"
@@ -64,35 +52,66 @@
         android:theme="@style/TEXT"/>
 
     <TextView
-        android:id="@+id/agePetFile"
+        android:id="@+id/sexPetFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="7"
-        android:textSize="26dp"
+        android:layout_marginTop="8dp"
+        android:text="Male"
+        android:textColor="@color/purple"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/vpItemCard"
         android:theme="@style/TEXT"/>
 
-    <ImageView
-        android:id="@+id/locationIconPetFile"
+
+    <ImageButton
+        android:id="@+id/btnPhoneDetails"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/shape_circle"
+        android:src="@drawable/ic_phone"
+        android:tag="000000000"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toEndOf="@+id/tvOwnerName" />
+
+    <TextView
+        android:id="@+id/weightPetFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/ic_location"
+        android:layout_marginTop="8dp"
+        android:text="2.5 kg"
+        android:textColor="@color/purple"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toEndOf="@+id/sexPetFile"
+        app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/back_button"
+        android:drawableLeft="@drawable/ic_back_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/namePetFile" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
 
     <TextView
         android:id="@+id/locationPetFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="Buenos Aires"
         android:textColor="@color/grey_light"
         android:textSize="20dp"
@@ -101,34 +120,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/locationIconPetFile"
         app:layout_constraintTop_toBottomOf="@+id/namePetFile" />
-
-    <TextView
-        android:id="@+id/sexPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Male"
-        android:textColor="@color/purple"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
-
-    <TextView
-        android:id="@+id/weightPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="2.5 kg"
-        android:textColor="@color/purple"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toEndOf="@+id/sexPetFile"
-        app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
 
     <TextView
         android:id="@+id/sexTitlePetFile"
@@ -145,6 +136,43 @@
         app:layout_constraintTop_toBottomOf="@+id/sexPetFile" />
 
     <TextView
+        android:id="@+id/agePetFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="7"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vpItemCard" />
+
+    <TextView
+        android:id="@+id/titleOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:text="Owner"
+        android:textColor="@color/grey_light"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
+        app:layout_constraintTop_toBottomOf="@id/sexTitlePetFile" />
+
+    <TextView
+        android:id="@+id/tvOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Pepito"
+        android:textColor="@color/grey_light"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
+        app:layout_constraintTop_toBottomOf="@id/titleOwner" />
+
+    <TextView
         android:id="@+id/weightTitlePetFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,6 +186,29 @@
         app:layout_constraintStart_toEndOf="@id/sexTitlePetFile"
         app:layout_constraintTop_toBottomOf="@+id/weightPetFile" />
 
+    <ImageView
+        android:id="@+id/locationIconPetFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/namePetFile" />
+
+    <ImageView
+        android:id="@+id/ivOwnerPetFile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sexTitlePetFile"
+        app:layout_constraintVertical_bias="0.031" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollVDetails"
         android:layout_width="match_parent"
@@ -165,7 +216,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="116dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -201,56 +252,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivOwnerPetFile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sexTitlePetFile"
-        app:layout_constraintVertical_bias="0.216" />
-
-
-    <TextView
-        android:id="@+id/titleOwner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:text="Owner"
-        android:textColor="@color/grey_light"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
-        app:layout_constraintTop_toBottomOf="@id/sexTitlePetFile" />
-
-    <TextView
-        android:id="@+id/tvOwnerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="5dp"
-        android:text="Pepito"
-        android:textColor="@color/grey_light"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
-        app:layout_constraintTop_toBottomOf="@id/titleOwner" />
-
-    <ImageButton
-        android:id="@+id/btnPhoneDetails"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="144dp"
-        android:background="@drawable/shape_circle"
-        android:src="@drawable/ic_phone"
-        android:tag="000000000"
-        app:layout_constraintBottom_toTopOf="@+id/btnAdoptDetails"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toEndOf="@+id/tvOwnerName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
