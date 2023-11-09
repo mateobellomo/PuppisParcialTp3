@@ -3,261 +3,302 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.PetFileFragment">
+    android:layout_height="match_parent">
 
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpItemCard"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearHeader"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:background="@color/purple"
+        android:orientation="vertical"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <ImageView
-        android:id="@+id/arrowLeft"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_arrow_left"
-        android:layout_marginStart="5dp"
-        app:layout_constraintTop_toTopOf="@+id/vpItemCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/vpItemCard"
-        />
-    <ImageView
-        android:id="@+id/arrowRight"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_arrow_rigth"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintTop_toTopOf="@+id/vpItemCard"
-        app:layout_constraintEnd_toEndOf="@+id/vpItemCard"
-        app:layout_constraintBottom_toBottomOf="@+id/vpItemCard"
-        />
-
-
-    <TextView
-        android:id="@+id/namePetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="13dp"
-        android:text="Name"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        android:theme="@style/TEXT"
-        app:layout_constraintBottom_toTopOf="@+id/locationPetFile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vpItemCard"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/sexPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
-        android:text="Male"
-
-        android:textColor="@color/purple"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:theme="@style/TEXT"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollVDetails"
-        android:layout_width="404dp"
-        android:layout_height="755dp">
-
-
-        <TextView
-            android:id="@+id/tvDescription"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpItemCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            android:textSize="16sp"
+            android:layout_height="260dp"
+            android:background="@color/purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/arrowLeft"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
-    </androidx.core.widget.NestedScrollView>
+        <ImageView
+            android:id="@+id/arrowRight"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_arrow_rigth"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnPhoneDetails"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/shape_circle"
-        android:src="@drawable/ic_phone"
-        android:tag="000000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/ivOwnerPetFile"
-        app:layout_constraintTop_toBottomOf="@+id/agePetFile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/weightPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="228dp"
-        android:text="2.5 kg"
-        android:textColor="@color/purple"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toEndOf="@+id/sexPetFile"
-        app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
-
-    <TextView
-        android:id="@+id/locationPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="236dp"
-        android:text="Buenos Aires"
-        android:textColor="@color/grey_light"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/locationIconPetFile"
-        app:layout_constraintTop_toBottomOf="@+id/vpItemCard" />
-
-    <TextView
-        android:id="@+id/sexTitlePetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="4dp"
-        android:text="Sex"
-        android:textColor="@color/grey_light"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sexPetFile" />
-
-    <TextView
-        android:id="@+id/agePetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="52dp"
-        android:text="7"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollVDetails"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/namePetFile"
-        app:layout_constraintTop_toBottomOf="@+id/vpItemCard"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/titleOwner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Owner"
-        android:textColor="@color/grey_light"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollVDetails"
-        app:layout_constraintEnd_toStartOf="@+id/btnPhoneDetails"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toEndOf="@+id/ivOwnerPetFile"
-        app:layout_constraintTop_toTopOf="@+id/ivOwnerPetFile"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tvOwnerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:text="Pepito"
-        android:textColor="@color/grey_light"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnPhoneDetails"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toEndOf="@id/ivOwnerPetFile"
-        app:layout_constraintTop_toBottomOf="@id/titleOwner" />
-
-    <TextView
-        android:id="@+id/weightTitlePetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Weight"
-        android:textColor="@color/grey_light"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/weightPetFile"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/sexTitlePetFile"
-        app:layout_constraintTop_toBottomOf="@+id/weightPetFile" />
-
-    <ImageView
-        android:id="@+id/locationIconPetFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="76dp"
-        android:src="@drawable/ic_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vpItemCard" />
-
-    <ImageView
-        android:id="@+id/ivOwnerPetFile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sexTitlePetFile" />
-
-
-    <Button
-        android:id="@+id/btnAdoptDetails"
+    <ScrollView
+        android:id="@+id/scrollVDetails"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/purple"
-        android:fontFamily="@font/poppins_regular"
-        android:letterSpacing="0.12"
-        android:text="Adopt"
-        android:textColor="@color/white"
-        android:textSize="22dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnBackDetails"
-        android:layout_width="44dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/purple"
-        android:src="@drawable/ic_white_back_arrow"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivOwnerPetFile" />
+        app:layout_constraintTop_toBottomOf="@+id/linearBottomButtons">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scrollContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/namePetFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
+                    android:theme="@style/TEXT" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/agePetFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="7"
+                    android:textSize="26dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <ImageView
+                    android:id="@+id/locationIconPetFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/locationPetFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:text="Buenos Aires"
+                    android:textColor="@color/grey_light"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sexTitlePetFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sex"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sexPetFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textColor="@color/purple"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:theme="@style/TEXT" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/weightTitlePetFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weight"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/weightPetFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.5 kg"
+                        android:textColor="@color/purple"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnPhoneDetails"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/shape_circle"
+                    android:src="@drawable/ic_phone"
+                    android:tag="000000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <ImageView
+                    android:id="@+id/ivOwnerPetFile"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titleOwner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Owner"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvOwnerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pepito"
+                        android:textColor="@color/purple"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Lorem ipsum dolor,Lorem ipsum dolor,Lorem ipsum dolor,Lorem ipsum dolor,Lorem ipsum dolor,Lorem ipsum dolor, "
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearBottomButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearHeader">
+
+        <ImageButton
+            android:id="@+id/btnBackDetails"
+            android:layout_width="44dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:background="@color/purple"
+            android:src="@drawable/ic_white_back_arrow"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/btnAdoptDetails"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/purple"
+            android:fontFamily="@font/poppins_regular"
+            android:letterSpacing="0.12"
+            android:text="Adopt"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
