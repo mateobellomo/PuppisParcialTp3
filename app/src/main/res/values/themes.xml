@@ -4,6 +4,22 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/white</item>
     </style>
-
     <style name="Theme.PuppisParcialTp3" parent="Base.Theme.PuppisParcialTp3" />
+    
+    <!-- Light Mode -->
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+    <style name="TEXT">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="COMBINED">
+        <item name="android:background">#FFF</item>
+        <item name="android:textColor">#000</item>
+    </style>
+    <style name="TOOLBAR_COMBINED">
+        <item name="android:background">#FFF</item>
+        <item name="android:textColor">#000</item>
+    </style>
 </resources>

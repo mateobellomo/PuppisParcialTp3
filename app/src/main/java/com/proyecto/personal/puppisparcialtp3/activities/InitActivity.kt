@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
@@ -14,7 +15,7 @@ class InitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_init)
         SharedPref.init(applicationContext);
 
-        val userName = SharedPref.read(SharedPref.NAME, null)
+        val userName = SharedPref.read(SharedPref.NAME, "")
         if (userName != null) {
             // User is signed in
             val i = Intent(this@InitActivity, HomeActivity::class.java)

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -43,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_favorites,
+                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_config, R.id.navigation_favorites,
                 R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
             ), drawerLayout
         )
@@ -122,8 +123,8 @@ class HomeActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         val headerView = navigationView.getHeaderView(0)
 
-        val photoUrl = SharedPref.read(SharedPref.IMAGE_URL, null)
-        val userName = SharedPref.read(SharedPref.NAME, null)
+        val photoUrl = SharedPref.read(SharedPref.IMAGE_URL, "")
+        val userName = SharedPref.read(SharedPref.NAME, "")
 
         if (photoUrl != null) {
             val userNameTxt = headerView.findViewById<TextView>(R.id.avatarName)

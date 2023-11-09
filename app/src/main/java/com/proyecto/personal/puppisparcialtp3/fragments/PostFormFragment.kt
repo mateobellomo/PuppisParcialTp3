@@ -43,6 +43,7 @@ class PostFormFragment : Fragment() {
     private lateinit var descriptionInput: EditText
 
 
+
     private var errorMsg: TextView? = null
     private val PostFormViewModel: PostFormViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
