@@ -13,7 +13,7 @@ data class Pet(
     val description: String?,
     val weight: String,
     val location: Location,
-    val ownerName: String,
+    var ownerName: String,
     var photo: List<String>?,
     var isAdopted: Boolean,
     var isFavorite: Boolean,
