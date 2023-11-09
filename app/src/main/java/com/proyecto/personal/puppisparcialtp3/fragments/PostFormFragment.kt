@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.proyecto.personal.puppisparcialtp3.R
@@ -24,7 +23,7 @@ import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPostFormBindin
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
-import com.proyecto.personal.puppisparcialtp3.viewModels.PostFormViewModel
+import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 
 
@@ -38,18 +37,17 @@ class PostFormFragment : Fragment() {
     private lateinit var breedSpinner: Spinner
     private lateinit var subBreedSpinner: Spinner
     private lateinit var locationSpinner: Spinner
-    private lateinit var ownerPetInput: EditText
+    private lateinit var ownerPetTxt: TextView
     private lateinit var ownerPhoneInput: EditText
     private lateinit var descriptionInput: EditText
-
-
+    private lateinit var urlPhotoInput: EditText
+    private lateinit var ownerPet: String
 
     private var errorMsg: TextView? = null
-    private val PostFormViewModel: PostFormViewModel by viewModels()
-    private val sharedViewModel : SharedViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private var _binding: FragmentPostFormBinding? = null
     private val binding get() = _binding!!
-    private var imagePhoto : List<String> = emptyList()
+    private var imagePhoto: List<String> = emptyList()
 
 
     override fun onCreateView(
@@ -69,14 +67,19 @@ class PostFormFragment : Fragment() {
         breedSpinner = binding.BreedSpinner
         subBreedSpinner = binding.SubBreedSpinner
         locationSpinner = binding.LocationSpinner
-        ownerPetInput = binding.editTextFragmentPostFormOwner
         ownerPhoneInput = binding.editTextFragmentPostFormPhone
         descriptionInput = binding.editNotes
+        urlPhotoInput = binding.editTextFragmentPostAddPhoto//P
+
+        ownerPetTxt = binding.txtFragmentPostFormOwner
+        ownerPet = SharedPref.read(SharedPref.NAME, "Unknown")
+        // Establece el valor predefinido en el TextView
+        ownerPetTxt.text = ownerPet
 
         errorMsg = binding.errorMsg
         errorMsg?.visibility = View.INVISIBLE
         val saveBtn = binding.buttonFragmentPostFormSave
-         saveBtn.setOnClickListener {
+        saveBtn.setOnClickListener {
             this.savePost()
         }
         val cancelBtn = binding.buttonFragmentPostFormCancel
@@ -84,20 +87,15 @@ class PostFormFragment : Fragment() {
             this.cancel()
         }
 
-
-
         fillSpinnerValues()
         sharedViewModel.breedListLiveData.observe(viewLifecycleOwner, Observer { it ->
-
             if (it != null) {
                 updateSpinners(it)
             }
         })
-
-
-
         return root
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -105,17 +103,15 @@ class PostFormFragment : Fragment() {
             imagePhoto = images
         })
 
-        binding.generatePhoto.setOnClickListener{
-                var breedSelected =  breedSpinner.selectedItem.toString()
-                if (breedSelected.isNullOrBlank()){
-                    breedSelected = "pug"
-                }
-                sharedViewModel.imageForPost(breedSelected, 3)
-            Toast.makeText(context,"Well done! Pics are uploaded!", Toast.LENGTH_SHORT).show()
-
+        val btnSaveUrlPhoto = binding.root.findViewById<ImageButton>(R.id.btnSaveUrlPhoto) //P
+        btnSaveUrlPhoto.setOnClickListener {
+            val urlString = urlPhotoInput.text.toString() // P
+            imagePhoto = imagePhoto.plus(urlString)//P
+            urlPhotoInput.text.clear()
         }
-    }
 
+
+    }
 
 
     override fun onDestroyView() {
@@ -123,7 +119,7 @@ class PostFormFragment : Fragment() {
         _binding = null
     }
 
-    private fun cancel(){
+    private fun cancel() {
         findNavController().popBackStack()
 
     }
@@ -168,148 +164,152 @@ class PostFormFragment : Fragment() {
         }
     }
 
-      private fun savePost() {
-            val namePet: String = namePetInput.text.toString()
-            val genderString: String = genderSpinner.selectedItem.toString()
-            val weightPet: String = weightPetInput.text.toString()
-            val grKg: String = grKgSpinner.selectedItem.toString()
-            val breed: String = breedSpinner.selectedItem.toString()
-            val selectedItem = subBreedSpinner.selectedItem
-            val subBreed: String = selectedItem?.toString() ?: ""
-            val locationString: String = locationSpinner.selectedItem.toString()
-            val ownerPet: String = ownerPetInput.text.toString()
-            val ownerPhone: String = ownerPetInput.text.toString()
-            val description: String = descriptionInput.text.toString()
+    private fun savePost() {
+        val ownerImageUrl: String = SharedPref.read(SharedPref.IMAGE_URL, "")
+        val namePet: String = namePetInput.text.toString()
+        val genderString: String = genderSpinner.selectedItem.toString()
+        val weightPet: String = weightPetInput.text.toString()
+        val grKg: String = grKgSpinner.selectedItem.toString()
+        val breed: String = breedSpinner.selectedItem.toString()
+        val selectedItem = subBreedSpinner.selectedItem
+        val subBreed: String = selectedItem?.toString() ?: ""
+        val locationString: String = locationSpinner.selectedItem.toString()
+        val owner: String = ownerPetTxt.text.toString()
+        val ownerPhone: String = ownerPhoneInput.text.toString()
+        val description: String = descriptionInput.text.toString()
+        if (namePet.isEmpty()) {
+            errorMsg?.visibility = View.VISIBLE
+            errorMsg?.text =
+                "The Name field is required"
+            Handler().postDelayed({
+                errorMsg?.visibility = View.INVISIBLE
+            }, 3000)
 
-            if (namePet.isEmpty()) {
-                errorMsg?.visibility = View.VISIBLE
-                errorMsg?.text =
-                    "The Name field is required"
-                Handler().postDelayed({
-                    errorMsg?.visibility = View.INVISIBLE
-                }, 3000)
-            } else if (weightPet.isNullOrBlank()) {
-                errorMsg?.visibility = View.VISIBLE
-                errorMsg?.text = when {
-                    weightPet.isNullOrBlank()-> "The Weight field is required"
-                    weightPetInput?.text.isNullOrBlank() -> "The Weight field is required"
-                    else -> {
-                        ""
-                    }
+        } else if (weightPet.isNullOrBlank()) {
+            errorMsg?.visibility = View.VISIBLE
+            errorMsg?.text = when {
+                weightPet.isNullOrBlank() -> "The Weight field is required"
+                weightPetInput?.text.isNullOrBlank() -> "The Weight field is required"
+                else -> {
+                    ""
                 }
-                Handler().postDelayed({
-                    errorMsg?.visibility = View.INVISIBLE
-                }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            }else if (ownerPhone.isNullOrBlank()) {
-                errorMsg?.visibility = View.VISIBLE
-                errorMsg?.text = when {
-                    ownerPhone.isNullOrBlank()-> "The Phone field is required"
-                    ownerPhoneInput?.text.isNullOrBlank() -> "The Phone field is required"
-                    else -> {
-                        ""
-                    }
+            }
+            Handler().postDelayed({
+                errorMsg?.visibility = View.INVISIBLE
+            }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
+        } else if (ownerPhone.isNullOrBlank()) {
+            errorMsg?.visibility = View.VISIBLE
+            errorMsg?.text = when {
+                ownerPhone.isNullOrBlank() -> "The Phone field is required"
+                ownerPhoneInput?.text.isNullOrBlank() -> "The Phone field is required"
+                else -> {
+                    ""
                 }
-                Handler().postDelayed({
-                    errorMsg?.visibility = View.INVISIBLE
-                }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            } else {
-                val selectedAgeString = ageSpinner.selectedItem.toString()
-                val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
+            }
+            Handler().postDelayed({
+                errorMsg?.visibility = View.INVISIBLE
+            }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
+        } else {
+            val selectedAgeString = ageSpinner.selectedItem.toString()
+            val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
 
-                val weight: String = "$weightPet $grKg"
-                val gender: Gender = Gender.fromString(genderString)
-                val location: Location = Location.fromString(locationString)
-
-
-                val newPet = Pet(Pet.nextId(), //genera id automatico
-                    name = namePet,
-                    age = ageValue,
-                    breed = breed,
-                    subBreed = subBreed,
-                    gender = gender,
-                    description = description,
-                    weight = weight,
-                    location = location,
-                    ownerName = ownerPet,
-                    photo = imagePhoto,
-                    isAdopted = false,
-                    isFavorite = false,
-                    ownerNumber = ownerPhone
-                )
-
-                val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
-
-                builder.setTitle("Adoption process")
-                builder.setMessage("¿Are you sure you want to post this pet?")
+            val weight: String = "$weightPet $grKg"
+            val gender: Gender = Gender.fromString(genderString)
+            val location: Location = Location.fromString(locationString)
 
 
-                builder.setPositiveButton("Yes") { dialog, which ->
-                    Log.d("pet creado", newPet.toString())
-                    Log.d("pet creado view model", sharedViewModel.pets.toString())
+            val newPet = Pet(
+                Pet.nextId(), //genera id automatico
+                name = namePet,
+                age = ageValue,
+                breed = breed,
+                subBreed = subBreed,
+                gender = gender,
+                description = description,
+                weight = weight,
+                location = location,
+                ownerName = owner,
+                photo = imagePhoto,
+                isAdopted = false,
+                isFavorite = false,
+                ownerNumber = ownerPhone,
+                ownerImageUrl = ownerImageUrl
+            )
 
-                    sharedViewModel.addPet(newPet)
-                    cleanInputs()
+            val builder =
+                AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
 
-                }
-
-                builder.setNegativeButton("Cancel") { dialog, which ->
-
-                }
-
-                builder.show()
+            builder.setTitle("Adoption process")
+            builder.setMessage("¿Are you sure you want to post this pet?")
 
 
+            builder.setPositiveButton("Yes") { dialog, which ->
+                Log.d("pet creado", newPet.toString())
+                Log.d("pet creado view model", sharedViewModel.pets.toString())
 
+                sharedViewModel.addPet(newPet)
+                cleanInputs()
+            }
+
+            builder.setNegativeButton("Cancel") { dialog, which ->
 
             }
+            builder.show()
         }
-    fun cleanInputs(){
+    }
+
+    fun cleanInputs() {
         namePetInput.setText("")
-         genderSpinner.setSelection(0, false)
+        genderSpinner.setSelection(0, false)
         ageSpinner.setSelection(0, false)
         weightPetInput.text = null
         grKgSpinner.setSelection(0, false)
         breedSpinner.setSelection(0, false)
         subBreedSpinner.setSelection(0, false)
         locationSpinner.setSelection(0, false)
-        ownerPetInput.setText("")
         descriptionInput.setText("")
         ownerPhoneInput.setText("")
 
-
     }
+
     private fun updateSpinners(list: List<Pair<String, List<String>>>) {
 
-
-            val breedsList = list.map { it.first }
-
-            val breedAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, breedsList)
+        val breedsList = list.map { it.first }
+        val breedAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, breedsList)
 
         breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            breedSpinner.adapter   = breedAdapter
+        breedSpinner.adapter = breedAdapter
 
-            val subBreedAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, mutableListOf<String>())
-            subBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            subBreedSpinner.adapter = subBreedAdapter
+        val subBreedAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            mutableListOf<String>()
+        )
+        subBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        subBreedSpinner.adapter = subBreedAdapter
 
-            breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    val selectedBreed = breedsList[position]
-                    val subBreeds = list[position].second
+        breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedBreed = breedsList[position]
+                val subBreeds = list[position].second
 
-                    if (subBreeds.isNotEmpty()) {
-                        subBreedAdapter.clear()
-                        subBreedAdapter.addAll(subBreeds)
-                        subBreedAdapter.notifyDataSetChanged()
-                        subBreedSpinner.visibility = View.VISIBLE
-                    } else {
-                        subBreedSpinner.visibility = View.GONE
-                    }
+                if (subBreeds.isNotEmpty()) {
+                    subBreedAdapter.clear()
+                    subBreedAdapter.addAll(subBreeds)
+                    subBreedAdapter.notifyDataSetChanged()
+                    subBreedSpinner.visibility = View.VISIBLE
+                } else {
+                    subBreedSpinner.visibility = View.GONE
                 }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
 }

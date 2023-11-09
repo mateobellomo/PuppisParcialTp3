@@ -57,7 +57,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = beagleImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "1132756493"
+                ownerNumber = "1132756493",
+                ownerImageUrl = "https://scontent.faep14-2.fna.fbcdn.net/v/t1.6435-9/118873612_2890788714482355_7579068685010299484_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=dd63ad&_nc_eui2=AeFBxTBLpHqsHlCPoSotctsPQh_uY71grdtCH-5jvWCt26k_VlyFa-tUqag4scElrTU&_nc_ohc=4yEdZojRGNgAX9HzK0H&_nc_ht=scontent.faep14-2.fna&oh=00_AfAoJ9y-xrjmcuMbtWT9NwLVN-d2KH7BgTwuON8-fzyJEg&oe=65748333"
             )
         )
         listPet.add(
@@ -74,7 +75,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "47562922"
+                ownerNumber = "47562922",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-1-800x800.jpeg"
             )
         )
         listPet.add(
@@ -91,7 +93,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "5739229"
+                ownerNumber = "5739229",
+                ownerImageUrl = "https://media.licdn.com/dms/image/D4D08AQE0CXu4hnoe7g/croft-frontend-shrinkToFit1024/0/1646754728586?e=2147483647&v=beta&t=ADkOVwOwmP-4rCH4y0g2_OBFlsszl01TpQPhCgt5SSc"
             )
         )
         listPet.add(
@@ -108,7 +111,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = shibaImage3.dogsImage,
                 false,
                 isFavorite = true,
-                ownerNumber = "1333333"
+                ownerNumber = "1333333",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-2-800x800.jpeg"
             )
         )
         listPet.add(
@@ -125,7 +129,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = mastiffImage.dogsImage,
                 false,
                 isFavorite = true,
-                ownerNumber = "34449292"
+                ownerNumber = "34449292",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-3-800x800.jpeg"
             )
         )
         listPet.add(
@@ -142,7 +147,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = pugImage.dogsImage,
                 true,
                 isFavorite = false,
-                ownerNumber = "76948483"
+                ownerNumber = "76948483",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg"
             )
         )
         listPet.add(
@@ -159,7 +165,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = weimaranerImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "93838338"
+                ownerNumber = "93838338",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-800x800.jpeg"
             )
         )
         listPet.add(
@@ -176,7 +183,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = weimaranerImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "138349"
+                ownerNumber = "138349",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg"
             )
         )
         listPet.add(
@@ -193,7 +201,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = labradorImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "99383838"
+                ownerNumber = "99383838",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg"
             )
         )
         listPet.add(
@@ -210,7 +219,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = labradorImage2.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "93838383"
+                ownerNumber = "93838383",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-2-800x800.jpeg"
             )
         )
         listPet.add(
@@ -227,7 +237,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 photo = akitaImage.dogsImage,
                 false,
                 isFavorite = false,
-                ownerNumber = "11327566"
+                ownerNumber = "11327566",
+                ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-2-800x800.jpeg"
             )
         )
             return listPet

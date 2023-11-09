@@ -18,9 +18,9 @@ data class Pet(
     var photo: List<String>?,
     var isAdopted: Boolean,
     var isFavorite: Boolean,
-    var ownerNumber: String
-): Serializable
-{
+    var ownerNumber: String,
+    var ownerImageUrl: String?
+) : Serializable {
     companion object {
         private var nextId = 0L
 
