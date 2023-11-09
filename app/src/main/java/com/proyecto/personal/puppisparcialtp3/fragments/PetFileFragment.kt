@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.proyecto.personal.puppisparcialtp3.R
 import com.proyecto.personal.puppisparcialtp3.adapters.ViewPagerAdapter
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
@@ -50,6 +53,7 @@ class PetFileFragment : Fragment() {
         val arrowRight = binding.arrowRight
         val viewpager = binding.vpItemCard
 
+
         val petId = PetFileFragmentArgs.fromBundle(requireArguments()).id
         val pet = sharedViewModel.findPet(petId)
         if (pet != null) {
@@ -68,6 +72,10 @@ class PetFileFragment : Fragment() {
                 }
             }
         }
+        val backBtn = binding.btnBackDetails
+        backBtn.setOnClickListener{
+            findNavController().popBackStack()
+        }
 
         val callBtn = binding.btnPhoneDetails
         callBtn.setOnClickListener{
@@ -81,23 +89,37 @@ class PetFileFragment : Fragment() {
                 startActivity(intent)
 
         }
+        val ownerPhoto = binding.ivOwnerPetFile
+        val photoUrl = SharedPref.write(SharedPref.IMAGE_URL, "owner").toString()
+        Glide.with(this)
+            .load(photoUrl)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .thumbnail(0.5f)
+            .into(ownerPhoto)
 
         val adoptBtn = binding.btnAdoptDetails
         adoptBtn.setOnClickListener {
-            if (pet != null && !pet.isAdopted) {
-                val textoNotificacion = "¡Thanks for adopting!"
-                Toast.makeText(view.context, textoNotificacion, Toast.LENGTH_SHORT).show()
+            val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
+            if (pet?.isAdopted == false) {
+            builder.setTitle("Adoption process")
+            builder.setMessage("Are you sure you want to adopt this pet?")
+
+            builder.setPositiveButton("Yes") { dialog, which ->
+                val notificationText = "¡Thanks for adopting!"
+                Toast.makeText(view.context, notificationText, Toast.LENGTH_SHORT).show()
                 adoptBtn.text = "Adopted"
-                pet.isAdopted = true
-                pet.ownerName = SharedPref.write(SharedPref.NAME, "owner").toString()
 
+                    pet.isAdopted = true
+                    pet.ownerName = SharedPref.read(SharedPref.NAME, "Unknown")
+                   // pet.ownerImageUrl = SharedPref.read(SharedPref.IMAGE_URL, null)
+                }
+                builder.setNegativeButton("Cancel") { dialog, which ->
+                    dialog.dismiss()
+                }
+                builder.show()
             }
-
         }
-
-
-
-
     }
 
 
