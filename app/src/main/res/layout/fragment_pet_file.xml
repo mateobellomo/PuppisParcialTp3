@@ -73,9 +73,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollVDetails"
         android:layout_width="404dp"
-        android:layout_height="755dp"
-
-        >
+        android:layout_height="755dp">
 
 
         <TextView
@@ -226,9 +224,6 @@
         android:background="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sexTitlePetFile" />
-
-
-
 
 
     <Button

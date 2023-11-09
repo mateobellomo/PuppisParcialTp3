@@ -21,7 +21,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet5"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet4"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet3"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet0"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +70,7 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +80,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +90,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_pets_24"
+            android:src="@drawable/ic_baseline_pets"
             app:layout_constraintStart_toEndOf="@+id/imPet2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -301,7 +301,7 @@
             app:layout_constraintTop_toBottomOf="@+id/SubBreedSpinner" />
 
         <TextView
-            android:id="@+id/editTextFragmentPostFormOwner"
+            android:id="@+id/txtFragmentPostFormOwner"
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
@@ -347,7 +347,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tvFragmentPostFormAddPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormOwner" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFragmentPostFormOwner" />
 
         <EditText
             android:id="@+id/editNotes"
