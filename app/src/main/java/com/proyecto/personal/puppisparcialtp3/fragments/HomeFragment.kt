@@ -124,7 +124,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
         sharedViewModel.pets.observe(this, Observer {
             if (it != null) {
-                petListAdapter.updateData(it)
+                val nonAdoptedPets: List<Pet> = it.filter { !it.isAdopted }
+                petListAdapter.updateData(nonAdoptedPets)
                 binding.homeProgressBar.visibility = View.GONE
             }
         })
