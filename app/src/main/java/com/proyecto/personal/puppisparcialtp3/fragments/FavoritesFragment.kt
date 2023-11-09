@@ -17,6 +17,7 @@ import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
+import com.proyecto.personal.puppisparcialtp3.fragments.HomeFragmentDirections
 
 
 
@@ -87,7 +88,7 @@ class FavoritesFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClic
       sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment(pet.id)
+        val action = FavoritesFragmentDirections.actionNavigationFavoritesToPetFileFragment(pet.id)
         findNavController().navigate(action)
 
     }

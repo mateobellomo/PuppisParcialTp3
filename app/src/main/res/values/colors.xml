@@ -11,4 +11,8 @@
     <color name="deep_blue"> #001D42</color>
     <color name="light_blue">#1B72C0</color>
     <color name="transparent">#03001D42</color>
+    <color name="pink">#9F52AC</color>
+    <color name="green">#23731E</color>
+    <color name="orange">#FF5722</color>
+    <color name="purple_light">#E7A497B6</color>
 </resources>

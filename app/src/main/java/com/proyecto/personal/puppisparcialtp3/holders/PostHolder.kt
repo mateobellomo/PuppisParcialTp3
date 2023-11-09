@@ -26,7 +26,7 @@ class PostHolder (v: View) : RecyclerView.ViewHolder(v){
         setName(pet.name)
         setBreed(pet.breed)
         pet.subBreed?.let { setSubBreed(it) }
-        pet.photo?.let { setImageView(it) }
+        pet.photo?.let { setImageView(it[0]) }
 
         if(pet.isFavorite){
             favoriteBtnUncheked.visibility = View.INVISIBLE

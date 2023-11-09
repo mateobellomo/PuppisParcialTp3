@@ -80,7 +80,7 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
         sharedViewModel.onFavoritesClick(pet)
     }
     override fun onViewItemDetail(pet: Pet) {
-        val toast = Toast.makeText(context, "Felicidades pronto tendras un nuevo ingegrante!!!", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(context, "Congrats! A new family member its on the way!", Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.TOP, 0, 100)
         toast.show()
 

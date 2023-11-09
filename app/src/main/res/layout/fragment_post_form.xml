@@ -335,8 +335,8 @@
             android:id="@+id/tvFragmentPostFormDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/quicksand_bold"
             android:text="@string/pet_description"
             android:textColor="@color/purple"
@@ -350,15 +350,17 @@
             android:layout_width="150dp"
             android:layout_height="117dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="@font/quicksand_light"
             android:gravity="top"
             android:hint="@string/pet_add_description"
             android:inputType="text"
             android:padding="5dp"
-            app:layout_constraintStart_toEndOf="@+id/editTextUrlPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
+            app:layout_constraintStart_toEndOf="@+id/generatePhoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
 
         <TextView
             android:id="@+id/tvFragmentPostFormAddPhoto"
@@ -375,18 +377,13 @@
             app:layout_constraintTop_toBottomOf="@+id/LocationSpinner" />
 
         <ImageView
-            android:id="@+id/editTextUrlPhoto"
-            android:layout_width="160dp"
-            android:layout_height="117dp"
-            android:layout_marginStart="9dp"
+            android:id="@+id/generatePhoto"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="3dp"
-            android:background="@drawable/ic_rectangle"
-            android:enabled="true"
-            android:fontFamily="@font/quicksand_light"
-            android:gravity="top"
-            android:hint="@string/pet_add_photos"
-            android:inputType="text"
-            android:padding="5dp"
+            android:src="@drawable/ic_add_photo"
+            android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAddPhoto"
             tools:ignore="TextFields" />
@@ -426,25 +423,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:theme="@style/TEXT"/>
 
-        <ImageView
-            android:id="@+id/imDeletePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/baseline_delete_forever_"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextUrlPhoto" />
 
-        <ImageView
-            android:id="@+id/imAddPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_add_photo"
-            app:layout_constraintStart_toEndOf="@+id/imDeletePhoto"
-            app:layout_constraintTop_toBottomOf="@+id/editTextUrlPhoto" />
 
         <TextView
             android:id="@+id/errorMsg"

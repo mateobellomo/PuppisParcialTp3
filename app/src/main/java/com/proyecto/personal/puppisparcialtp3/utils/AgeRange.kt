@@ -1,9 +1,9 @@
 package com.proyecto.personal.puppisparcialtp3.utils
 
 enum class AgeRange  (val ageRange: String){
-    CACHORRO( "Cachorro"),
-    ADOLESCENTE("Adolescente"),
-    ADULTO ("Adulto"),
+    PUPPY( "Puppy"),
+    TEEN("Teen"),
+    ADULT ("Adult"),
     SENIOR ("Senior");
 
 
