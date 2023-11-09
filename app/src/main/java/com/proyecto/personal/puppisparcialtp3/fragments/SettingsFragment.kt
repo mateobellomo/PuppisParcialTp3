@@ -24,7 +24,7 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         switch = binding.themeModeSwitch
 
-        if(nightMode) {
+        if (nightMode) {
             switch.isChecked = true
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }

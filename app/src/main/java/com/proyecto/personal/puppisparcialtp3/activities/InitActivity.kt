@@ -15,9 +15,9 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
         SharedPref.init(applicationContext);
-        nightMode= SharedPref.read(SharedPref.DARK_MODE, false)
+        nightMode = SharedPref.read(SharedPref.DARK_MODE, false)
 
-        if(nightMode) {
+        if (nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
 

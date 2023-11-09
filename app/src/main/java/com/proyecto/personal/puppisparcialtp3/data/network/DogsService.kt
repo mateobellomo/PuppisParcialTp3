@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DogsService   @Inject constructor(private val service : DogsApiClient) {
+class DogsService @Inject constructor(private val service: DogsApiClient) {
 
     suspend fun getDogsImage(): DogsModel {
         return withContext(Dispatchers.IO) {
@@ -23,7 +23,7 @@ class DogsService   @Inject constructor(private val service : DogsApiClient) {
         return breedResponse?.message?.toList()
     }
 
-    suspend fun getSpecificBreedImages(breed :String , imgNumber: Int): DogsModel {
+    suspend fun getSpecificBreedImages(breed: String, imgNumber: Int): DogsModel {
         return withContext(Dispatchers.IO) {
             val response = service.getRamdomImageBreedFromApi(breed, imgNumber)
             val result = response.body()?.message ?: emptyList()

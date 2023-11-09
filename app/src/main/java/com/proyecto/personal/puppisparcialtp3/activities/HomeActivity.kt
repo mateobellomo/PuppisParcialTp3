@@ -34,7 +34,6 @@ import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.Serializable
 
-
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
@@ -42,12 +41,10 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val sharedViewModel : SharedViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private var nightMode: Boolean = false
-    lateinit var badge : BadgeDrawable
+    private lateinit var badge: BadgeDrawable
     private var counter = 0
-
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -56,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(sharedViewModel.pets.value.isNullOrEmpty()){
+        if (sharedViewModel.pets.value.isNullOrEmpty()) {
             Log.d("mis pets si llama", "llama")
             sharedViewModel.getRepositoryDogs()
         }
@@ -64,7 +61,7 @@ class HomeActivity : AppCompatActivity() {
 
         SharedPref.init(applicationContext)
         nightMode = SharedPref.read(SharedPref.DARK_MODE, false)
-        if(nightMode) {
+        if (nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
 
@@ -77,8 +74,13 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_config, R.id.navigation_favorites,
-                R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
+                R.id.navigation_home,
+                R.id.navigation_profile,
+                R.id.navigation_config,
+                R.id.navigation_favorites,
+                R.id.navigation_adoptions,
+                R.id.navigation_post,
+                R.id.petFileFragment
             ), drawerLayout
         )
 
@@ -87,7 +89,8 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomNav = binding.navBottom
         bottomNav.setupWithNavController(navController)
-         badge = bottomNav.getOrCreateBadge(R.id.navigation_adoptions)
+
+        badge = bottomNav.getOrCreateBadge(R.id.navigation_adoptions)
         badge.isVisible = false
         badge.number = counter
 
@@ -98,7 +101,6 @@ class HomeActivity : AppCompatActivity() {
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-
 
 // Oculta la Toolbar cuando se abre el DrawerLayout
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
@@ -114,8 +116,6 @@ class HomeActivity : AppCompatActivity() {
                 supportActionBar?.show()
             }
         })
-//        actionBarDrawerToggle.isDrawerIndicatorEnabled = true
-//        actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_hamburger)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.apply {
@@ -132,12 +132,12 @@ class HomeActivity : AppCompatActivity() {
         }
         sharedViewModel.pets.observe(this, Observer {
             if (it != null) {
-                if(it.isEmpty()){
+                if (it.isEmpty()) {
 
                 }
 
                 val adoptedPets = it.filter { e -> e.isAdopted }
-                Log.d("Entro",adoptedPets.size.toString())
+                Log.d("Entro", adoptedPets.size.toString())
                 if (adoptedPets.isNotEmpty()) {
                     badge.isVisible = true
                     badge.number = adoptedPets.size
@@ -162,8 +162,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.icono_toolbar -> {
-
-
                 return true
             }
             // Otros casos si hay más elementos en el menú

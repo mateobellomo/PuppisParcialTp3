@@ -16,7 +16,7 @@ interface DogsApiClient {
 
     @GET("/api/breed/{breed}/images/random/{imageNumber}")
     suspend fun getRamdomImageBreedFromApi(
-        @Path("breed")breed: String,
+        @Path("breed") breed: String,
         @Path("imageNumber") imageNumber: Int,
-        ): Response<PaginateResponse<String>>
+    ): Response<PaginateResponse<String>>
 }

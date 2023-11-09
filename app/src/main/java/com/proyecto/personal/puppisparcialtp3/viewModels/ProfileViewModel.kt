@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val name: String? = SharedPref.read(SharedPref.NAME, "")
 

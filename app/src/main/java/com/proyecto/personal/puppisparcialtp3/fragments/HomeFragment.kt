@@ -45,16 +45,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener,
     OnFilterClickedListener {
 
-
-    lateinit var recPets: RecyclerView
-    lateinit var filterAdapter: FilterAdapter
+    private lateinit var recPets: RecyclerView
+    private lateinit var filterAdapter: FilterAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-
     private lateinit var petListAdapter: PetListAdapter
+
+    private var filters: MutableList<String> = mutableListOf()
     private var _binding: FragmentHomeBinding? = null
+
     private val homeViewModel: HomeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val binding get() = _binding!!
+
     private var locationSelected: Boolean = false
     private var genderSelected: Boolean = false
     private var ageSelected: Boolean = false
@@ -70,8 +72,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val vista: View = binding.root
 
@@ -136,14 +136,13 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     }
 
-
     private fun createPopMenu() {
         binding.filterBtn.setOnClickListener { view ->
             val popupMenu =
                 PopupMenu(context, view) // "view" es el elemento que desencadena el menú emergente
             popupMenu.menuInflater.inflate(R.menu.pop_menu, popupMenu.menu)
 
-            if (locationSelected == false) {
+            if (!locationSelected) {
                 val locationSubMenu = popupMenu.menu.addSubMenu("Location")
                 for (location in Location.values()) {
                     val menuItem = locationSubMenu.add(location.name)
@@ -156,7 +155,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                     }
                 }
             }
-            if (genderSelected == false) {
+            if (!genderSelected) {
                 val genderSubMenu = popupMenu.menu.addSubMenu("Gender")
 
                 for (gender in Gender.values()) {
@@ -169,7 +168,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                     }
                 }
             }
-            if (ageSelected == false) {
+            if (!ageSelected) {
                 val ageSubMenu = popupMenu.menu.addSubMenu("Age")
 
                 for (ageRange in AgeRange.values()) {
@@ -194,11 +193,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         petListAdapter.filterBreed(query)
     }
 
-
     private fun initSearchBar() {
         val searchView = binding.searchView
 
-        val sugerencias = sharedViewModel.dogBreedSuggestions.value?.toTypedArray()
+        val suggestions = sharedViewModel.dogBreedSuggestions.value?.toTypedArray()
         val dogBreeds = sharedViewModel.availableBreed()
         val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
 
@@ -226,7 +224,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
         )
 
-
         cursorAdapter.viewBinder = SimpleCursorAdapter.ViewBinder { view, cursor, columnIndex ->
             if (columnIndex == cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
                 val suggestion = cursor.getString(columnIndex)
@@ -238,7 +235,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                 val spannableString = SpannableString(suggestion)
 
                 if (!suggestionAvailable) {
-                    val notAvailableText = SpannableString(" (not available at the moment)")
+                    val notAvailableText = SpannableString(" (Not available at the moment)")
                     notAvailableText.setSpan(
                         ForegroundColorSpan(Color.BLACK),
                         0,
@@ -273,8 +270,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                     MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
                 newText.let {
 
-                    if (sugerencias != null) {
-                        sugerencias.forEachIndexed { index, suggestion ->
+                    if (suggestions != null) {
+                        suggestions.forEachIndexed { index, suggestion ->
                             if (suggestion.contains(newText, true))
                                 cursor.addRow(arrayOf(index, suggestion))
                         }
@@ -291,15 +288,12 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     override fun onFavoritesClick(pet: Pet) {
         sharedViewModel.onFavoritesClick(pet)
-
-        Toast.makeText(context, "Hemos tomado nota!", Toast.LENGTH_SHORT).show()
-
+        Toast.makeText(context, "We have taken note", Toast.LENGTH_SHORT).show()
     }
 
     override fun onViewItemDetail(pet: Pet) {
         val action = HomeFragmentDirections.actionNavigationHomeToPetFileFragment(pet.id)
         findNavController().navigate(action)
-
     }
 
     override fun onFilterClick(filter: String) {
@@ -309,14 +303,12 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         when (filter) {
             "FEMALE" -> genderSelected = false
             "MALE" -> genderSelected = false
-            "Puppt" -> ageSelected = false
+            "Puppy" -> ageSelected = false
             "Teen" -> ageSelected = false
             "Adult" -> ageSelected = false
             "Senior" -> ageSelected = false
             else -> locationSelected = false
-
         }
-
     }
 }
 

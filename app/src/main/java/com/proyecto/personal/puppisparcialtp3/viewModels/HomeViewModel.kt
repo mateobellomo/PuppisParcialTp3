@@ -4,23 +4,14 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-
-class HomeViewModel () : ViewModel() {
+class HomeViewModel() : ViewModel() {
 
     val filters = MutableLiveData<List<String>>()
-
-
-    fun onCreate() {
-
-
-
-
-        }
 
     fun addFilter(newFilter: String) {
         val oldList = filters.value?.toMutableList() ?: mutableListOf()
         oldList.add(newFilter)
-        Log.d("filters" ,"luego de agregar ${filters.value.toString()}")
+        Log.d("filters", "luego de agregar ${filters.value.toString()}")
         filters.postValue(oldList)
     }
 
@@ -33,5 +24,4 @@ class HomeViewModel () : ViewModel() {
     fun clearList() {
         filters.postValue(emptyList())
     }
-    }
-
+}

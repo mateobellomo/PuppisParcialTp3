@@ -47,7 +47,7 @@ class LogInFragment : Fragment() {
             }, 3000)
         } else {
             SharedPref.write(SharedPref.NAME, name)
-            val intent = Intent (activity, HomeActivity::class.java)
+            val intent = Intent(activity, HomeActivity::class.java)
             activity?.startActivity(intent)
         }
     }
