@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.personal.puppisparcialtp3.R
+import com.proyecto.personal.puppisparcialtp3.listeners.OnFilterClickedListener
 
-class FilterAdapter  (private var filters: MutableList<String>
+class FilterAdapter  (private var filters: MutableList<String>,
+                      private var onFilterClick: OnFilterClickedListener
 ) : RecyclerView.Adapter<FilterViewHolder>() {
 
     // Método para actualizar la lista de recordatorios
@@ -24,6 +26,9 @@ class FilterAdapter  (private var filters: MutableList<String>
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
         holder.render(filters[position])
+        holder.itemFilter.setOnClickListener{
+            onFilterClick.onFilterClick(filters[position])
+        }
 
 
 

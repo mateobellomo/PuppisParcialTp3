@@ -16,22 +16,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val getDogsImage: GetDogsImageUseCase,
-    private val getAllDogsBreedsUseCase: GetAllDogsBreedsUseCase,
-    private val getSpecificBreedImages: GetSpecificBreedImagesUseCase
-) : ViewModel() {
-    val pets = MutableLiveData<List<PetEntity>?>()
 
-    val listUrl: MutableList<String> = ArrayList()
+class HomeViewModel () : ViewModel() {
 
-    val listPet: MutableList<PetEntity> = ArrayList()
-
-    val dogsIamges = MutableLiveData<List<String>>()
     val filters = MutableLiveData<List<String>>()
-    val originalPetList =  MutableLiveData<List<PetEntity>>()
-    val dogBreedSugestions: MutableLiveData<List<String>> = MutableLiveData()
+
 
     fun onCreate() {
 
@@ -39,5 +28,22 @@ class HomeViewModel @Inject constructor(
 
 
         }
+
+    fun addFilter(newFilter: String) {
+        val oldList = filters.value?.toMutableList() ?: mutableListOf()
+        oldList.add(newFilter)
+        Log.d("filters" ,"luego de agregar ${filters.value.toString()}")
+        filters.postValue(oldList)
+    }
+
+    fun deleteFilter(filterToDelete: String) {
+        val oldList = filters.value?.toMutableList() ?: mutableListOf()
+        oldList.remove(filterToDelete)
+        filters.postValue(oldList)
+    }
+
+    fun clearList() {
+        filters.postValue(emptyList())
+    }
     }
 

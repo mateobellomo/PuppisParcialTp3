@@ -27,12 +27,12 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     val pets = MutableLiveData<List<Pet>?>()
-    val listUrl: MutableList<String> = ArrayList()
+    private val _images = MutableLiveData<List<String>>()
+    val images: LiveData<List<String>> get() = _images
     private val _breedListLiveData = MutableLiveData<List<Pair<String, List<String>>>?>()
     val breedListLiveData: MutableLiveData<List<Pair<String, List<String>>>?>
         get() = _breedListLiveData
-    val dogsIamges = MutableLiveData<List<String>>()
-    val filters = MutableLiveData<List<String>>()
+
     val originalPetList =  MutableLiveData<List<Pet>>()
     val dogBreedSugestions: MutableLiveData<List<String>> = MutableLiveData()
 
@@ -41,18 +41,10 @@ class SharedViewModel @Inject constructor(
         viewModelScope.launch {
             // imagenes ramdom de perros , strings con direcciones url
             val result = getDogsImage()
-           // Log.d("respuesta", " esta es getDogsImage ${result.dogsImage}")
-
             //la lista de razas de perros, Strings
             val result2 = getAllDogsBreedsUseCase()
-            Log.d("respuesta", " esta es getAllDogsBreedsUseCase ${result2.toString()}")
-
-            //obtiene imagenes de la raza pasada x parametro, cuantas imagenes se indique
-            val result3 = getSpecificBreedImages(result2?.get(5).toString(), 2)
-          //  Log.d("respuesta", " esta es la getSpecificBreedImages ${result3.toString()}")
 
             val repositoryPets = getSomeDogsUseCase()
-            //Log.e("repositorio", repositoryPets.toString())
 
             pets.postValue(repositoryPets)
             originalPetList.postValue(repositoryPets)
@@ -64,38 +56,19 @@ class SharedViewModel @Inject constructor(
                 _breedListLiveData.postValue(result2)
             }
 
-
-
         }
     }
 
-
-
-    fun addFilter(newFilter: String) {
-        val oldList = filters.value?.toMutableList() ?: mutableListOf()
-        oldList.add(newFilter)
-        Log.d("filters" ,"luego de agregar ${filters.value.toString()}")
-        filters.postValue(oldList)
-    }
-
-    fun deleteFilter(filterToDelete: String) {
-        val oldList = filters.value?.toMutableList() ?: mutableListOf()
-        oldList.remove(filterToDelete)
-        filters.postValue(oldList)
-    }
-
-    fun clearList() {
-        filters.postValue(emptyList())
-    }
-
-    fun resetOriginalList(){
-        val originalPet = originalPetList.value
-        if (!originalPet.isNullOrEmpty()){
-            pets.postValue(originalPet)
-
-
+    fun imageForPost(breed:String,number:Int) {
+        viewModelScope.launch {
+            val result  = getSpecificBreedImages(breed, number)
+            _images.postValue(result.dogsImage)
+            Log.d("imagenes", "el resultado de las imagens ${result.toString()}")
         }
+
     }
+
+
 
     fun updateDogBreeds(newList: List<String>){
         dogBreedSugestions.value =newList
@@ -115,17 +88,6 @@ class SharedViewModel @Inject constructor(
 
     }
 
-    suspend fun getImage(): String {
-        var result: String = ""
-        viewModelScope.launch {
-            // imagenes ramdom de perros , strings con direcciones url
-            val response = getDogsImage()
-
-                result = response.dogsImage?.get(1) ?: ""
-
-        }
-        return result
-    }
 
     fun onFavoritesClick(pet: Pet) {
         val currentList = pets.value

@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -45,17 +46,12 @@ class PostFormFragment : Fragment() {
     private lateinit var descriptionInput: EditText
 
 
-
-    private var addPhotoBtn: Button? = null
-    private var deletePhotoBtn: Button? = null
     private var errorMsg: TextView? = null
-
     private val PostFormViewModel: PostFormViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private var _binding: FragmentPostFormBinding? = null
     private val binding get() = _binding!!
-    private var imagePhoto :String = ""
-
+    private var imagePhoto : List<String> = emptyList()
 
 
     override fun onCreateView(
@@ -85,15 +81,11 @@ class PostFormFragment : Fragment() {
             this.savePost()
         }
         val cancelBtn = binding.buttonFragmentPostFormCancel
-        cancelBtn?.setOnClickListener {
+        cancelBtn.setOnClickListener {
             this.cancel()
         }
-        addPhotoBtn?.setOnClickListener {
-            this.addUrlPhoto()
-        }
-        deletePhotoBtn?.setOnClickListener {
-            this.deleteUrlPhoto()
-        }
+
+
 
         fillSpinnerValues()
         sharedViewModel.breedListLiveData.observe(viewLifecycleOwner, Observer { it ->
@@ -110,42 +102,22 @@ class PostFormFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        sharedViewModel.images.observe(viewLifecycleOwner, Observer { images ->
+            imagePhoto = images
+        })
 
-        binding.editTextUrlPhoto.setOnClickListener{
+        binding.generatePhoto.setOnClickListener{
+                var breedSelected =  breedSpinner.selectedItem.toString()
+                if (breedSelected.isNullOrBlank()){
+                    breedSelected = "pug"
+                }
+                sharedViewModel.imageForPost(breedSelected, 3)
+            Toast.makeText(context,"Well done! Pics are uploaded!", Toast.LENGTH_SHORT).show()
 
-//          val image =  sharedViewModel.getImage()
-//            Glide.with(this)
-//                .load("URL_DE_LA_IMAGEN") // Reemplaza con la URL de la imagen que deseas cargar
-//                .into(object : CustomTarget<Drawable>() {
-//                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-//                        // Establece la imagen como fondo del EditText
-//                        binding.editTextUrlPhoto.background = resource
-//                    }
-//
-//                    override fun onLoadCleared(placeholder: Drawable?) {
-//                        // Código para manejar la carga cancelada si es necesario
-//                    }
-//                })
-
-
-            lifecycleScope.launch {
-                imagePhoto = sharedViewModel.getImage()
-                Log.e("imagen", imagePhoto)
-                Glide.with(this@PostFormFragment)
-                    .load(imagePhoto)
-                    .into(binding.editTextUrlPhoto) // Asignar la imagen al EditText
-            }
-            Log.e("imagen 2", imagePhoto)
         }
     }
 
-    private fun deleteUrlPhoto() {
-        PostFormViewModel.removeImage(imagePhoto)
-    }
 
-    private fun addUrlPhoto() {
-        PostFormViewModel.saveImage(imagePhoto)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -208,7 +180,6 @@ class PostFormFragment : Fragment() {
             val locationString: String = locationSpinner.selectedItem.toString()
             val ownerPet: String = ownerPetInput.text.toString()
             val description: String = descriptionInput.text.toString()
-            val imagesPet: String = imagePhoto
 
             if (namePet.isEmpty()) {
                 errorMsg?.visibility = View.VISIBLE
@@ -229,15 +200,7 @@ class PostFormFragment : Fragment() {
                 Handler().postDelayed({
                     errorMsg?.visibility = View.INVISIBLE
                 }, 2000) // Ocultar el mensaje después de 2 segundos (2000 ms)
-            } else if (!imagesPet.isEmpty()) {
-                errorMsg?.visibility = View.VISIBLE
-                errorMsg?.text =
-                    "The Photos field is required"
-                Handler().postDelayed({
-                    errorMsg?.visibility = View.INVISIBLE
-                }, 3000)
-
-            } else {
+            }  else {
                 val selectedAgeString = ageSpinner.selectedItem.toString()
                 val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
 
@@ -256,7 +219,7 @@ class PostFormFragment : Fragment() {
                     weight = weight,
                     location = location,
                     ownerName = ownerPet,
-                    photo = "",
+                    photo = imagePhoto,
                     isAdopted = false,
                     isFavorite = false,
                     ownerNumber = 0
@@ -264,10 +227,11 @@ class PostFormFragment : Fragment() {
 
                 val builder = AlertDialog.Builder(ContextThemeWrapper(requireContext(), R.style.AlertDialogTheme))
 
-                builder.setTitle("Proceso de Adopcion")
-                builder.setMessage("¿Estás seguro que deseas publicar esta mascota?")
+                builder.setTitle("Adoption process")
+                builder.setMessage("¿Are you sure you want to post this pet?")
 
-                builder.setPositiveButton("Si") { dialog, which ->
+
+                builder.setPositiveButton("Of course!") { dialog, which ->
                     Log.d("pet creado", newPet.toString())
                     Log.d("pet creado view model", sharedViewModel.pets.toString())
 
@@ -276,7 +240,7 @@ class PostFormFragment : Fragment() {
 
                 }
 
-                builder.setNegativeButton("Cancelar") { dialog, which ->
+                builder.setNegativeButton("Let me think about it") { dialog, which ->
 
                 }
 
@@ -288,16 +252,16 @@ class PostFormFragment : Fragment() {
             }
         }
     fun cleanInputs(){
-        namePetInput?.setText("")
-         genderSpinner?.setSelection(0, false)
-        ageSpinner?.setSelection(0, false)
-        weightPetInput?.text = null
-        grKgSpinner?.setSelection(0, false)
-       breedSpinner?.setSelection(0, false)
-         subBreedSpinner?.setSelection(0, false)
-        locationSpinner?.setSelection(0, false)
-        ownerPetInput?.setText("")
-        descriptionInput?.setText("")
+        namePetInput.setText("")
+         genderSpinner.setSelection(0, false)
+        ageSpinner.setSelection(0, false)
+        weightPetInput.text = null
+        grKgSpinner.setSelection(0, false)
+        breedSpinner.setSelection(0, false)
+        subBreedSpinner.setSelection(0, false)
+        locationSpinner.setSelection(0, false)
+        ownerPetInput.setText("")
+        descriptionInput.setText("")
 
 
     }

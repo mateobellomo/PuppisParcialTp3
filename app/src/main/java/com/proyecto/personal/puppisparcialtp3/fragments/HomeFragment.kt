@@ -10,6 +10,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,14 +37,16 @@ import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
+import com.proyecto.personal.puppisparcialtp3.listeners.OnFilterClickedListener
 import com.proyecto.personal.puppisparcialtp3.listeners.OnViewItemClickedListener
+import com.proyecto.personal.puppisparcialtp3.viewModels.HomeViewModel
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener {
+class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickListener, OnFilterClickedListener {
 
-    lateinit var vista: View
+
 
     lateinit var recPets : RecyclerView
     lateinit var filterAdapter : FilterAdapter
@@ -51,6 +55,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     private lateinit var petListAdapter: PetListAdapter
     private var _binding: FragmentHomeBinding? = null
+    private val homeViewModel : HomeViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val binding get() = _binding!!
     private var locationSelected:Boolean = false
@@ -75,12 +80,10 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
         recPets = vista.findViewById(R.id.fragmentHomeRecPets)
 
-        val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
-
-        filterAdapter =  FilterAdapter(mutableListOf())
+        filterAdapter =  FilterAdapter(mutableListOf(), this)
         initRecyclerView()
 
-        sharedViewModel.filters.observe(viewLifecycleOwner, Observer {
+        homeViewModel.filters.observe(viewLifecycleOwner, Observer {
 
             if (it != null) {
                 filterAdapter.updateData(it)
@@ -96,51 +99,24 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
     override fun onStart() {
         super.onStart()
 
-
-        val emptyList = mutableListOf<Pet>()
-
-
-
-
-        sharedViewModel.pets.observe(this, Observer {
-
-            if (it != null) {
-                petListAdapter.updateData(it)
-
-
-                    binding.homeProgressBar.visibility = View.GONE
-
-            }
-
-        })
-
-
-        requireActivity()
-
         recPets.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        petListAdapter = PetListAdapter(emptyList, this,this )
-
+        petListAdapter = PetListAdapter(mutableListOf(), this,this )
         recPets.layoutManager = linearLayoutManager
         recPets.adapter = petListAdapter
 
-
-        val filterBtn = binding.filterBtn
         val cleanFilters =binding.cleanFilters
 
         createPopMenu()
 
 
-
-
         cleanFilters.setOnClickListener{
-            sharedViewModel.clearList()
+            homeViewModel.clearList()
             locationSelected = false
              genderSelected = false
             ageSelected = false
-            petListAdapter.restoreList()
+            petListAdapter.clearFilterList()
         }
-
 
         sharedViewModel.pets.observe(this, Observer {
             if (!it.isNullOrEmpty() && sharedViewModel.dogBreedSugestions.value != null){
@@ -148,9 +124,12 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             }
         })
 
-
-
-
+        sharedViewModel.pets.observe(this, Observer {
+            if (it != null) {
+                petListAdapter.updateData(it)
+                binding.homeProgressBar.visibility = View.GONE
+            }
+        })
     }
 
 
@@ -169,11 +148,11 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             popupMenu.menuInflater.inflate(R.menu.pop_menu, popupMenu.menu)
 
             if (locationSelected == false) {
-                val locationSubMenu = popupMenu.menu.addSubMenu("Ubicacion")
+                val locationSubMenu = popupMenu.menu.addSubMenu("Location")
                 for (location in Location.values()) {
                     val menuItem = locationSubMenu.add(location.name)
                     menuItem.setOnMenuItemClickListener {
-                        sharedViewModel.addFilter(location.name)
+                        homeViewModel.addFilter(location.name)
                         petListAdapter.filterCategory(location.name)
                         locationSelected = true
                         true
@@ -182,32 +161,30 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                 }
             }
                 if (genderSelected == false) {
-                    val genderSubMenu = popupMenu.menu.addSubMenu("Genero")
+                    val genderSubMenu = popupMenu.menu.addSubMenu("Gender")
 
                     for (gender in Gender.values()) {
                         val menuItem =  genderSubMenu.add(gender.name)
                         menuItem.setOnMenuItemClickListener {
-                            sharedViewModel.addFilter(gender.name)
+                            homeViewModel.addFilter(gender.name)
                             petListAdapter.filterCategory(gender.name)
                             genderSelected = true
                             true
+                         }
                     }
                 }
-                }
                 if (ageSelected == false) {
-                    val ageSubMenu = popupMenu.menu.addSubMenu("Edad")
+                    val ageSubMenu = popupMenu.menu.addSubMenu("Age")
 
                     for (ageRange in AgeRange.values()) {
                         val menuItem =  ageSubMenu.add(ageRange.ageRange)
                         menuItem.setOnMenuItemClickListener {
-                            sharedViewModel.addFilter(ageRange.ageRange)
+                            homeViewModel.addFilter(ageRange.ageRange)
                             petListAdapter.filterCategory(ageRange.ageRange)
                             ageSelected = true
                             true
                         }
-                }
-
-
+                    }
                 }
 
 
@@ -218,13 +195,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         }
 
     private fun filterText(query: String?) {
-        if (query.isNullOrBlank()) {
-           sharedViewModel.resetOriginalList()
-
-            return
-        }
         petListAdapter.filterBreed(query)
-
     }
 
 
@@ -239,7 +210,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             val suggestionAvailable = dogBreeds.contains(suggestion)
             cursor.addRow(arrayOf(index, suggestion))
 
-            // Personaliza el color o el estilo de la sugerencia según su disponibilidad
             if (!suggestionAvailable) {
                 cursor.setNotificationUri(context?.contentResolver, Uri.parse("content://com.example.provider/suggestions"))
             }
@@ -255,7 +225,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
             if (columnIndex == cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
                 val suggestion = cursor.getString(columnIndex)
 
-                // Suponiendo que dogBreeds es la lista de razas de perros actual
                 val suggestionAvailable = dogBreeds.contains(suggestion)
 
                 // Personaliza el color del texto según la disponibilidad
@@ -321,5 +290,21 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     }
 
+    override fun onFilterClick(filter: String) {
+        homeViewModel.deleteFilter(filter)
+        petListAdapter.deleteFilter(filter)
+
+        when (filter) {
+            "FEMALE" ->  genderSelected = false
+            "MALE" -> genderSelected = false
+               "Puppt" ->       ageSelected = false
+              "Teen" ->       ageSelected = false
+                "Adult" ->    ageSelected = false
+               "Senior" ->    ageSelected = false
+            else -> locationSelected = false
+
+    }
+
+}
 }
 

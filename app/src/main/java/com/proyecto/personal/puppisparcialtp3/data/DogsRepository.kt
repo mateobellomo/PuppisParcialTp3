@@ -28,29 +28,33 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
     }
 
     suspend fun createDogs() : List<Pet>{
-        val beagleImage = getSpecificBreedImages("beagle", 1)
+        val beagleImage = getSpecificBreedImages("beagle", 3)
         val shibaImage = getSpecificBreedImages("shiba", 3)
-        val akitaImage = getSpecificBreedImages("akita", 2)
-        val mastiffImage = getSpecificBreedImages("mastiff", 1)
-        val pugImage = getSpecificBreedImages("pug", 1)
+        val shibaImage2 = getSpecificBreedImages("shiba", 3)
+        val shibaImage3 = getSpecificBreedImages("shiba", 3)
+        val akitaImage = getSpecificBreedImages("akita", 3)
+        val mastiffImage = getSpecificBreedImages("mastiff", 3)
+        val pugImage = getSpecificBreedImages("pug", 3)
         val labradorImage = getSpecificBreedImages("labrador", 3)
-        val weimaranerImage = getSpecificBreedImages("weimaraner", 2)
+        val labradorImage2 = getSpecificBreedImages("labrador", 3)
+        val weimaranerImage = getSpecificBreedImages("weimaraner", 3)
+        val weimaranerImage2 = getSpecificBreedImages("weimaraner", 3)
 
         val listPet: MutableList<Pet> = ArrayList()
 
 
         listPet.add(
             Pet(Pet.nextId(),
-                "Agustin",
+                "Kenzi",
                 10,
                 "beagle",
-                "shiba",
+                "",
                 Gender.MALE,
                 "Soy un perrito amigable que busca un hogar y me gustaria ser adoptado para comenzar nuevas aventuras, me encontraron en la calle pero estoy sano, tengo todas las vacunas excepto la antiparasitaria, y me llevo bien con gatitos y otros perritos, sean cachorros o mayores. ",
                 "30 gr",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = beagleImage.dogsImage[0],
+                photo = beagleImage.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 1132756493
@@ -58,16 +62,16 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Paola",
+                "Skye",
                 10,
-                "cow",
                 "shiba",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30 kg",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[0],
+                photo = shibaImage.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 47562922
@@ -75,16 +79,16 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Yanina",
+                "Spark",
                 10,
-                "labrador",
                 "shiba",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30 kgs",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[1],
+                photo = shibaImage2.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 5739229
@@ -94,14 +98,14 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             Pet(Pet.nextId(),
                 "Camila",
                 10,
-                "pug",
                 "shiba",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30.0",
                 Location.BUENOS_AIRES,
                 "Agustin",
-                photo = shibaImage.dogsImage[2],
+                photo = shibaImage3.dogsImage,
                 false,
                 isFavorite = true,
                 ownerNumber = 1333333
@@ -109,16 +113,16 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Fernando",
+                "Charmander",
                 1,
                 "mastiff",
-                "mastiff",
+                "",
                 Gender.MALE,
                 "Nada",
                 "30.0",
                 Location.JUJUY,
                 "Agustin",
-                photo = mastiffImage.dogsImage[0],
+                photo = mastiffImage.dogsImage,
                 false,
                 isFavorite = true,
                 ownerNumber = 34449292
@@ -126,16 +130,16 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
         )
         listPet.add(
             Pet(Pet.nextId(),
-                "Raul",
+                "Kubon",
                 11,
                 "pug",
-                "pug",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Agustin",
-                photo = pugImage.dogsImage[0],
+                photo = pugImage.dogsImage,
                 true,
                 isFavorite = false,
                 ownerNumber = 76948483
@@ -146,13 +150,13 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Vulpix",
                 12,
                 "weimaraner",
-                "weimaraner",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Javier",
-                photo = weimaranerImage.dogsImage[0],
+                photo = weimaranerImage.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 93838338
@@ -163,13 +167,13 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Eevee",
                 18,
                 "weimaraner",
-                "weimaraner",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Rodrigo",
-                photo = weimaranerImage.dogsImage[1],
+                photo = weimaranerImage2.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 138349
@@ -180,13 +184,13 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "BigBoy",
                 20,
                 "labrador",
-                "labrador",
+                "",
                 Gender.MALE,
                 "Nada",
                 "10.20",
                 Location.CORDOBA,
                 "Alexander",
-                photo = labradorImage.dogsImage[0],
+                photo = labradorImage.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 99383838
@@ -197,13 +201,13 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 "Dora",
                 1,
                 "labrador",
-                "labrador",
+                "",
                 Gender.FEMALE,
                 "Nada",
                 "30.0",
                 Location.CORDOBA,
                 "Martina",
-                photo = labradorImage.dogsImage[1],
+                photo = labradorImage2.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 93838383
@@ -213,14 +217,14 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             Pet(Pet.nextId(),
                 "Tommy",
                 3,
-                "labrador",
-                "labrador",
+                "akita",
+                "",
                 Gender.MALE,
                 "Nada",
                 "12.56",
-                Location.CORDOBA,
+                Location.CHACO,
                 "Daniel",
-                photo = labradorImage.dogsImage[2],
+                photo = akitaImage.dogsImage,
                 false,
                 isFavorite = false,
                 ownerNumber = 11327566
