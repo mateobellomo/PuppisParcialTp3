@@ -21,7 +21,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet5"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet4"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet3"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet0"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +70,7 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +80,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +90,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_pet"
+            android:src="@drawable/baseline_pets_24"
             app:layout_constraintStart_toEndOf="@+id/imPet2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/quicksand_bold"
             android:text="@string/pet_name"
             android:textColor="@color/purple"
@@ -113,7 +113,6 @@
             android:layout_width="145dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="3dp"
             android:autofillHints="name"
             android:ems="10"
             android:hint="@string/pet_name"
@@ -140,7 +139,6 @@
             android:layout_width="155dp"
             android:layout_height="50dp"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey_light"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -153,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/quicksand_bold"
             android:text="@string/pet_age"
             android:textColor="@color/purple"
@@ -165,9 +163,8 @@
         <Spinner
             android:id="@+id/ageSpinner"
             android:layout_width="175dp"
-            android:layout_height="51dp"
+            android:layout_height="50dp"
             android:layout_marginStart="33dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey_light"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -194,7 +191,6 @@
             android:layout_width="65dp"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="3dp"
             android:ems="10"
             android:hint="@string/pet_weight"
             android:inputType="numberDecimal"
@@ -205,7 +201,6 @@
             android:id="@+id/GrKgSpinner"
             android:layout_width="115dp"
             android:layout_height="50dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey_light"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -232,7 +227,6 @@
             android:layout_width="155dp"
             android:layout_height="50dp"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -259,7 +253,6 @@
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="29dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -286,7 +279,6 @@
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp"
             android:backgroundTint="@color/grey"
             android:minHeight="48dp"
             android:textSize="18sp"
@@ -313,12 +305,9 @@
             android:layout_width="175dp"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="3dp"
-            android:ems="10"
+            android:ems="20"
             android:inputType="text"
-            android:text="@string/pet_owner"
             app:layout_constraintStart_toEndOf="@+id/LocationSpinner"
-
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormOwner" />
 
         <TextView
@@ -340,7 +329,6 @@
             android:layout_width="145dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
             android:ems="10"
             android:hint="@string/phone"
             android:inputType="text"
@@ -363,19 +351,16 @@
 
         <EditText
             android:id="@+id/editNotes"
-            android:layout_width="150dp"
-            android:layout_height="117dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="3dp"
+            android:layout_width="147dp"
+            android:layout_height="139dp"
+            android:layout_marginStart="35dp"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="@font/quicksand_light"
             android:gravity="top"
             android:hint="@string/pet_add_description"
             android:inputType="text"
             android:padding="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.396"
-            app:layout_constraintStart_toEndOf="@+id/generatePhoto"
+            app:layout_constraintStart_toEndOf="@+id/editTextFragmentPostAddPhoto"
             app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormDescription" />
 
         <TextView
@@ -392,24 +377,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostFormPhone" />
 
-        <ImageView
-            android:id="@+id/generatePhoto"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="15dp"
+        <EditText
+            android:id="@+id/editTextFragmentPostAddPhoto"
+            android:layout_width="152dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="3dp"
-            android:src="@drawable/ic_add_photo"
-            android:scaleType="centerInside"
+            android:background="@drawable/ic_rectangle"
+            android:fontFamily="@font/quicksand_light"
+            android:gravity="top"
+            android:hint="@string/pet_add_photos"
+            android:inputType="text"
+            android:padding="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAddPhoto"
-            tools:ignore="TextFields" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFragmentPostFormAddPhoto" />
 
         <Button
             android:id="@+id/buttonFragmentPostFormSave"
             android:layout_width="120dp"
             android:layout_height="48dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="85dp"
+            android:layout_marginBottom="76dp"
             android:background="@drawable/custom_border"
             android:text="@string/button_save"
             android:textAllCaps="false"
@@ -426,30 +414,38 @@
             android:layout_height="48dp"
             android:layout_marginStart="84dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="85dp"
+            android:layout_marginBottom="76dp"
+            android:background="@drawable/custom_border_grey"
             android:text="@string/button_cancel"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:background="@drawable/custom_border_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonFragmentPostFormSave"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorMsg" />
 
         <TextView
             android:id="@+id/errorMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="656dp"
+            android:layout_marginStart="152dp"
             android:text="TextView"
-            android:textColor="@color/purple"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.294"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSaveUrlPhoto" />
+
+        <ImageButton
+            android:id="@+id/btnSaveUrlPhoto"
+            android:layout_width="41dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_add_photo"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFragmentPostAddPhoto" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
