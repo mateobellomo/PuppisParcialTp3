@@ -51,19 +51,11 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        sharedViewModel.pets.value?.let { it ->
-            outState.putSerializable("myList", sharedViewModel.pets.value as Serializable)
-            Log.d("mis pets save instanec", sharedViewModel.pets.value.toString())
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState?.let {
-            val petsList = it.getSerializable("myList") as List<Pet>
-            Log.d("mis pets si recupero", petsList.toString())
-            sharedViewModel.pets.postValue(petsList)
-        }
+
         if(sharedViewModel.pets.value.isNullOrEmpty()){
             Log.d("mis pets si llama", "llama")
             sharedViewModel.getRepositoryDogs()

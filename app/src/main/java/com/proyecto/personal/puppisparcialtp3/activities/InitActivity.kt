@@ -17,15 +17,15 @@ class InitActivity : AppCompatActivity() {
         SharedPref.init(applicationContext);
         nightMode= SharedPref.read(SharedPref.DARK_MODE, false)
 
+        if(nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+
         val userName = SharedPref.read(SharedPref.NAME, "")
         if (!userName.isNullOrEmpty()) {
             // User is signed in
             val i = Intent(this@InitActivity, HomeActivity::class.java)
             startActivity(i)
-        }
-
-        if(nightMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
 }
