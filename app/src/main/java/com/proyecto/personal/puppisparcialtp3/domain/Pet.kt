@@ -18,7 +18,7 @@ data class Pet(
     var isAdopted: Boolean,
     var isFavorite: Boolean,
     var ownerNumber: String,
-    var ownerImageUrl: String?
+    var ownerImageUrl: String?,
 )
 {
     companion object {
