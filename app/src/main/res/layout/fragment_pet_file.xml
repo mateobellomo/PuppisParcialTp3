@@ -91,13 +91,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginEnd="228dp"
         android:text="2.5 kg"
         android:textColor="@color/purple"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toEndOf="@+id/sexPetFile"
         app:layout_constraintTop_toBottomOf="@+id/locationPetFile" />
 
@@ -181,13 +181,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="260dp"
         android:text="Weight"
         android:textColor="@color/grey_light"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintEnd_toEndOf="@+id/weightPetFile"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/sexTitlePetFile"
         app:layout_constraintTop_toBottomOf="@+id/weightPetFile" />
 

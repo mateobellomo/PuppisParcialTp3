@@ -70,12 +70,16 @@ class PetFileFragment : Fragment() {
         }
 
         val callBtn = binding.btnPhoneDetails
-        val phoneNumber = binding.btnPhoneDetails.tag
         callBtn.setOnClickListener{
-            binding.btnPhoneDetails.setOnClickListener {
+            val btnPhoneDetails = binding.btnPhoneDetails
+
+            val phoneNumber = binding.btnPhoneDetails.tag
+            if (pet != null) {
+                btnPhoneDetails.tag = pet.ownerNumber
+            }
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber))
                 startActivity(intent)
-            }
+
         }
 
         val adoptBtn = binding.btnAdoptDetails
@@ -108,7 +112,7 @@ class PetFileFragment : Fragment() {
         val adapter = pet.photo?.let { ViewPagerAdapter(it) }
         viewPager.adapter = adapter
         val btnPhoneDetails = binding.btnPhoneDetails
-        btnPhoneDetails.tag = pet.ownerNumber.toString()
+        btnPhoneDetails.tag = pet.ownerNumber
         name.text=pet.name
         location.text = pet.location.location
         sex.text = pet.gender.toString()
