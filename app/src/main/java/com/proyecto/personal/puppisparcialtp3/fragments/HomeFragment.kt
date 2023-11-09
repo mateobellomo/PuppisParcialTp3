@@ -10,11 +10,9 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CursorAdapter
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -117,7 +115,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         }
 
         sharedViewModel.pets.observe(this, Observer {
-            if (!it.isNullOrEmpty() && sharedViewModel.dogBreedSugestions.value != null) {
+            if (!it.isNullOrEmpty() && sharedViewModel.dogBreedSuggestions.value != null) {
                 initSearchBar()
             }
         })
@@ -201,8 +199,8 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
     private fun initSearchBar() {
         val searchView = binding.searchView
 
-        val sugerencias = sharedViewModel.dogBreedSugestions.value?.toTypedArray()
-        val dogBreeds = sharedViewModel.availablesBreed()
+        val sugerencias = sharedViewModel.dogBreedSuggestions.value?.toTypedArray()
+        val dogBreeds = sharedViewModel.availableBreed()
         val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
 
         dogBreeds.forEachIndexed { index, suggestion ->

@@ -5,15 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.proyecto.personal.puppisparcialtp3.data.model.DogsModel
 import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetAllDogsBreedsUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetDogsImageUseCase
 import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetSpecificBreedImagesUseCase
-import com.proyecto.personal.puppisparcialtp3.utils.Gender
-import com.proyecto.personal.puppisparcialtp3.utils.Location
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
 import com.proyecto.personal.puppisparcialtp3.domain.useCases.GetSomeDogsUseCase
-import com.proyecto.personal.puppisparcialtp3.listeners.OnFavoritesClickListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,8 +29,8 @@ class SharedViewModel @Inject constructor(
     val breedListLiveData: MutableLiveData<List<Pair<String, List<String>>>?>
         get() = _breedListLiveData
 
-    val originalPetList =  MutableLiveData<List<Pet>>()
-    val dogBreedSugestions: MutableLiveData<List<String>> = MutableLiveData()
+    private val originalPetList =  MutableLiveData<List<Pet>>()
+    val dogBreedSuggestions: MutableLiveData<List<String>> = MutableLiveData()
 
     fun onCreate() {
 
@@ -68,13 +64,11 @@ class SharedViewModel @Inject constructor(
 
     }
 
-
-
-    fun updateDogBreeds(newList: List<String>){
-        dogBreedSugestions.value =newList
+    private fun updateDogBreeds(newList: List<String>){
+        dogBreedSuggestions.value =newList
     }
 
-    fun availablesBreed () :Array<String>{
+    fun availableBreed () :Array<String>{
         val allPets = pets.value
         Log.e("razas disponibles", pets.value.toString())
         val availableBreeds: Set<String> = allPets?.flatMap { pet ->
