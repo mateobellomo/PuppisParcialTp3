@@ -32,7 +32,7 @@ enum class Location(val location: String) {
             return when (value) {
                 "Buenos Aires" -> BUENOS_AIRES
                 "Ciudad Autonoma de Buenos Aires" -> CIUDAD_AUTONOMA_DE_BUENOS_AIRES
-                "Catamarca" ->CATAMARCA
+                "Catamarca" -> CATAMARCA
                 "Chaco" -> CHACO
                 "Chubut" -> CHUBUT
                 "Cordoba" -> CORDOBA
@@ -42,10 +42,10 @@ enum class Location(val location: String) {
                 "Jujuy" -> JUJUY
                 "La Pampa" -> LA_PAMPA
                 "La Rioja" -> LA_RIOJA
-                "Mendoza" ->  MENDOZA
+                "Mendoza" -> MENDOZA
                 "Misiones" -> MISIONES
                 "Neuquen" -> NEUQUEN
-                "Río Negro" ->RIO_NEGRO
+                "Río Negro" -> RIO_NEGRO
                 "Salta" -> SALTA
                 "San Juan" -> SAN_JUAN
                 "San Luis" -> SAN_LUIS
@@ -57,6 +57,4 @@ enum class Location(val location: String) {
             }
         }
     }
-
-
 }

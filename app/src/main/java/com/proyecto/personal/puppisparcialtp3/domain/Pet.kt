@@ -19,8 +19,7 @@ data class Pet(
     var isFavorite: Boolean,
     var ownerNumber: String,
     var ownerImageUrl: String?
-)
-{
+) {
     companion object {
         private var nextId = 0L
 

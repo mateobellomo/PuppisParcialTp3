@@ -24,7 +24,7 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
 
     private var _binding: FragmentAdoptedBinding? = null
     private lateinit var petListAdapter: PetListAdapter
-    private val sharedViewModel : SharedViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,8 +35,6 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val adoptedViewModel =
-            ViewModelProvider(this).get(AdoptedViewModel::class.java)
 
         _binding = FragmentAdoptedBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -53,7 +51,7 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
                 binding.tvAdopted.visibility = View.GONE
                 val listaAdoptados: List<Pet> = it.filter { it.isAdopted }
                 petListAdapter.updateData(listaAdoptados)
-                if (listaAdoptados.isEmpty()){
+                if (listaAdoptados.isEmpty()) {
                     binding.tvAdopted.visibility = View.VISIBLE
                 }
 
@@ -62,12 +60,13 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
 
         })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    fun initRecyclerView(){
+    fun initRecyclerView() {
 
         val recycleView = binding.rvAdopted
         recycleView.layoutManager =
@@ -76,11 +75,17 @@ class AdoptedFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickL
         recycleView.adapter = petListAdapter
 
     }
+
     override fun onFavoritesClick(pet: Pet) {
         sharedViewModel.onFavoritesClick(pet)
     }
+
     override fun onViewItemDetail(pet: Pet) {
-        val toast = Toast.makeText(context, "Congrats! A new family member its on the way!", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(
+            context,
+            "Congrats! A new family member its on the way!",
+            Toast.LENGTH_SHORT
+        )
         toast.setGravity(Gravity.TOP, 0, 100)
         toast.show()
 

@@ -30,7 +30,8 @@ class InitFragment : Fragment() {
         val viewPager: ViewPager2 = binding.viewPager
         val tabLayout: TabLayout = binding.tabLayout
 
-        val imageList = listOf(R.drawable.init_image_1, R.drawable.init_image_2, R.drawable.init_image_3)
+        val imageList =
+            listOf(R.drawable.init_image_1, R.drawable.init_image_2, R.drawable.init_image_3)
         val adapter = ImagePagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
 

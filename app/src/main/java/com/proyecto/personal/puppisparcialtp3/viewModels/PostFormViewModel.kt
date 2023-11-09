@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class PostFormViewModel : ViewModel() {
 
-    val dogImages: MutableList<String> = ArrayList()
-
+    private val dogImages: MutableList<String> = ArrayList()
 
     fun saveImage(url: String) {
         dogImages.add(url)
@@ -17,8 +16,7 @@ class PostFormViewModel : ViewModel() {
         dogImages.remove(url)
     }
 
-    fun getall(): List<String> {
+    fun getAll(): List<String> {
         return dogImages
     }
-
 }

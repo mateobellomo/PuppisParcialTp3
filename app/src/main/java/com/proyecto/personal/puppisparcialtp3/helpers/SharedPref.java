@@ -15,7 +15,6 @@ public class SharedPref {
 
     private static List<OnImageURLChangeListener> imageURLChangeListeners = new ArrayList<>();
 
-
     private SharedPref() {
     }
 

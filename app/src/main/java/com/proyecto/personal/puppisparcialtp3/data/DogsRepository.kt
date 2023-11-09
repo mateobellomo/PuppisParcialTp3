@@ -8,26 +8,25 @@ import com.proyecto.personal.puppisparcialtp3.utils.Location
 import javax.inject.Inject
 
 
-class DogsRepository  @Inject constructor( private val  service: DogsService){
+class DogsRepository @Inject constructor(private val service: DogsService) {
 
 
-
-  suspend fun getDogsFromApi(): DogsModel {
-   val response: DogsModel =  service.getDogsImage()
-   return response //.map { it.toDomain()}
-  }
+    suspend fun getDogsFromApi(): DogsModel {
+        val response: DogsModel = service.getDogsImage()
+        return response //.map { it.toDomain()}
+    }
 
     suspend fun getAllBreeds(): List<Pair<String, List<String>>>? {
-        val response: List<Pair<String, List<String>>>? =  service.getDogsBreeds()
+        val response: List<Pair<String, List<String>>>? = service.getDogsBreeds()
         return response //.map { it.toDomain()}
     }
 
-    suspend fun getSpecificBreedImages(breed :String, imgNumber:Int): DogsModel {
-        val response: DogsModel =  service.getSpecificBreedImages(breed,imgNumber)
+    suspend fun getSpecificBreedImages(breed: String, imgNumber: Int): DogsModel {
+        val response: DogsModel = service.getSpecificBreedImages(breed, imgNumber)
         return response //.map { it.toDomain()}
     }
 
-    suspend fun createDogs() : List<Pet>{
+    suspend fun createDogs(): List<Pet> {
         val beagleImage = getSpecificBreedImages("beagle", 3)
         val shibaImage = getSpecificBreedImages("shiba", 3)
         val shibaImage2 = getSpecificBreedImages("shiba", 3)
@@ -42,9 +41,9 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
 
         val listPet: MutableList<Pet> = ArrayList()
 
-
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Kenzi",
                 10,
                 "beagle",
@@ -62,7 +61,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Skye",
                 10,
                 "shiba",
@@ -80,7 +80,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Spark",
                 10,
                 "shiba",
@@ -98,7 +99,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Camila",
                 10,
                 "shiba",
@@ -116,7 +118,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Charmander",
                 1,
                 "mastiff",
@@ -134,7 +137,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Kubon",
                 11,
                 "pug",
@@ -152,7 +156,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Vulpix",
                 12,
                 "weimaraner",
@@ -170,7 +175,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Eevee",
                 18,
                 "weimaraner",
@@ -188,7 +194,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "BigBoy",
                 20,
                 "labrador",
@@ -206,7 +213,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Dora",
                 1,
                 "labrador",
@@ -224,7 +232,8 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
             )
         )
         listPet.add(
-            Pet(Pet.nextId(),
+            Pet(
+                Pet.nextId(),
                 "Tommy",
                 3,
                 "akita",
@@ -241,7 +250,6 @@ class DogsRepository  @Inject constructor( private val  service: DogsService){
                 ownerImageUrl = "https://petapixel.com/assets/uploads/2019/02/download-2-800x800.jpeg"
             )
         )
-            return listPet
+        return listPet
     }
-
- }
+}

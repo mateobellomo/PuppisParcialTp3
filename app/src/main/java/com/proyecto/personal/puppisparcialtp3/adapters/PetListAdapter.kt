@@ -1,7 +1,5 @@
 package com.proyecto.personal.puppisparcialtp3.adapters
 
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +17,12 @@ class PetListAdapter(
 
     private val petsListFilter: MutableList<Pet> = mutableListOf()
     private val filterList: MutableList<String> = mutableListOf()
-    private var breedFilter : String = ""
+    private var breedFilter: String = ""
     override fun getItemCount() = petsList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_card_view_pet,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card_view_pet, parent, false)
         return (PostHolder(view))
     }
 
@@ -32,13 +31,13 @@ class PetListAdapter(
         val pet = petsList[position]
         holder.render(pet)
 
-        holder.getCardLayout().setOnClickListener{
+        holder.getCardLayout().setOnClickListener {
             onItemClick.onViewItemDetail(pet)
         }
-        holder.favoriteBtnUncheked.setOnClickListener{
+        holder.favoriteBtnUnchecked.setOnClickListener {
             onFavoriteClick.onFavoritesClick(pet)
         }
-        holder.favoriteBtnchecked.setOnClickListener{
+        holder.favoriteBtnChecked.setOnClickListener {
             onFavoriteClick.onFavoritesClick(pet)
         }
 
@@ -48,16 +47,16 @@ class PetListAdapter(
         var dataFilter = petsListFilter.toMutableList()
 
         // filtos de popMenu
-        if(filterList.isNotEmpty()){
+        if (filterList.isNotEmpty()) {
             for (filter in filterList) {
-              val  filteredPets = dataFilter.filter { pet ->
+                val filteredPets = dataFilter.filter { pet ->
                     when (filter) {
                         "FEMALE" -> pet.gender.toString() == "FEMALE"
                         "MALE" -> pet.gender.toString() == "MALE"
-                "Puppy" -> pet.age <= 1
-                "Teen" -> pet.age in 2..3
-                "Adult" -> pet.age in 3..7
-                "Senior" -> pet.age > 7
+                        "Puppy" -> pet.age <= 1
+                        "Teen" -> pet.age in 2..3
+                        "Adult" -> pet.age in 3..7
+                        "Senior" -> pet.age > 7
                         else -> pet.location.toString() == filter
                     }
                 }
@@ -66,15 +65,16 @@ class PetListAdapter(
             }
         }
 
-            if (breedFilter.isNotBlank()){
-                dataFilter = searchBar(dataFilter)
-            }
+        if (breedFilter.isNotBlank()) {
+            dataFilter = searchBar(dataFilter)
+        }
 
-            petsList.clear() // Limpia la lista actual
-            petsList.addAll(dataFilter) // Agrega los nuevos datos
-            notifyDataSetChanged()
+        petsList.clear() // Limpia la lista actual
+        petsList.addAll(dataFilter) // Agrega los nuevos datos
+        notifyDataSetChanged()
 
     }
+
     fun updateData(newData: List<Pet>) {
         petsList.clear() // Limpia la lista actual
         petsList.addAll(newData) // Agrega los nuevos datos
@@ -84,10 +84,13 @@ class PetListAdapter(
         notifyDataSetChanged()
     }
 
-    private fun searchBar(listToFilter : MutableList<Pet>): MutableList<Pet> {
+    private fun searchBar(listToFilter: MutableList<Pet>): MutableList<Pet> {
         val filteredList = mutableListOf<Pet>()
         for (item in listToFilter) {
-            if (item.breed?.lowercase()!!.contains(breedFilter!!.lowercase()) ||item.subBreed?.lowercase()!!.contains(breedFilter!!.lowercase())) {
+            if (item.breed?.lowercase()!!
+                    .contains(breedFilter!!.lowercase()) || item.subBreed?.lowercase()!!
+                    .contains(breedFilter!!.lowercase())
+            ) {
                 filteredList.add(item)
             }
         }
@@ -102,21 +105,19 @@ class PetListAdapter(
         refreshData()
     }
 
-
-    fun filterCategory (category : String){
+    fun filterCategory(category: String) {
         filterList.add(category)
         refreshData()
 
     }
 
-    fun clearFilterList(){
-      filterList.clear()
+    fun clearFilterList() {
+        filterList.clear()
         refreshData()
     }
 
-    fun deleteFilter(filterToDelete : String){
+    fun deleteFilter(filterToDelete: String) {
         filterList.remove(filterToDelete)
         refreshData()
     }
-
 }

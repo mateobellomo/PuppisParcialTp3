@@ -109,8 +109,6 @@ class PostFormFragment : Fragment() {
             imagePhoto = imagePhoto.plus(urlString)//P
             urlPhotoInput.text.clear()
         }
-
-
     }
 
 
@@ -212,11 +210,9 @@ class PostFormFragment : Fragment() {
         } else {
             val selectedAgeString = ageSpinner.selectedItem.toString()
             val ageValue = selectedAgeString.split(" ")[0].toIntOrNull() ?: 0
-
             val weight: String = "$weightPet $grKg"
             val gender: Gender = Gender.fromString(genderString)
             val location: Location = Location.fromString(locationString)
-
 
             val newPet = Pet(
                 Pet.nextId(), //genera id automatico
@@ -258,7 +254,7 @@ class PostFormFragment : Fragment() {
         }
     }
 
-    fun cleanInputs() {
+    private fun cleanInputs() {
         namePetInput.setText("")
         genderSpinner.setSelection(0, false)
         ageSpinner.setSelection(0, false)
@@ -273,7 +269,6 @@ class PostFormFragment : Fragment() {
     }
 
     private fun updateSpinners(list: List<Pair<String, List<String>>>) {
-
         val breedsList = list.map { it.first }
         val breedAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, breedsList)
@@ -308,7 +303,6 @@ class PostFormFragment : Fragment() {
                     subBreedSpinner.visibility = View.GONE
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }

@@ -20,11 +20,11 @@ import javax.inject.Singleton
 object NetworkModule {
 
 
-    val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+    private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    var client : OkHttpClient = OkHttpClient.Builder().apply {
+    private var client: OkHttpClient = OkHttpClient.Builder().apply {
         addInterceptor(interceptor).addInterceptor(InterceptorCustom)
     }.build()
 
@@ -49,7 +49,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideDogsApiClient(retrofit: Retrofit):DogsApiClient{
+    fun provideDogsApiClient(retrofit: Retrofit): DogsApiClient {
         return retrofit.create(DogsApiClient::class.java)
     }
 }

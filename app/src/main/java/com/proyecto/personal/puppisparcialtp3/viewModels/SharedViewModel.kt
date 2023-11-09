@@ -19,7 +19,7 @@ class SharedViewModel @Inject constructor(
     private val getDogsImage: GetDogsImageUseCase,
     private val getAllDogsBreedsUseCase: GetAllDogsBreedsUseCase,
     private val getSpecificBreedImages: GetSpecificBreedImagesUseCase,
-    private val getSomeDogsUseCase : GetSomeDogsUseCase
+    private val getSomeDogsUseCase: GetSomeDogsUseCase
 ) : ViewModel() {
 
     val pets = MutableLiveData<List<Pet>?>()
@@ -29,7 +29,7 @@ class SharedViewModel @Inject constructor(
     val breedListLiveData: MutableLiveData<List<Pair<String, List<String>>>?>
         get() = _breedListLiveData
 
-    private val originalPetList =  MutableLiveData<List<Pet>>()
+    private val originalPetList = MutableLiveData<List<Pet>>()
     val dogBreedSuggestions: MutableLiveData<List<String>> = MutableLiveData()
 
     fun onCreate() {
@@ -47,7 +47,7 @@ class SharedViewModel @Inject constructor(
 
             if (result2 != null) {
                 // junto razas y sub razas en una misma lista
-                val breedAndSubBreeds =result2.flatMap { listOf(it.first) + it.second }
+                val breedAndSubBreeds = result2.flatMap { listOf(it.first) + it.second }
                 updateDogBreeds(breedAndSubBreeds)
                 _breedListLiveData.postValue(result2)
             }
@@ -55,20 +55,20 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun imageForPost(breed:String,number:Int) {
+    fun imageForPost(breed: String, number: Int) {
         viewModelScope.launch {
-            val result  = getSpecificBreedImages(breed, number)
+            val result = getSpecificBreedImages(breed, number)
             _images.postValue(result.dogsImage)
             Log.d("imagenes", "el resultado de las imagens ${result.toString()}")
         }
 
     }
 
-    private fun updateDogBreeds(newList: List<String>){
-        dogBreedSuggestions.value =newList
+    private fun updateDogBreeds(newList: List<String>) {
+        dogBreedSuggestions.value = newList
     }
 
-    fun availableBreed () :Array<String>{
+    fun availableBreed(): Array<String> {
         val allPets = pets.value
         Log.e("razas disponibles", pets.value.toString())
         val availableBreeds: Set<String> = allPets?.flatMap { pet ->
@@ -81,7 +81,6 @@ class SharedViewModel @Inject constructor(
         return availableBreeds.toTypedArray()
 
     }
-
 
     fun onFavoritesClick(pet: Pet) {
         val currentList = pets.value
@@ -97,18 +96,18 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun findPet (id : Long) : Pet? {
+    fun findPet(id: Long): Pet? {
         val list = pets.value
         val petToLookFor = list?.find { it.id == id }
 
         if (petToLookFor != null) {
-          return petToLookFor
+            return petToLookFor
         } else {
             return null
         }
     }
 
-    fun addPet (pet:Pet){
+    fun addPet(pet: Pet) {
         var list = pets.value
         if (list != null) {
             list = list.toMutableList()
@@ -116,7 +115,6 @@ class SharedViewModel @Inject constructor(
             pets.value = list
         }
     }
-
 }
 
 

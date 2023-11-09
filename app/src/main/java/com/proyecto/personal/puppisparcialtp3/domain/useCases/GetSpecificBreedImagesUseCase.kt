@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetSpecificBreedImagesUseCase @Inject constructor(private val repository: DogsRepository) {
 
     suspend operator fun invoke(breed: String, imgNumber: Int): DogsModel {
-        val dogsImages = repository.getSpecificBreedImages(breed,imgNumber)
+        val dogsImages = repository.getSpecificBreedImages(breed, imgNumber)
         return if (!dogsImages.dogsImage.isEmpty()) {
             dogsImages
 

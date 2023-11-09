@@ -33,7 +33,6 @@ class PetFileFragment : Fragment() {
     private var currentImagePosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -44,7 +43,6 @@ class PetFileFragment : Fragment() {
         _binding = FragmentPetFileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         return root
     }
 
@@ -53,7 +51,6 @@ class PetFileFragment : Fragment() {
         val arrowLeft = binding.arrowLeft
         val arrowRight = binding.arrowRight
         val viewpager = binding.vpItemCard
-
         val petId = PetFileFragmentArgs.fromBundle(requireArguments()).id
         val pet = sharedViewModel.findPet(petId)
         if (pet != null) {

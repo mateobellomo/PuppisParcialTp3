@@ -4,7 +4,6 @@ enum class Gender(gender: String) {
     FEMALE("Female"),
     MALE("Male");
 
-
     companion object {
         fun fromString(value: String): Gender {
             return when (value) {

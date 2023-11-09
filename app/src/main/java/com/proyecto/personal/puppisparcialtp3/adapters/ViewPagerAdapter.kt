@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.proyecto.personal.puppisparcialtp3.R
 
-class ViewPagerAdapter (val images : List<String    >) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder> (){
+class ViewPagerAdapter(val images: List<String>) :
+    RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
-    inner class ViewPagerViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.ivViewPager)
 
         fun bind(imageUrl: String) {
@@ -21,8 +22,9 @@ class ViewPagerAdapter (val images : List<String    >) : RecyclerView.Adapter<Vi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
-            val view = LayoutInflater.from (parent.context).inflate(R.layout.item_viewpager, parent, false)
-            return ViewPagerViewHolder(view)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_viewpager, parent, false)
+        return ViewPagerViewHolder(view)
     }
 
     override fun getItemCount(): Int = images.size

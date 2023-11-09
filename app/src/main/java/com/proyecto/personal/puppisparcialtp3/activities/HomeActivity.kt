@@ -23,7 +23,6 @@ import com.proyecto.personal.puppisparcialtp3.databinding.ActivityHomeBinding
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
@@ -44,8 +43,13 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,R.id.navigation_profile, R.id.navigation_config, R.id.navigation_favorites,
-                R.id.navigation_adoptions,R.id.navigation_post,R.id.petFileFragment
+                R.id.navigation_home,
+                R.id.navigation_profile,
+                R.id.navigation_config,
+                R.id.navigation_favorites,
+                R.id.navigation_adoptions,
+                R.id.navigation_post,
+                R.id.petFileFragment
             ), drawerLayout
         )
 
@@ -55,7 +59,6 @@ class HomeActivity : AppCompatActivity() {
         val bottomNav = binding.navBottom
         bottomNav.setupWithNavController(navController)
 
-
         actionBarDrawerToggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
@@ -63,7 +66,6 @@ class HomeActivity : AppCompatActivity() {
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-
 
 // Oculta la Toolbar cuando se abre el DrawerLayout
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
@@ -79,8 +81,6 @@ class HomeActivity : AppCompatActivity() {
                 supportActionBar?.show()
             }
         })
-//        actionBarDrawerToggle.isDrawerIndicatorEnabled = true
-//        actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_hamburger)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.apply {
@@ -105,8 +105,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.icono_toolbar -> {
-
-
                 return true
             }
             // Otros casos si hay más elementos en el menú
