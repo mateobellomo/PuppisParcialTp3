@@ -1,6 +1,7 @@
 package com.proyecto.personal.puppisparcialtp3.fragments
 
 import android.content.Intent
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.proyecto.personal.puppisparcialtp3.adapters.ViewPagerAdapter
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentFavoritesBinding
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentPetFileBinding
 import com.proyecto.personal.puppisparcialtp3.domain.Pet
+import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 import com.proyecto.personal.puppisparcialtp3.viewModels.SharedViewModel
 
 
@@ -67,10 +69,6 @@ class PetFileFragment : Fragment() {
             }
         }
 
-        val backBtn = binding.backBtn
-        backBtn.setOnClickListener{
-            findNavController().popBackStack()
-        }
         val callBtn = binding.btnPhoneDetails
         val phoneNumber = binding.btnPhoneDetails.tag
         callBtn.setOnClickListener{
@@ -87,6 +85,7 @@ class PetFileFragment : Fragment() {
                 Toast.makeText(view.context, textoNotificacion, Toast.LENGTH_SHORT).show()
                 adoptBtn.text = "Adopted"
                 pet.isAdopted = true
+                pet.ownerName = SharedPref.write(SharedPref.NAME, "owner").toString()
 
             }
 
@@ -111,7 +110,7 @@ class PetFileFragment : Fragment() {
         val btnPhoneDetails = binding.btnPhoneDetails
         btnPhoneDetails.tag = pet.ownerNumber.toString()
         name.text=pet.name
-        location.text = pet.location.toString()
+        location.text = pet.location.location
         sex.text = pet.gender.toString()
         weight.text = pet.weight
         owner.text = pet.ownerName

@@ -1,6 +1,6 @@
 package com.proyecto.personal.puppisparcialtp3.utils
 
-enum class Location(location: String) {
+enum class Location(val location: String) {
     BUENOS_AIRES("Buenos Aires"),
     CIUDAD_AUTONOMA_DE_BUENOS_AIRES("Ciudad Autonoma de Buenos Aires"),
     CATAMARCA("Catamarca"),
