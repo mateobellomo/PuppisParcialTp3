@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.fragment.findNavController
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentSettingsBinding
 import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
@@ -39,5 +40,13 @@ class SettingsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var toolbar = binding.toolbarSettings
+        toolbar.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }
