@@ -48,7 +48,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     lateinit var recPets: RecyclerView
     lateinit var filterAdapter: FilterAdapter
-    private var filters: MutableList<String> = mutableListOf()
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var petListAdapter: PetListAdapter
@@ -63,7 +62,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel.onCreate()
+
     }
 
     override fun onCreateView(
@@ -71,7 +70,7 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //  sharedViewModel.onCreate()
+
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val vista: View = binding.root

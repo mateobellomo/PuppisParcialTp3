@@ -2,6 +2,7 @@ package com.proyecto.personal.puppisparcialtp3.domain
 
 import com.proyecto.personal.puppisparcialtp3.utils.Gender
 import com.proyecto.personal.puppisparcialtp3.utils.Location
+import java.io.Serializable
 
 data class Pet(
     val id: Long,
@@ -19,8 +20,7 @@ data class Pet(
     var isFavorite: Boolean,
     var ownerNumber: String,
     var ownerImageUrl: String?
-)
-{
+) : Serializable {
     companion object {
         private var nextId = 0L
 
