@@ -75,8 +75,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
 
         recPets = vista.findViewById(R.id.fragmentHomeRecPets)
 
-        val boton = vista.findViewById<Button>(R.id.boton_prueba_agregar)
-
         filterAdapter =  FilterAdapter(mutableListOf())
         initRecyclerView()
 
@@ -86,9 +84,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener, OnFavoritesClickList
                 filterAdapter.updateData(it)
             }
         })
-
-
-
         return vista
     }
 

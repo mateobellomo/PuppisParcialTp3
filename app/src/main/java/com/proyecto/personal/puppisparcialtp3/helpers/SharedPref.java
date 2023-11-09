@@ -11,7 +11,7 @@ public class SharedPref {
     private static SharedPreferences mSharedPref;
     public static final String NAME = "NAME";
     public static final String IMAGE_URL = "IMAGE_URL";
-    public static final Boolean DARK_MODE = false;
+    public static final String DARK_MODE = "DARK_MODE";
 
     private static List<OnImageURLChangeListener> imageURLChangeListeners = new ArrayList<>();
 
@@ -28,17 +28,17 @@ public class SharedPref {
         return mSharedPref.getString(key, defValue);
     }
 
+    public static boolean read(String key, boolean defValue) {
+        return mSharedPref.getBoolean(key, defValue);
+    }
+
     public static void write(String key, String value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putString(key, value);
-        if (key == SharedPref.IMAGE_URL) {
+        if (key.equals(SharedPref.IMAGE_URL)) {
             notifyImageURLChangeListeners(value);
         }
         prefsEditor.commit();
-    }
-
-    public static boolean read(String key, boolean defValue) {
-        return mSharedPref.getBoolean(key, defValue);
     }
 
     public static void write(String key, boolean value) {
