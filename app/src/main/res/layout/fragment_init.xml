@@ -9,13 +9,14 @@
 
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
+        android:id="@+id/viewPager"
         android:layout_width="248dp"
         android:layout_height="248dp"
-        android:layout_marginStart="83dp"
-        android:layout_marginTop="241dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="81dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,17 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="113dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Adopt your pet!"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:theme="@style/TEXT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager2"
-        android:theme="@style/TEXT"/>
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
     <TextView
         android:id="@+id/textView3"
@@ -70,4 +71,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/purple"
+        app:tabIndicatorColor="@android:color/black"
+        app:tabIndicatorHeight="4dp"
+        app:tabGravity="center"
+        app:tabMode="fixed"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager">
+    </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

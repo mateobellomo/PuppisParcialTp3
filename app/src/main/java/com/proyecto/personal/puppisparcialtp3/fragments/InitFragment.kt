@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AppCompatDelegate
 import com.proyecto.personal.puppisparcialtp3.R
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.proyecto.personal.puppisparcialtp3.adapters.ImagePagerAdapter
 import com.proyecto.personal.puppisparcialtp3.databinding.FragmentInitBinding
-import com.proyecto.personal.puppisparcialtp3.helpers.SharedPref
 
 class InitFragment : Fragment() {
 
@@ -24,7 +26,18 @@ class InitFragment : Fragment() {
     ): View? {
         binding = FragmentInitBinding.inflate(inflater, container, false)
 
-        this.logInBtn = binding.initBtn
+        logInBtn = binding.initBtn
+        val viewPager: ViewPager2 = binding.viewPager
+        val tabLayout: TabLayout = binding.tabLayout
+
+        val imageList = listOf(R.drawable.init_image_1, R.drawable.init_image_2, R.drawable.init_image_3)
+        val adapter = ImagePagerAdapter(requireContext(), imageList)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = "."
+        }.attach()
+
         this.logInBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_initFragment_to_logInFragment2)
         }
