@@ -2,14 +2,26 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/main_nav"
+    app:startDestination="@id/navigation_home">
+
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.proyecto.personal.puppisparcialtp3.activities.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
         <action
             android:id="@+id/action_navigation_home_to_petFileFragment"
             app:destination="@id/petFileFragment" />
@@ -25,6 +37,11 @@
         android:id="@+id/navigation_config"
         android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
         android:label="@string/title_config"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.SettingsFragment"
+        android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
@@ -60,4 +77,8 @@
             android:name="id"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.proyecto.personal.puppisparcialtp3.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
